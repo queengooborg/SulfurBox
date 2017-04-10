@@ -1,0 +1,21 @@
+Mod Name
+Mod Author(s)
+ - Author ID
+ - Author Name
+ - Author Role
+Mod Package Group
+Mod Package Name
+Mod Version
+Minecraft Version
+Minecraft Forge Version
+Dependency Mods
+ - Mod Package Name
+ - Mod Version
+Java Dependencies
+Additional Repositories
+Repository URL
+CurseForge Project ID
+License
+Manifest Attribute Entries
+ - Attribute Name
+ - Attribute File

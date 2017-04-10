@@ -1,0 +1,51 @@
+{
+  "name": "The Best Test Mod",
+  "pkggroup": "mods.queengoob.org",
+  "pkgname": "thebesttestmod",
+  "description": "Do you need a mod that will let you run tests as best as possible?  Look no further than The Best Test Mod, an example mod that does absolutely nothing other than display pseudo code and configuration!",
+  "authors": [
+    {
+      "id": "vdscratchy",
+      "name": "Vinyl Darkscratch",
+      "role": "developer"
+    },
+    {
+      "id": "covers1624",
+      "role": "developer"
+    },
+    {
+      "name": "JackieNCB",
+      "role": "supporter"
+    }
+  ],
+  "version": "0.0.1",
+  "mcversion": "1.11.2",
+  "forgeversion": "13.20.0.2224",
+  "parentmod": null,
+  "dependencies": [
+    "codechicken.codechickenlib:2.6.*",
+    "com.github.glitchfiend.biomesoplenty:6.0.2+",
+    "codechicken.notenoughitems:2.1.3"
+  ],
+  "javadependencies": [
+    "scala",
+    "org.apache.maven.wagon:wagon-ssh:2.2"
+  ],
+  "logopath": "resources/textures/logo.png",
+  "mavenrepositories": {
+    "mvnmrtjp": "http://files.projectredwiki.com/maven",
+    "JEI": "http://dvs1.progwml6.com/files/maven"
+  },
+  "manifestattributes": {
+    "Main-Class": "codechicken.lib.tool.Main",
+    "FMLCorePlugin": "codechicken.lib.asm.CCLCorePlugin",
+    "FMLCorePluginContainsFMLMod": "true",
+    "FMLAT": "ccl_at.cfg"
+  },
+  "homepage": "http://www.queengoob.org/mods/thebesttestmod",
+  "updatecheck": "http://static.queengoob.org/mods/thebesttestmod/version.json",
+  "modrepository": "http://github.com/vinyldarkscratch/SulfurBox",
+  "curseforgeid": 12345678,
+  "license": "GNU General Public License v3.0",
+  "credits": "Thanks to JackieNCB for the wonderful name, and CodeChicken, MrTJP, Glitchfiend, and Mezz for writing the many mods I used as examples to create this program!"
+}
