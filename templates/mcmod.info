@@ -1,0 +1,14 @@
+[
+	{
+		"modid": "%PKGNAME%",
+		"name": "%NAME%",
+		"description": "%DESCRIPTION%",
+		"version": "${version}",
+		"mcversion": "${mc_version}",
+		"url": "%HOMEPAGE%",
+		"updateJSON": "%UPDATECHECK%",
+		"authorList": [%AUTHORS%],
+		"logoFile": "%LOGOPATH%",
+		"parent": "%PARENTMOD"
+	}
+]

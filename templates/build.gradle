@@ -1,0 +1,156 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+        	name = "forge"
+        	url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "covers1624"
+            url = "http://maven.covers1624.net/"
+        }
+        maven {
+            name = "covers1624"
+            url = "http://mavenmirror.covers1624.net/"
+        }
+        %MAVENREPOSITORIES%
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+    }
+}
+
+plugins {
+    id "com.matthewprenger.cursegradle" version "1.0.5"
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven'
+%JAVADEPENDENCIES%
+
+targetCompatibility = "1.8"
+sourceCompatibility = "1.8"
+
+group = "%PKGGROUP%"
+archivesBaseName = "%NAME%"
+mc_version = "%MCVERSION%"
+forge_version = "%FORGEVERSION%"
+mod_version = "%VERSION%"
+
+//add dependencies
+repositories {
+    %MAVENREPOSITORIES%
+}
+
+dependencies {
+	%DEPENDENCIES%
+}
+
+version = "${project.mod_version}." + (System.getenv("BUILD_NUMBER") ?: "1")
+
+// Setup the forge minecraft plugin data. Specify the preferred forge/minecraft version here
+minecraft {
+    version = project.mc_version + "-" + project.forge_version
+    mappings = "%FORGEMAPPING%"
+    runDir = "run"
+    replace '${mod_version}', project.mod_version
+    makeObfSourceJar = false
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mc_version", project.mc_version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mc_version': project.mc_version
+    }
+    rename '(.+_at.cfg)', 'META-INF/$1'
+}
+
+def commonManifest = {
+	%MANIFESTATTRIBUTES%
+}
+
+jar {
+    classifier = 'universal'
+    manifest commonManifest
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+    manifest commonManifest
+}
+
+task srcJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+    manifest commonManifest
+}
+
+task signJar(type: SignJar, dependsOn: reobfJar) {
+    if (project.hasProperty('keyStore')) {
+        keyStore = project.keyStore // This needs to be a path to the keystore file
+        alias = project.keyStoreAlias
+        storePass = project.keyStorePass
+        keyPass = project.keyStoreKeyPass
+        inputFile = jar.archivePath
+        outputFile = jar.archivePath
+    }
+}
+
+build.dependsOn signJar
+
+// Tell the artifact system about our extra jars
+artifacts {
+    archives deobfJar
+    archives srcJar
+}
+
+curseforge {
+    apiKey = "$System.env.curse_api_key"
+    project {
+        id = '%CURSEFORGEID%'
+        changelog = file('build/libs/' + project.getName() + '-' + project.version + '-changelog.txt');
+        releaseType = 'beta'
+    }
+}
+
+// Configure an upload task.
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "%MAVENREPOSITORY%")
+            pom {
+                groupId = project.group
+                // Force the maven upload to use the <mcversion>-<version> syntax preferred at files
+                artifactId = project.archivesBaseName
+                project {
+                    name project.archivesBaseName
+                    packaging 'jar'
+                    description '%NAME%'
+                    url '%MODREPOSITORY%'
+
+                    scm {
+                        url '%MODREPOSITORY%'
+                        connection '%MODREPOSITORY%'
+                        developerConnection '%MODREPOSITORY%'
+                    }
+
+                    issueManagement {
+                        %ISSUESPAGE%
+                    }
+
+                    licenses {
+                        %LICENSE%
+                    }
+
+                    developers {
+                        %AUTHORS%
+                    }
+                }
+            }
+        }
+    }
+}

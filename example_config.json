@@ -21,6 +21,7 @@
   "version": "0.0.1",
   "mcversion": "1.11.2",
   "forgeversion": "13.20.0.2224",
+  "forgemapping": "snapshot_20161220",
   "parentmod": null,
   "dependencies": [
     "codechicken.codechickenlib:2.6.*",
@@ -44,7 +45,9 @@
   },
   "homepage": "http://www.queengoob.org/mods/thebesttestmod",
   "updatecheck": "http://static.queengoob.org/mods/thebesttestmod/version.json",
+  "mavenrepository": "file://${local_maven}",
   "modrepository": "http://github.com/vinyldarkscratch/SulfurBox",
+  "issuespage": "http://github.com/vinyldarkscratch/SulfurBox/issues",
   "curseforgeid": 12345678,
   "license": "GNU General Public License v3.0",
   "credits": "Thanks to JackieNCB for the wonderful name, and CodeChicken, MrTJP, Glitchfiend, and Mezz for writing the many mods I used as examples to create this program!"
