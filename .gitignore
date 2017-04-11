@@ -1,0 +1,49 @@
+# Gradle
+.gradle
+build/
+run/
+logs/
+
+# Eclipse
+bin/
+*.launch
+.settings/
+.metadata
+.classpath
+.project
+
+# IntelliJ
+/*.iml
+.idea/
+*.ipr
+*.iws
+.idea_modules/
+out/
+
+# OS crap
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Other common
+*.pydevproject
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+eclipse/
+libs/
+
+# SulfurBox output
+.sulfurbox/
+*.gradle
+gradle/
+gradlew
+gradlew.bat
+*.sulfur
+!example-gradle
+!example_config.sulfur
