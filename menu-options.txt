@@ -1,0 +1,26 @@
+File [Alt-F]
+- New (Ctrl-N)
+- Open (Ctrl-O)
+- Save (Ctrl-S)
+- Save As… (Ctrl-Alt-S)
+—————
+- Exit (Ctrl-Q/Alt-F4)
+
+Edit [Alt-E]
+- Copy (Ctrl-C)
+- Cut (Ctrl-X)
+- Paste (Ctrl-V)
+- Select All (Ctrl-A)
+- Deselect (Ctrl-Alt-A)
+
+Project [Alt-P]
+- Generate (Ctrl-G)
+- Clean (Ctrl-Shift-Backspace)
+- Compile JAR (Ctrl-Shift-G)
+
+About [Alt-A]
+- About SulfurBox
+- Manual
+- Online Support
+- Check for Updates
+- Request to Add Maven Mod Repository
