@@ -41,9 +41,13 @@ libs/
 # SulfurBox output
 .sulfurbox/
 *.gradle
-gradle/
-gradlew
-gradlew.bat
 *.sulfur
-!example-gradle
+*.info
+
+# Whitelist
+!developer-references/
+!example.gradle
+!example.properties
 !example_config.sulfur
+!build.template.gradle
+!mcmod.template.info
