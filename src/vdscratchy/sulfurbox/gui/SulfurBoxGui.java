@@ -12,6 +12,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 /**
  *
@@ -19,13 +24,37 @@ import java.awt.event.KeyEvent;
  */
 public class SulfurBoxGui extends javax.swing.JFrame {
 
+    private Properties properties = new Properties();
+
     /**
      * Creates new form SulfurBoxGui
      */
     public SulfurBoxGui() {
+        loadProperties();
         initComponents();
         initLAFMenu();
         pack();
+    }
+
+    //TODO Create a proper global properties handler
+    private void loadProperties() {
+        try {
+            File propertyFile = new File("properties");
+            if (!propertyFile.exists()) {
+                propertyFile.createNewFile();
+            }
+            properties.load(new FileInputStream(propertyFile));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            UIManager.setLookAndFeel(properties.getProperty("laf", "com.bulenkov.darcula.DarculaLaf"));
+            SwingUtilities.updateComponentTreeUI(SulfurBoxGui.this);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -46,13 +75,16 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
             laf.addActionListener(event -> {
                 try {
+                    properties.setProperty("laf", info.getClassName());
+                    properties.store(new FileOutputStream("properties"), "Props //TODO create a proper global properties file");
+
                     UIManager.setLookAndFeel(info.getClassName());
                     SwingUtilities.updateComponentTreeUI(SulfurBoxGui.this);
                     if (info.getName().equals("Metal")) {
                         JOptionPane.showMessageDialog(SulfurBoxGui.this, "A restart may be required to correctly apply this change.", "Info", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
-                catch (ClassNotFoundException | UnsupportedLookAndFeelException | IllegalAccessException | InstantiationException e) {
+                catch (Exception e) {
                     e.printStackTrace();
                     JOptionPane.showMessageDialog(SulfurBoxGui.this, "Something when wrong while setting new look and feel!\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -69,6 +101,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ideButtonGroup = new ButtonGroup();
         jTabbedPane1 = new JTabbedPane();
         modPanel = new JPanel();
         modNameField = new JTextField();
@@ -938,6 +971,9 @@ public class SulfurBoxGui extends javax.swing.JFrame {
                                 .addComponent(jLabel13)))))
                 .addContainerGap())
         );
+
+        ideButtonGroup.add(intellijRadButton);
+        ideButtonGroup.add(eclipseRadButton);
     }// </editor-fold>//GEN-END:initComponents
 
     private void atribRemManifest1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_atribRemManifest1ActionPerformed
@@ -1050,6 +1086,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
     private Box.Filler filler1;
     private Box.Filler filler2;
     private JComboBox<String> forgeVersionSelect;
+    private ButtonGroup ideButtonGroup;
     private JRadioButton intellijRadButton;
     private JTextField issueTrackerField;
     private JComboBox<String> jComboBox3;
