@@ -1,47 +1,49 @@
 package vdscratchy.sulfurbox.construct;
 
+import vdscratchy.sulfurbox.data.Mod;
+
 /**
  * SulfurBox - vdscratchy.sulfurbox.construct.ConstructGradle
  * Created by vinyldarkscratch on 4/13/17.
  */
 public class ConstructGradle {
-	public static String projectVars(String group, String modname, String version, String mcversion, String forgeversion) {
+	public static String projectVars(Mod modInfo) {
 		String output = "";
-		output += "group = $group\n";
-		output += "archivesBaseName = $modname\n";
-		output += "mc_version = $mcversion\n";
-		output += "forge_version = $forgeversion\n";
-		output += "mod_version = $version";
+		output += "group = " + modInfo.packageGroup + "\n";
+		output += "archivesBaseName = " + modInfo.modName + "\n";
+		output += "mc_version = " + modInfo.mcVersion.toString() + "\n";
+		output += "forge_version = " + modInfo.forgeVersion.toString() + "\n";
+		output += "mod_version = " + modInfo.modVersion.toString();
 		return output;
 	}
 
-	public static String mcforgeversion(String mc, String forge) { return "$mc-$forge"; }
+	public static String mcforgeversion(Mod modInfo) { return modInfo.forgeVersion.toString() + "-" + modInfo.forgeVersion.toString(); }
 
-	public static String forgemapping() {
+	public static String forgemapping(Mod modInfo) {
 		return "";
 	}
 
-	public static String mavenReps() {
+	public static String mavenReps(Mod modInfo) {
 		return "";
 	}
 
-	public static String javaDeps() {
+	public static String javaDeps(Mod modInfo) {
 		return "";
 	}
 
-	public static String dependencies() {
+	public static String dependencies(Mod modInfo) {
 		return "";
 	}
 
-	public static String manifest() {
+	public static String manifest(Mod modInfo) {
 		return "";
 	}
 
-	public static String curseforge() {
+	public static String curseforge(Mod modInfo) {
 		return "";
 	}
 
-	public static String repositoryUpload() {
+	public static String repositoryUpload(Mod modInfo) {
 		return "";
 	}
 }
