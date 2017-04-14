@@ -1,5 +1,6 @@
 package vdscratchy.sulfurbox.data;
-import vdscratchy.sulfurbox.data.lists.*;
+import vdscratchy.sulfurbox.data.collections.Manifest;
+import vdscratchy.sulfurbox.data.types.*;
 
 /**
  * SulfurBox - vdscratchy.sulfurbox.data.Mod
@@ -10,16 +11,16 @@ public class Mod {
 	public String packageGroup = "";
 	public String packageName = "";
 	public String description = "";
-	public AuthorList authors;
+	public Author[] authors;
 	public Version modVersion;
 	public Version mcVersion;
 	public Version forgeVersion;
 	public String forgeMapping = "";
 	public String parentMod = "";
-	public DependencyList dependencies;
-	public DependencyList javaDependencies;
+	public Dependency[] dependencies;
+	public Dependency[] javaDependencies;
 	public String logopath = "";
-	public MavenRepositoryList mavenRepositories;
+	public MavenRepository[] mavenRepositories;
 	public Manifest manifestAttributes;
 	public String homepage = "";
 	public String updateCheck = "";

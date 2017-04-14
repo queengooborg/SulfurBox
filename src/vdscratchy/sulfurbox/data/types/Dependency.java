@@ -1,7 +1,7 @@
-package vdscratchy.sulfurbox.data;
+package vdscratchy.sulfurbox.data.types;
 
 /**
- * SulfurBox - vdscratchy.sulfurbox.data.Dependency
+ * SulfurBox - vdscratchy.sulfurbox.data.types.Dependency
  * Created by vinyldarkscratch on 4/13/17.
  */
 public class Dependency {
