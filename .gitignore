@@ -20,6 +20,11 @@ bin/
 .idea_modules/
 out/
 
+# Netbeans
+manifest.mf
+build.xml
+nbproject/
+
 # OS crap
 Thumbs.db
 ehthumbs.db
@@ -51,3 +56,4 @@ libs/
 !example_config.sulfur
 !build.template.gradle
 !mcmod.template.info
+/dist/
