@@ -37,7 +37,11 @@ public class Version {
 	}
 
 	public Version(String version) {
-		// TODO Parse string for version number
+		String[] versionBits = version.replaceAll("[^\\d.]", "").split("\\.");
+		if (versionBits.length > 0) {this.major = Integer.parseInt(versionBits[0]);}
+		if (versionBits.length > 1) {this.minor = Integer.parseInt(versionBits[1]);}
+		if (versionBits.length > 2) {this.patch = Integer.parseInt(versionBits[2]);}
+		if (versionBits.length > 3) {this.build = Integer.parseInt(versionBits[3]);}
 	}
 
 	@Override
