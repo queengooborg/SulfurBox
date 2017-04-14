@@ -2,7 +2,7 @@ package vdscratchy.sulfurbox.data.lists;
 import vdscratchy.sulfurbox.data.MavenRepository;
 
 /**
- * SulfurBox - vdscratchy.sulfurbox.data.lists
+ * SulfurBox - vdscratchy.sulfurbox.data.lists.MavenRepositoryList
  * Created by vinyldarkscratch on 4/13/17.
  */
 public class MavenRepositoryList {

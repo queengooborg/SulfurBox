@@ -1,7 +1,7 @@
 package vdscratchy.sulfurbox.data;
 
 /**
- * SulfurBox - vdscratchy.sulfurbox.data
+ * SulfurBox - vdscratchy.sulfurbox.data.Version
  * Created by vinyldarkscratch on 4/13/17.
  */
 public class Version {

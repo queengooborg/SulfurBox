@@ -2,7 +2,7 @@ package vdscratchy.sulfurbox.data;
 import vdscratchy.sulfurbox.data.lists.*;
 
 /**
- * SulfurBox - vdscratchy.sulfurbox.data
+ * SulfurBox - vdscratchy.sulfurbox.data.Mod
  * Created by vinyldarkscratch on 4/13/17.
  */
 public class Mod {

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * SulfurBox - vdscratchy.sulfurbox.data.lists
+ * SulfurBox - vdscratchy.sulfurbox.data.lists.DependencyList
  * Created by vinyldarkscratch on 4/13/17.
  */
 public class DependencyList {

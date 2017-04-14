@@ -1,6 +1,7 @@
 package vdscratchy.sulfurbox.construct;
 
 /**
+ * SulfurBox - vdscratchy.sulfurbox.construct.ConstructModInfo
  * Created by vinyldarkscratch on 4/13/17.
  */
 public class ConstructModInfo {
