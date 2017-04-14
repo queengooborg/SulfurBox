@@ -8,7 +8,7 @@ public class ConstructModInfo {
 		return "";
 	}
 
-	public static String name() {
+	public static String modname() {
 		return "";
 	}
 
@@ -16,7 +16,7 @@ public class ConstructModInfo {
 		return "";
 	}
 
-	public static String version() {
+	public static String modversion() {
 		return "";
 	}
 

@@ -6,17 +6,15 @@ package vdscratchy.sulfurbox.construct;
 public class ConstructGradle {
 	public static String projectVars(String group, String modname, String version, String mcversion, String forgeversion) {
 		String output = "";
-		output += "group" + group + "\n";
-		output += "archivesBaseName" + modname + "\n";
-		output += "mc_version" + mcversion + "\n";
-		output += "forge_version" + forgeversion + "\n";
-		output += "mod_version" + version;
+		output += "group = $group\n";
+		output += "archivesBaseName = $modname\n";
+		output += "mc_version = $mcversion\n";
+		output += "forge_version = $forgeversion\n";
+		output += "mod_version = $version";
 		return output;
 	}
 
-	public static String mcforgeversion(String mc, String forge) {
-		return mc + "-" + forge;
-	}
+	public static String mcforgeversion(String mc, String forge) { return "$mc-$forge"; }
 
 	public static String forgemapping() {
 		return "";

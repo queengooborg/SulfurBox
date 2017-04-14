@@ -1,6 +1,7 @@
 package vdscratchy.sulfurbox.data;
 
 /**
+ * SulfurBox - vdscratchy.sulfurbox.data.Author
  * Created by vinyldarkscratch on 4/13/17.
  */
 public class Author {
