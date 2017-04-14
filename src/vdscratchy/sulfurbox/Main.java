@@ -18,8 +18,8 @@ public class Main {
         //Ensures the UI opens in its own thread and does not interfere with the main thread.
         //I dont think this is required because swing already creates a separate event scheduler thread but i seen someone else do this so im doing it!
         SwingUtilities.invokeLater(() -> {
-            val gui = new SulfurBoxGui();
-            gui.visible = true;
+            SulfurBoxGui gui = new SulfurBoxGui();
+            gui.setVisible(true);
         });
         
     }
