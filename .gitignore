@@ -33,7 +33,6 @@ $RECYCLE.BIN/
 .DS_Store
 
 # Other common
-*.pydevproject
 tmp/
 *.tmp
 *.bak
@@ -41,7 +40,6 @@ tmp/
 *~.nib
 local.properties
 eclipse/
-libs/
 
 # SulfurBox output
 .sulfurbox/
