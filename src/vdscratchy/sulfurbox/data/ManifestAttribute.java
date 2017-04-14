@@ -5,8 +5,8 @@ package vdscratchy.sulfurbox.data;
  * Created by vinyldarkscratch on 4/13/17.
  */
 public class ManifestAttribute {
-	private String property = "";
-	private String value = "";
+	public String property = "";
+	public String value = "";
 
 	public ManifestAttribute() {}
 
@@ -15,19 +15,8 @@ public class ManifestAttribute {
 		this.value = value;
 	}
 
-	public String getProperty() {
-		return property;
-	}
-
-	public void setProperty(String property) {
-		this.property = property;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
+	@Override
+	public String toString() {
+		return property + "='" + value + '"';
 	}
 }

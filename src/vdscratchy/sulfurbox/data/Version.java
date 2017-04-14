@@ -5,10 +5,10 @@ package vdscratchy.sulfurbox.data;
  * Created by vinyldarkscratch on 4/13/17.
  */
 public class Version {
-	private int major = 0;
-	private int minor = 0;
-	private int micro = 0;
-	private int build = 0;
+	public int major = -1;
+	public int minor = -1;
+	public int patch = -1;
+	public int build = -1;
 
 	public Version() {
 
@@ -23,52 +23,39 @@ public class Version {
 		this.minor = minor;
 	}
 
-	public Version(int major, int minor, int micro) {
+	public Version(int major, int minor, int patch) {
 		this.major = major;
 		this.minor = minor;
-		this.micro = micro;
+		this.patch = patch;
 	}
 
-	public Version(int major, int minor, int micro, int build) {
+	public Version(int major, int minor, int patch, int build) {
 		this.major = major;
 		this.minor = minor;
-		this.micro = micro;
-		this.micro = build;
+		this.patch = patch;
+		this.build = build;
 	}
 
 	public Version(String version) {
 		// TODO Parse string for version number
 	}
 
-	public int getMajor() {
-		return major;
-	}
+	@Override
+	public String toString() {
+		String output = "";
+		if (major >= 0) {
+			output += major;
+			if (minor >= 0) {
+				output += "." + minor;
+				if (patch >= 0) {
+					output += "." + patch;
+					if (build >= 0) {
+						output += "." + build;
+					}
+				}
+			}
+		}
 
-	public void setMajor(int major) {
-		this.major = major;
-	}
-
-	public int getMinor() {
-		return minor;
-	}
-
-	public void setMinor(int minor) {
-		this.minor = minor;
-	}
-
-	public int getMicro() {
-		return micro;
-	}
-
-	public void setMicro(int micro) {
-		this.micro = micro;
-	}
-
-	public int getBuild() {
-		return build;
-	}
-
-	public void setBuild(int build) {
-		this.build = build;
+		return output;
 	}
 }

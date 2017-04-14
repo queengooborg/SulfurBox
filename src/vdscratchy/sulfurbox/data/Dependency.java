@@ -5,46 +5,21 @@ package vdscratchy.sulfurbox.data;
  * Created by vinyldarkscratch on 4/13/17.
  */
 public class Dependency {
-	private String name = "";
-	private Version version;
-	private boolean disallowHigherVersion = false;
+	public String depName = "";
+	public Version depVersion;
+	public boolean disallowHigherVersion = false;
 
 	public Dependency() {
-
 	}
 
-	public Dependency(String name, Version version) {
-		this.name = name;
-		this.version = version;
+	public Dependency(String depName, Version depVersion) {
+		this.depName = depName;
+		this.depVersion = depVersion;
 	}
 
-	public Dependency(String name, Version version, boolean disallowHigherVersion) {
-		this.name = name;
-		this.version = version;
-		this.disallowHigherVersion = disallowHigherVersion;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Version getVersion() {
-		return version;
-	}
-
-	public void setVersion(Version version) {
-		this.version = version;
-	}
-
-	public boolean getDisallowHigherVersion() {
-		return disallowHigherVersion;
-	}
-
-	public void setDisallowHigherVersion(boolean disallowHigherVersion) {
+	public Dependency(String depName, Version depVersion, boolean disallowHigherVersion) {
+		this.depName = depName;
+		this.depVersion = depVersion;
 		this.disallowHigherVersion = disallowHigherVersion;
 	}
 }
