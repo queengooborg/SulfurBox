@@ -41,10 +41,10 @@ public class Version {
 
 	public Version(String version) {
 		String[] versionBits = version.replaceAll("[^\\d.]", "").split("\\.");
-		if (versionBits.length > 0) {this.major = Integer.parseInt(versionBits[0]);}
-		if (versionBits.length > 1) {this.minor = Integer.parseInt(versionBits[1]);}
-		if (versionBits.length > 2) {this.patch = Integer.parseInt(versionBits[2]);}
-		if (versionBits.length > 3) {this.build = Integer.parseInt(versionBits[3]);}
+		if (versionBits.length > 0) {this.major = parseInt(versionBits[0]);}
+		if (versionBits.length > 1) {this.minor = parseInt(versionBits[1]);}
+		if (versionBits.length > 2) {this.patch = parseInt(versionBits[2]);}
+		if (versionBits.length > 3) {this.build = parseInt(versionBits[3]);}
 	}
 
 	@Override
@@ -64,5 +64,15 @@ public class Version {
 		}
 
 		return output;
+	}
+
+	public static int parseInt(String s) {
+		if (s == "#") return -2;
+		try {
+			return Integer.parseInt(s);
+		}
+		catch (NumberFormatException e) {
+			return -1;
+		}
 	}
 }
