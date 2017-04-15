@@ -19,8 +19,11 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
+ * SulfurBox - vdscratchy.sulfurbox.gui.SulfurBoxGui
  *
- * @author brand
+ * @author Brandon3055, Vinyl Darkscratch, and Covers1624
+ * @version 0.0.1
+ * @since 0.0.1
  */
 public class SulfurBoxGui extends javax.swing.JFrame {
 
