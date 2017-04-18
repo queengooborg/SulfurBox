@@ -1,0 +1,44 @@
+/**
+ * SulfurBox - Gradle Buildscript
+ *
+ * @author Vinyl Darkscratch, Covers1624, and Brandon3055
+ * @version 0.0.1
+ */
+
+buildscript {
+	repositories {
+		jcenter()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		classpath "cz.kubacki.gradle.plugins:gradle-nbm-plugin:1.16.0"
+		classpath "gradle.plugin.org.openbakery:plugin:0.14.5"
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+// IDE Project Generation
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: "org.openbakery.xcode-plugin"
+
+dependencies {
+	compile files('libs/darcula.jar')
+}
+
+mainClassName = "vdscratchy.sulfurbox.Main"
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src']
+		}
+		resources {
+			srcDirs = ['resources']
+		}
+	}
+}

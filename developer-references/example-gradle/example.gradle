@@ -2,12 +2,18 @@ buildscript {
     repositories {
         jcenter()
         maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            name "forge"
+            url "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name "GradlePlugins"
+            url "https://plugins.gradle.org/m2/"
         }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath "cz.kubacki.gradle.plugins:gradle-nbm-plugin:1.16.0"
+        classpath "gradle.plugin.org.openbakery:plugin:0.14.5"
     }
 }
 
@@ -15,8 +21,16 @@ plugins {
     id "com.matthewprenger.cursegradle" version "1.0.5"
 }
 
+apply plugin: 'java'
+
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven'
+
+// IDE Project Generation
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: "cz.kubacki.nbm"
+apply plugin: "org.openbakery.xcode-plugin"
 
 // define the properties file
 ext.configFile = file "build.properties"
