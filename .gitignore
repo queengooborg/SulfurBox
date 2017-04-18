@@ -41,17 +41,6 @@ tmp/
 local.properties
 eclipse/
 
-# SulfurBox output
+# Misc.
 .sulfurbox/
-*.gradle
-*.sulfur
-*.info
-
-# Whitelist
-!developer-references/
-!example.gradle
-!example.properties
-!example_config.sulfur
-!build.template.gradle
-!mcmod.template.info
 /dist/
