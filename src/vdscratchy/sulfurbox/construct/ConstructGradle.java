@@ -1,6 +1,7 @@
 package vdscratchy.sulfurbox.construct;
 
 import vdscratchy.sulfurbox.data.Mod;
+import vdscratchy.sulfurbox.data.types.MavenRepository;
 
 /**
  * SulfurBox - vdscratchy.sulfurbox.construct.ConstructGradle
@@ -23,11 +24,17 @@ public class ConstructGradle {
 	public static String mcforgeversion(Mod modInfo) { return modInfo.forgeVersion.toString() + "-" + modInfo.forgeVersion.toString(); }
 
 	public static String forgemapping(Mod modInfo) {
-		return "";
+		// FIXME: Have me grab the actual Forge mapping when the list has been generated!
+		if (modInfo.mcVersion.toString() == "1.11.2") return "snapshot_20161220";
+		else return "snapshot_20161220";
 	}
 
 	public static String mavenReps(Mod modInfo) {
-		return "";
+		String output = "";
+		for (MavenRepository m : modInfo.mavenRepositories) {
+			output += "\nmaven{\nname '" + m.name + "'\nurl '" + m.url + "'\n}";
+		}
+		return output;
 	}
 
 	public static String javaDeps(Mod modInfo) {
