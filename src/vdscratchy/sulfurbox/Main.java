@@ -18,11 +18,10 @@ public class Main {
         UIManager.installLookAndFeel("Darcula", "com.bulenkov.darcula.DarculaLaf");
 
         //Ensures the UI opens in its own thread and does not interfere with the main thread.
-        //I dont think this is required because swing already creates a separate event scheduler thread but i seen someone else do this so im doing it!
+        //I don't think this is required because swing already creates a separate event scheduler thread but I've seen someone else do this so I'm doing it!
         SwingUtilities.invokeLater(() -> {
             SulfurBoxGui gui = new SulfurBoxGui();
             gui.setVisible(true);
         });
-        
     }
 }
