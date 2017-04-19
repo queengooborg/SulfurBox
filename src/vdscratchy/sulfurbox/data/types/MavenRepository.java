@@ -18,4 +18,18 @@ public class MavenRepository {
 		this.name = name;
 		this.url = url;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof MavenRepository)) return false;
+		MavenRepository other = (MavenRepository) o;
+
+		return name.equals(other.name) && url.equals(other.url);
+	}
+
+	@Override
+	public String toString() {
+		return name + " (" + url + ")";
+	}
 }

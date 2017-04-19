@@ -25,4 +25,20 @@ public class Dependency {
 		this.depVersion = depVersion;
 		this.disallowHigherVersion = disallowHigherVersion;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Dependency)) return false;
+		Dependency other = (Dependency) o;
+
+		return depName.equals(other.depName) && depVersion.equals(other.depVersion) && (disallowHigherVersion == other.disallowHigherVersion);
+	}
+
+	@Override
+	public String toString() {
+		String out = depName + " v" + depVersion.toString();
+		if (!disallowHigherVersion) out += " (or newer)";
+		return out;
+	}
 }

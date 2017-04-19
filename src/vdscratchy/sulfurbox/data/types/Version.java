@@ -48,6 +48,15 @@ public class Version {
 	}
 
 	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Version)) return false;
+		Version other = (Version) o;
+
+		return (major == other.major) && (minor == other.minor) && (patch == other.patch) && (build == other.build);
+	}
+
+	@Override
 	public String toString() {
 		String output = "";
 		if (major >= 0) {

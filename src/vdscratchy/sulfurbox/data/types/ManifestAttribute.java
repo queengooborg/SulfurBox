@@ -19,6 +19,15 @@ public class ManifestAttribute {
 	}
 
 	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof ManifestAttribute)) return false;
+		ManifestAttribute other = (ManifestAttribute) o;
+
+		return property.equals(other.property) && value.equals(other.value);
+	}
+
+	@Override
 	public String toString() {
 		return property + "='" + value + '"';
 	}
