@@ -9,9 +9,22 @@ import java.util.ListIterator;
 /**
  * SulfurBox - vdscratchy.sulfurbox.data.Mod
  *
- * @author Vinyl Darkscratch, Covers1624, and Brandon3055
+ * @author Vinyl Darkscratch, Covers1624, Brandon3055
  * @version 0.0.1
  * @since 0.0.1
+ *
+ * Stores all of the configuration for a single mod project.  The program creates an instance at startup for the current
+ * project loaded using the {@link vdscratchy.sulfurbox.handlers.CurrentProjectHandler}, which is the primary way the
+ * program interacts with this class.
+ *
+ * @see vdscratchy.sulfurbox.data.collections.ForgeMappings
+ * @see vdscratchy.sulfurbox.data.collections.Manifest
+ * @see vdscratchy.sulfurbox.data.types.Author
+ * @see vdscratchy.sulfurbox.data.types.Dependency
+ * @see vdscratchy.sulfurbox.data.types.ManifestAttribute
+ * @see vdscratchy.sulfurbox.data.types.MavenRepository
+ * @see vdscratchy.sulfurbox.data.types.Version
+ * @see vdscratchy.sulfurbox.handlers.CurrentProjectHandler
  */
 public class Mod {
 	public String modName = "";
@@ -45,6 +58,8 @@ public class Mod {
 		if (o == this) return true;
 		if (!o.getClass().getSimpleName().equals("Mod")) return false;
 		Mod other = (Mod) o;
+
+		// Array iterators copied from http://stackoverflow.com/a/8777397/2608838
 
 		ListIterator<Author> e11 = authors.listIterator();
 		ListIterator<Author> e12 = other.authors.listIterator();

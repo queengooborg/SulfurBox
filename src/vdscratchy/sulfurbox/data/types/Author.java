@@ -6,9 +6,16 @@ import java.util.ListIterator;
 /**
  * SulfurBox - vdscratchy.sulfurbox.data.types.Author
  *
- * @author Vinyl Darkscratch, Covers1624, and Brandon3055
+ * @author Vinyl Darkscratch, Covers1624, Brandon3055
  * @version 0.0.1
  * @since 0.0.1
+ *
+ * Stores the username, user ID, and project role of a mod author, which is used for giving credits in the modinfo file,
+ * uploading to repositories, and to display who does what.  Planned: this will obtain the author's Minecraft user ID
+ * as well, which can allow the user to add themselves easily.
+ *
+ * @see vdscratchy.sulfurbox.construct.ConstructGradle
+ * @see vdscratchy.sulfurbox.construct.ConstructModInfo
  */
 public class Author {
 	public String userid = "";

@@ -3,9 +3,16 @@ package vdscratchy.sulfurbox.data.types;
 /**
  * SulfurBox - vdscratchy.sulfurbox.data.types.Version
  *
- * @author Vinyl Darkscratch, Covers1624, and Brandon3055
+ * @author Vinyl Darkscratch, Covers1624, Brandon3055
  * @version 0.0.1
  * @since 0.0.1
+ *
+ * Stores a version number following the Semantic Versioning format with an addition for the build number.  This can
+ * parse a string for each part of the version number, stripping all non-number and non-period characters.  Note: this
+ * class has yet to follow the Semantic Versioning format exactly, and allow for prefixes and suffixes.
+ *
+ * @see vdscratchy.sulfurbox.data.types.Dependency
+ * @see vdscratchy.sulfurbox.data.collections.ForgeMappings
  */
 public class Version {
 	public int major = -1;

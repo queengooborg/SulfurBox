@@ -3,9 +3,16 @@ package vdscratchy.sulfurbox.data.types;
 /**
  * SulfurBox - vdscratchy.sulfurbox.data.types.Dependency
  *
- * @author Vinyl Darkscratch, Covers1624, and Brandon3055
+ * @author Vinyl Darkscratch, Covers1624, Brandon3055
  * @version 0.0.1
  * @since 0.0.1
+ *
+ * Stores project dependencies, whether Java libraries or other mods, by name and version.  Planned: the program then
+ * compares dependencies with the database file, updated regularly, that contains information on what repositories to
+ * reference.
+ *
+ * @see vdscratchy.sulfurbox.construct.ConstructGradle
+ * @see vdscratchy.sulfurbox.construct.ConstructModInfo
  */
 public class Dependency {
 	public String depName = "";

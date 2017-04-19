@@ -6,9 +6,16 @@ import vdscratchy.sulfurbox.data.types.MavenRepository;
 /**
  * SulfurBox - vdscratchy.sulfurbox.construct.ConstructGradle
  *
- * @author Vinyl Darkscratch, Covers1624, and Brandon3055
+ * @author Vinyl Darkscratch, Covers1624, Brandon3055
  * @version 0.0.1
  * @since 0.0.1
+ *
+ * Using a {@link vdscratchy.sulfurbox.data.Mod} object, this class contains several functions to generate a Gradle
+ * buildscript, including a main function to create the entire buildscript.  This is the counterpart to the modinfo
+ * constructor, {@link vdscratchy.sulfurbox.construct.ConstructModInfo}.
+ *
+ * @see vdscratchy.sulfurbox.data.Mod
+ * @see vdscratchy.sulfurbox.construct.ConstructModInfo
  */
 public class ConstructGradle {
 	public static String projectVars(Mod modInfo) {

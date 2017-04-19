@@ -3,9 +3,14 @@ package vdscratchy.sulfurbox.data.types;
 /**
  * SulfurBox - vdscratchy.sulfurbox.data.types.ManifestAttribute
  *
- * @author Vinyl Darkscratch, Covers1624, and Brandon3055
+ * @author Vinyl Darkscratch, Covers1624, Brandon3055
  * @version 0.0.1
  * @since 0.0.1
+ *
+ * Stores each attribute in a {@link vdscratchy.sulfurbox.data.collections.Manifest} by name and value.  Planned: this
+ * verifies input, ensuring the entered value fits it's context.
+ *
+ * @see vdscratchy.sulfurbox.data.collections.Manifest
  */
 public class ManifestAttribute {
 	public String property = "";

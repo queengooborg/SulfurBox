@@ -1,5 +1,6 @@
-package vdscratchy.sulfurbox.data;
+package vdscratchy.sulfurbox.handlers;
 
+import vdscratchy.sulfurbox.data.Mod;
 import vdscratchy.sulfurbox.data.collections.Manifest;
 import vdscratchy.sulfurbox.data.types.Author;
 import vdscratchy.sulfurbox.data.types.Dependency;
@@ -9,11 +10,20 @@ import vdscratchy.sulfurbox.data.types.Version;
 import java.util.ArrayList;
 
 /**
- * SulfurBox - vdscratchy.sulfurbox.data.CurrentProjectHandler
+ * SulfurBox - vdscratchy.sulfurbox.handlers.CurrentProjectHandler
  *
- * @author Vinyl Darkscratch, Covers1624, and Brandon3055
+ * @author Vinyl Darkscratch, Covers1624, Brandon3055
  * @version 0.0.1
  * @since 0.0.1
+ *
+ * A handler class that interacts with a {@link vdscratchy.sulfurbox.data.Mod} object, validating input and setting the
+ * variables.  This is primarily designed for use in the {@link vdscratchy.sulfurbox.gui.SulfurBoxGui}.  Note: many of
+ * the functions' actions could, and should, be implemented in the {@link vdscratchy.sulfurbox.data.Mod} class itself,
+ * such as the validators.
+ *
+ * @see vdscratchy.sulfurbox.data.Mod
+ * @see vdscratchy.sulfurbox.gui.SulfurBoxGui
+ * @see vdscratchy.sulfurbox.Main
  */
 public class CurrentProjectHandler {
 	public Mod currentProject = new Mod();
