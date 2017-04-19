@@ -70,8 +70,10 @@ public class CurrentProjectHandler {
 		return this.currentProject.description;
 	}
 
-	public void setDescription(String description) {
+	public String setDescription(String description) {
+		// TODO: Map with future error handler when ready
 		this.currentProject.description = description;
+		return "";
 	}
 
 	public ArrayList<Author> getAuthors() {
@@ -158,16 +160,22 @@ public class CurrentProjectHandler {
 		return this.currentProject.forgeMapping;
 	}
 
-	public void setForgeMapping(String forgeMapping) {
+	public String setForgeMapping(String forgeMapping) {
+		// TODO: Map with future error handler when ready
+		// TODO: make validator
 		this.currentProject.forgeMapping = forgeMapping;
+		return "";
 	}
 
 	public String getParentMod() {
 		return this.currentProject.parentMod;
 	}
 
-	public void setParentMod(String parentMod) {
+	public String setParentMod(String parentMod) {
+		// TODO: Map with future error handler when ready
+		// TODO: make validator
 		this.currentProject.parentMod = parentMod;
+		return "";
 	}
 
 	public ArrayList<Dependency> getDependencies() {
@@ -214,8 +222,11 @@ public class CurrentProjectHandler {
 		return this.currentProject.logopath;
 	}
 
-	public void setLogopath(String logopath) {
+	public String setLogopath(String logopath) {
+		// TODO: Map with future error handler when ready
+		// TODO: make validator
 		this.currentProject.logopath = logopath;
+		return "";
 	}
 
 	public ArrayList<MavenRepository> getMavenRepositories() {
@@ -251,64 +262,88 @@ public class CurrentProjectHandler {
 		return this.currentProject.homepage;
 	}
 
-	public void setHomepage(String homepage) {
+	public String setHomepage(String homepage) {
+		// TODO: Map with future error handler when ready
+		// TODO: make validator
 		this.currentProject.homepage = homepage;
+		return "";
 	}
 
 	public String getUpdateCheck() {
 		return this.currentProject.updateCheck;
 	}
 
-	public void setUpdateCheck(String updateCheck) {
+	public String setUpdateCheck(String updateCheck) {
+		// TODO: Map with future error handler when ready
+		// TODO: make validator
 		this.currentProject.updateCheck = updateCheck;
+		return "";
 	}
 
 	public String getModRepository() {
 		return this.currentProject.modRepository;
 	}
 
-	public void setModRepository(String modRepository) {
+	public String setModRepository(String modRepository) {
+		// TODO: Map with future error handler when ready
+		// TODO: make validator
 		this.currentProject.modRepository = modRepository;
+		return "";
 	}
 
 	public String getModMavenRepository() {
 		return this.currentProject.modMavenRepository;
 	}
 
-	public void setModMavenRepository(String modMavenRepository) {
+	public String setModMavenRepository(String modMavenRepository) {
+		// TODO: Map with future error handler when ready
+		// TODO: make validator
 		this.currentProject.modMavenRepository = modMavenRepository;
+		return "";
 	}
 
 	public String getIssuesPage() {
 		return this.currentProject.issuesPage;
 	}
 
-	public void setIssuesPage(String issuesPage) {
+	public String setIssuesPage(String issuesPage) {
+		// TODO: Map with future error handler when ready
+		// TODO: make validator
 		this.currentProject.issuesPage = issuesPage;
+		return "";
 	}
 
 	public int getCurseforgeID() {
 		return this.currentProject.curseforgeID;
 	}
 
-	public void setCurseforgeID(int curseforgeID) {
+	public String setCurseforgeID(int curseforgeID) {
+		// TODO: Map with future error handler when ready
+		// TODO: make validator
 		this.currentProject.curseforgeID = curseforgeID;
+		return "";
 	}
 
 	public String getLicense() {
 		return this.currentProject.license;
 	}
 
-	public void setLicense(String license) {
+	public String setLicense(String license) {
+		// TODO: Map with future error handler when ready
+		// TODO: make validator
 		this.currentProject.license = license;
+		return "";
 	}
 
 	public String getCredits() {
 		return this.currentProject.credits;
 	}
 
-	public void setCredits(String credits) {
+	public String setCredits(String credits) {
+		// TODO: Map with future error handler when ready
+		// TODO: make validator
 		this.currentProject.credits = credits;
+		return "";
 	}
 
 	public void clearModData() {
