@@ -22,8 +22,15 @@ public class CurrentProjectHandler {
 		return this.currentProject.modName;
 	}
 
-	public void setModName(String modName) {
+	public String setModName(String modName) {
+		// TODO: Map with future error handler when ready
+		String error = "";
+
+		if (modName.length() < 3) error = "Mod name is too short";
+		else if (modName.length() > 80) error = "Mod name is too long";
+
 		this.currentProject.modName = modName;
+		return error;
 	}
 
 	public String getPackageName() {
@@ -33,6 +40,12 @@ public class CurrentProjectHandler {
 	public String setPackageName(String packageName) {
 		// TODO: Map with future error handler when ready
 		String error = "";
+
+		if (!packageName.matches("[a-zA-Z\\d_$]*")) error = "Package names only allow alphanumerical characters, underscores, dollar signs, and periods";
+		else if (packageName.matches("^\\d") || packageName.matches("(\\.\\d)")) error = "Package and package module names cannot start with a number";
+		else if (packageName.matches("\\.$")) error = "Package names cannot end with a period";
+		else if (!packageName.matches("^([a-zA-Z_$][a-zA-Z\\d_$]*\\.)*[a-zA-Z_$][a-zA-Z\\d_$]*$")) error = "Package name is in an invalid format";
+
 		this.currentProject.packageName = packageName;
 		return error;
 	}
@@ -44,6 +57,11 @@ public class CurrentProjectHandler {
 	public String setPackageModuleName(String packageModuleName) {
 		// TODO: Map with future error handler when ready
 		String error = "";
+
+		if (!packageModuleName.matches("[a-zA-Z\\d_$]*")) error = "Package module names only allow alphanumerical characters, underscores, and dollar signs";
+		else if (packageModuleName.matches("^\\d")) error = "Package module names cannot start with a number";
+		else if (!packageModuleName.matches("^[a-zA-Z_$][a-zA-Z\\d_$]*$")) error = "Package module name is in an invalid format";
+
 		this.currentProject.packageModuleName = packageModuleName;
 		return error;
 	}
@@ -80,39 +98,60 @@ public class CurrentProjectHandler {
 		return this.currentProject.modVersion;
 	}
 
-	public void setModVersion(Version modVersion) {
+	public String setModVersion(Version modVersion) {
+		// TODO: Map with future error handler when ready
 		this.currentProject.modVersion = modVersion;
+		return "";
 	}
 
-	public void setModVersion(String modVersion) {
-		if (modVersion.matches("((\\d*).){0,4}")) this.currentProject.modVersion = new Version(modVersion);
-		else this.currentProject.modVersion = new Version(modVersion); // TODO: Map with future error handler when ready
+	public String setModVersion(String modVersion) {
+		// TODO: Map with future error handler when ready
+		String error = "";
+
+		if (modVersion.matches("((\\d*)\\.){0,3}(\\d+)")) error = "Mod version validation failed"; // TODO: make the validation in Version class
+
+		this.currentProject.modVersion = new Version(modVersion);
+		return error;
 	}
 
 	public Version getMcVersion() {
 		return this.currentProject.mcVersion;
 	}
 
-	public void setMcVersion(Version mcVersion) {
+	public String setMcVersion(Version mcVersion) {
+		// TODO: Map with future error handler when ready
 		this.currentProject.mcVersion = mcVersion;
+		return "";
 	}
 
-	public void setMcVersion(String mcVersion) {
-		if (mcVersion.matches("((\\d*).){0,4}")) this.currentProject.mcVersion = new Version(mcVersion);
-		else this.currentProject.mcVersion = new Version(mcVersion); // TODO: Map with future error handler when ready
+	public String setMcVersion(String mcVersion) {
+		// TODO: Map with future error handler when ready
+		String error = "";
+
+		if (mcVersion.matches("((\\d*)\\.){0,3}(\\d+)")) error = "Minecraft version validation failed"; // TODO: make the validation in Version class
+
+		this.currentProject.mcVersion = new Version(mcVersion);
+		return error;
 	}
 
 	public Version getForgeVersion() {
 		return this.currentProject.forgeVersion;
 	}
 
-	public void setForgeVersion(Version forgeVersion) {
+	public String setForgeVersion(Version forgeVersion) {
+		// TODO: Map with future error handler when ready
 		this.currentProject.forgeVersion = forgeVersion;
+		return "";
 	}
 
-	public void setForgeVersion(String forgeVersion) {
-		if (forgeVersion.matches("((\\d*).){0,4}")) this.currentProject.forgeVersion = new Version(forgeVersion);
-		else this.currentProject.forgeVersion = new Version(forgeVersion); // TODO: Map with future error handler when ready
+	public String setForgeVersion(String forgeVersion) {
+		// TODO: Map with future error handler when ready
+		String error = "";
+
+		if (forgeVersion.matches("((\\d*)\\.){0,3}(\\d+)")) error = "Forge version validation failed"; // TODO: make the validation in Version class
+
+		this.currentProject.forgeVersion = new Version(forgeVersion);
+		return error;
 	}
 
 	public String getForgeMapping() {
