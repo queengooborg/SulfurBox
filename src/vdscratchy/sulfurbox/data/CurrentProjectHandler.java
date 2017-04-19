@@ -31,7 +31,8 @@ public class CurrentProjectHandler {
 	}
 
 	public void setPackageGroup(String packageGroup) {
-		this.currentProject.packageGroup = packageGroup;
+		if (packageGroup.matches("([a-zA-Z_$][a-zA-Z\\d_$]*\\.)*[a-zA-Z_$][a-zA-Z\\d_$]*")) this.currentProject.packageGroup = packageGroup;
+		else this.currentProject.packageGroup = packageGroup; // TODO: Map with future error handler when ready
 	}
 
 	public String getPackageName() {
@@ -39,7 +40,8 @@ public class CurrentProjectHandler {
 	}
 
 	public void setPackageName(String packageName) {
-		this.currentProject.packageName = packageName;
+		if (packageName.matches("[a-zA-Z_$][a-zA-Z\\d_$]*")) this.currentProject.packageName = packageName;
+		else this.currentProject.packageName = packageName; // TODO: Map with future error handler when ready
 	}
 
 	public String getDescription() {
@@ -78,6 +80,11 @@ public class CurrentProjectHandler {
 		this.currentProject.modVersion = modVersion;
 	}
 
+	public void setModVersion(String modVersion) {
+		if (modVersion.matches("((\\d*).){0,4}")) this.currentProject.modVersion = new Version(modVersion);
+		else this.currentProject.modVersion = new Version(modVersion); // TODO: Map with future error handler when ready
+	}
+
 	public Version getMcVersion() {
 		return this.currentProject.mcVersion;
 	}
@@ -86,12 +93,22 @@ public class CurrentProjectHandler {
 		this.currentProject.mcVersion = mcVersion;
 	}
 
+	public void setMcVersion(String mcVersion) {
+		if (mcVersion.matches("((\\d*).){0,4}")) this.currentProject.mcVersion = new Version(mcVersion);
+		else this.currentProject.mcVersion = new Version(mcVersion); // TODO: Map with future error handler when ready
+	}
+
 	public Version getForgeVersion() {
 		return this.currentProject.forgeVersion;
 	}
 
 	public void setForgeVersion(Version forgeVersion) {
 		this.currentProject.forgeVersion = forgeVersion;
+	}
+
+	public void setForgeVersion(String forgeVersion) {
+		if (forgeVersion.matches("((\\d*).){0,4}")) this.currentProject.forgeVersion = new Version(forgeVersion);
+		else this.currentProject.forgeVersion = new Version(forgeVersion); // TODO: Map with future error handler when ready
 	}
 
 	public String getForgeMapping() {
@@ -183,6 +200,7 @@ public class CurrentProjectHandler {
 	}
 
 	public void setManifestAttributes(Manifest manifestAttributes) {
+		// TODO Split into add and remove functions, Manifest Attributes will be much like a dictionary (or Map<K, V>)
 		this.currentProject.manifestAttributes = manifestAttributes;
 	}
 
@@ -248,5 +266,9 @@ public class CurrentProjectHandler {
 
 	public void setCredits(String credits) {
 		this.currentProject.credits = credits;
+	}
+
+	public void clearModData() {
+		currentProject = new Mod();
 	}
 }
