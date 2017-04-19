@@ -26,22 +26,26 @@ public class CurrentProjectHandler {
 		this.currentProject.modName = modName;
 	}
 
-	public String getPackageGroup() {
-		return this.currentProject.packageGroup;
-	}
-
-	public void setPackageGroup(String packageGroup) {
-		if (packageGroup.matches("([a-zA-Z_$][a-zA-Z\\d_$]*\\.)*[a-zA-Z_$][a-zA-Z\\d_$]*")) this.currentProject.packageGroup = packageGroup;
-		else this.currentProject.packageGroup = packageGroup; // TODO: Map with future error handler when ready
-	}
-
 	public String getPackageName() {
 		return this.currentProject.packageName;
 	}
 
-	public void setPackageName(String packageName) {
-		if (packageName.matches("[a-zA-Z_$][a-zA-Z\\d_$]*")) this.currentProject.packageName = packageName;
-		else this.currentProject.packageName = packageName; // TODO: Map with future error handler when ready
+	public String setPackageName(String packageName) {
+		// TODO: Map with future error handler when ready
+		String error = "";
+		this.currentProject.packageName = packageName;
+		return error;
+	}
+
+	public String getPackageModuleName() {
+		return this.currentProject.packageModuleName;
+	}
+
+	public String setPackageModuleName(String packageModuleName) {
+		// TODO: Map with future error handler when ready
+		String error = "";
+		this.currentProject.packageModuleName = packageModuleName;
+		return error;
 	}
 
 	public String getDescription() {

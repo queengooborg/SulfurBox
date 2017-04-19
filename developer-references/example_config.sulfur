@@ -1,7 +1,7 @@
 {
   "name": "The Best Test Mod",
-  "pkggroup": "mods.queengoob.org",
-  "pkgname": "thebesttestmod",
+  "pkgname": "mods.queengoob.org",
+  "pkgmodule": "thebesttestmod",
   "description": "Do you need a mod that will let you run tests as best as possible?  Look no further than The Best Test Mod, an example mod that does absolutely nothing other than display pseudo code and configuration!",
   "authors": [
     {

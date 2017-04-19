@@ -15,8 +15,8 @@ import java.util.ListIterator;
  */
 public class Mod {
 	public String modName = "";
-	public String packageGroup = "";
 	public String packageName = "";
+	public String packageModuleName = "";
 	public String description = "";
 	public ArrayList<Author> authors = new ArrayList<Author>();
 	public Version modVersion;
@@ -87,8 +87,8 @@ public class Mod {
 		if (!(e41.hasNext() || e42.hasNext())) return false;
 
 		if (!(modName.equals(other.modName))) return false;
-		if (!(packageGroup.equals(other.packageGroup))) return false;
 		if (!(packageName.equals(other.packageName))) return false;
+		if (!(packageModuleName.equals(other.packageModuleName))) return false;
 		if (!(description.equals(other.description))) return false;
 		if (!(forgeMapping.equals(other.forgeMapping))) return false;
 		if (!(parentMod.equals(other.parentMod))) return false;

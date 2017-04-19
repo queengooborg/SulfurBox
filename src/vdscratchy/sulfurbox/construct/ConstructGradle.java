@@ -13,7 +13,7 @@ import vdscratchy.sulfurbox.data.types.MavenRepository;
 public class ConstructGradle {
 	public static String projectVars(Mod modInfo) {
 		String output = "";
-		output += "group = " + modInfo.packageGroup + "\n";
+		output += "group = " + modInfo.packageName + "\n";
 		output += "archivesBaseName = " + modInfo.modName + "\n";
 		output += "mc_version = " + modInfo.mcVersion.toString() + "\n";
 		output += "forge_version = " + modInfo.forgeVersion.toString() + "\n";
