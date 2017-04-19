@@ -1,5 +1,10 @@
 package vdscratchy.sulfurbox.data.collections;
 
+import vdscratchy.sulfurbox.data.types.ManifestAttribute;
+
+import java.util.Iterator;
+import java.util.Map;
+
 /**
  * SulfurBox - vdscratchy.sulfurbox.data.collections.Manifest
  *
@@ -13,5 +18,53 @@ package vdscratchy.sulfurbox.data.collections;
  * @see vdscratchy.sulfurbox.data.types.ManifestAttribute
  */
 public class Manifest {
-	// TODO Make me!
+	private Map<String, String> attributes;
+
+	public Manifest() {
+
+	}
+
+	public Map<String, String> getAttributes() {
+		return attributes;
+	}
+
+	public ManifestAttribute getAttribute(String key) {
+		return new ManifestAttribute(key, attributes.getOrDefault(key, ""));
+	}
+
+	public void addAttribute(ManifestAttribute newAttribute) {
+		attributes.put(newAttribute.property, newAttribute.value);
+	}
+
+	public void addAttribute(String key, String value) {
+		attributes.put(key, value);
+	}
+
+	public void delAttribute(String key) {
+		attributes.remove(key);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof Manifest) attributes.equals(((Manifest) o).getAttributes());
+		return o instanceof Map && attributes.equals(o);
+	}
+
+	@Override
+	public String toString() {
+		// http://stackoverflow.com/a/10120408/2608838
+		StringBuilder sb = new StringBuilder();
+		Iterator<Map.Entry<String, String>> iter = attributes.entrySet().iterator();
+		while (iter.hasNext()) {
+			Map.Entry<String, String> entry = iter.next();
+			sb.append(entry.getKey());
+			sb.append('=').append('"');
+			sb.append(entry.getValue());
+			sb.append('"');
+			if (iter.hasNext()) {
+				sb.append(',').append(' ');
+			}
+		}
+		return sb.toString();
+	}
 }

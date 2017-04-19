@@ -2,10 +2,7 @@ package vdscratchy.sulfurbox.handlers;
 
 import vdscratchy.sulfurbox.data.Mod;
 import vdscratchy.sulfurbox.data.collections.Manifest;
-import vdscratchy.sulfurbox.data.types.Author;
-import vdscratchy.sulfurbox.data.types.Dependency;
-import vdscratchy.sulfurbox.data.types.MavenRepository;
-import vdscratchy.sulfurbox.data.types.Version;
+import vdscratchy.sulfurbox.data.types.*;
 
 import java.util.ArrayList;
 
@@ -263,9 +260,20 @@ public class CurrentProjectHandler {
 		return this.currentProject.manifestAttributes;
 	}
 
-	public void setManifestAttributes(Manifest manifestAttributes) {
-		// TODO Split into add and remove functions, Manifest Attributes will be much like a dictionary (or Map<K, V>)
-		this.currentProject.manifestAttributes = manifestAttributes;
+	public ManifestAttribute getManifestAttribute(String key) {
+		return this.currentProject.manifestAttributes.getAttribute(key);
+	}
+
+	public void addManifestAttribute(ManifestAttribute newAttribute) {
+		this.currentProject.manifestAttributes.addAttribute(newAttribute);
+	}
+
+	public void addManifestAttribute(String key, String value) {
+		this.currentProject.manifestAttributes.addAttribute(key, value);
+	}
+
+	public void delManifestAttribute(String key) {
+		this.currentProject.manifestAttributes.delAttribute(key);
 	}
 
 	public String getHomepage() {
