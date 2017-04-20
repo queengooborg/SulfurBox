@@ -11,7 +11,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -227,20 +230,10 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         modNameLabel.setText("Name");
 
         modNameField.setText("Test Mod");
-        modNameField.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                modNameFieldActionPerformed(evt);
-            }
-        });
 
         modPackageLabel.setText("Package");
 
         modPackageField.setText("mods.badhandwriting.org");
-        modPackageField.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                modPackageFieldActionPerformed(evt);
-            }
-        });
 
         modPackageSeparatorLabel.setText(".");
 
@@ -256,11 +249,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         mcForgeVersionLabel.setText("Forge Version");
 
         mcVersionSelect.setModel(new DefaultComboBoxModel<>(new String[] { "MC 1.11.2" }));
-        mcVersionSelect.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                mcVersionSelectActionPerformed(evt);
-            }
-        });
 
         forgeVersionSelect.setModel(new DefaultComboBoxModel<>(new String[] { "13.20.10.2228 - Recommended" }));
 
@@ -275,11 +263,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         modHomePageHttpsSelect.setModel(new DefaultComboBoxModel<>(new String[] { "https://", "http://" }));
 
         modHomePageField.setText("www.???.org");
-        modHomePageField.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                modHomePageFieldActionPerformed(evt);
-            }
-        });
 
         modRepoLabel.setText("Repository");
 
@@ -296,31 +279,17 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         modCurseIDLabel.setText("CurseForge ID");
 
         modCurseIDField.setText("907694083706973409786");
-        modCurseIDField.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                modCurseIDFieldActionPerformed(evt);
-            }
-        });
 
         modLicenseLabel.setText("License");
 
+        modLicenseField.setEditable(true);
         modLicenseField.setModel(new DefaultComboBoxModel<>(new String[] { "GNU GPL V3.0" }));
 
         modLogoLabel.setText("Logo File");
 
         modLogoField.setText("resources/textures/logo.png");
-        modLogoField.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                modLogoFieldActionPerformed(evt);
-            }
-        });
 
         modLogoBrowseButton.setText("Browse");
-        modLogoBrowseButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                modLogoBrowseButtonActionPerformed(evt);
-            }
-        });
 
         GroupLayout modPanelLayout = new GroupLayout(modPanel);
         modPanel.setLayout(modPanelLayout);
@@ -457,11 +426,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         attribContributorRemove.setText("x");
         attribContributorRemove.setToolTipText("Remove Selected");
-        attribContributorRemove.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                attribContributorRemoveActionPerformed(evt);
-            }
-        });
 
         attribCreditsLabel.setText("Credits");
 
@@ -514,11 +478,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         depModsRemove.setText("x");
         depModsRemove.setToolTipText("Remove Selected");
-        depModsRemove.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                depModsRemoveActionPerformed(evt);
-            }
-        });
 
         depModsTable.setModel(new DefaultTableModel(
             new Object [][] {
@@ -583,11 +542,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         depJavaLibsRemove.setText("x");
         depJavaLibsRemove.setToolTipText("Remove Selected");
-        depJavaLibsRemove.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                depJavaLibsRemoveActionPerformed(evt);
-            }
-        });
 
         depJavaLibsList.setModel(new AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item" };
@@ -634,11 +588,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         depMavenRepsRemove.setText("x");
         depMavenRepsRemove.setToolTipText("Remove Selected");
-        depMavenRepsRemove.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                depMavenRepsRemoveActionPerformed(evt);
-            }
-        });
 
         depMavenRepsList.setModel(new AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -687,11 +636,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         depManifestRemove.setText("x");
         depManifestRemove.setToolTipText("Remove Selected");
-        depManifestRemove.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                depManifestRemoveActionPerformed(evt);
-            }
-        });
 
         depManifestList.setModel(new AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -772,11 +716,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         intellijRadButton.setText("IntelliJ");
 
         eclipseRadButton.setText("Eclipse");
-        eclipseRadButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                eclipseRadButtonActionPerformed(evt);
-            }
-        });
 
         gradleVersionLabel.setHorizontalAlignment(SwingConstants.TRAILING);
         gradleVersionLabel.setText("Gradle 3.14");
@@ -785,11 +724,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         javaVersionLabel.setText("Java 9.232");
 
         modGenerateButton.setText("Generate");
-        modGenerateButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                modGenerateButtonActionPerformed(evt);
-            }
-        });
 
         GroupLayout modGeneratePanelLayout = new GroupLayout(modGeneratePanel);
         modGeneratePanel.setLayout(modGeneratePanelLayout);
@@ -815,11 +749,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         menuItemNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, CTRLCMD));
         menuItemNew.setText("New");
-        menuItemNew.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                menuItemNewActionPerformed(evt);
-            }
-        });
         fileMenu.add(menuItemNew);
 
         menuItemOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, CTRLCMD));
@@ -840,21 +769,10 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         menuItemCopy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, CTRLCMD));
         menuItemCopy.setText("Copy");
-        menuItemCopy.setToolTipText("");
-        menuItemCopy.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                menuItemCopyActionPerformed(evt);
-            }
-        });
         editMenu.add(menuItemCopy);
 
         menuItemCut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, CTRLCMD));
         menuItemCut.setText("Cut");
-        menuItemCut.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                menuItemCutActionPerformed(evt);
-            }
-        });
         editMenu.add(menuItemCut);
 
         menuItemPaste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, CTRLCMD));
@@ -863,11 +781,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         menuItemSelectAll.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, CTRLCMD));
         menuItemSelectAll.setText("Select All");
-        menuItemSelectAll.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                menuItemSelectAllActionPerformed(evt);
-            }
-        });
         editMenu.add(menuItemSelectAll);
 
         menuItemDeselect.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, CTRLCMD | InputEvent.ALT_MASK));
@@ -884,11 +797,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         menuItemClean.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, CTRLCMD | InputEvent.SHIFT_MASK));
         menuItemClean.setText("Clean");
-        menuItemClean.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                menuItemCleanActionPerformed(evt);
-            }
-        });
         projectMenu.add(menuItemClean);
 
         menuItemCompileJar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, CTRLCMD | InputEvent.SHIFT_MASK));
@@ -903,19 +811,9 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         aboutMenu.add(menuItemAboutSB);
 
         menuItemManual.setText("Manual");
-        menuItemManual.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                menuItemManualActionPerformed(evt);
-            }
-        });
         aboutMenu.add(menuItemManual);
 
         menuItemOnlineSupport.setText("Online Support");
-        menuItemOnlineSupport.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                menuItemOnlineSupportActionPerformed(evt);
-            }
-        });
         aboutMenu.add(menuItemOnlineSupport);
 
         menuItemCheckUpdates.setText("Check For Updates");
@@ -959,110 +857,27 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(modPropertyTabs)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(modGeneratePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(modGeneratePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(eclipseRadButton)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(intellijRadButton)
+                                .addGap(0, 7, Short.MAX_VALUE))))
+                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(gradleVersionLabel)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(javaVersionLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(eclipseRadButton)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(intellijRadButton))))
+                        .addContainerGap())))
         );
 
         ideButtonGroup.add(intellijRadButton);
         ideButtonGroup.add(eclipseRadButton);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void depManifestRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depManifestRemoveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depManifestRemoveActionPerformed
-
-    private void depMavenRepsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depMavenRepsRemoveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depMavenRepsRemoveActionPerformed
-
-    private void depJavaLibsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depJavaLibsRemoveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depJavaLibsRemoveActionPerformed
-
-    private void depModsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depModsRemoveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depModsRemoveActionPerformed
-
-    private void attribContributorRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_attribContributorRemoveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_attribContributorRemoveActionPerformed
-
-    private void modLogoBrowseButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modLogoBrowseButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modLogoBrowseButtonActionPerformed
-
-    private void modCurseIDFieldActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modCurseIDFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modCurseIDFieldActionPerformed
-
-    private void modHomePageFieldActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modHomePageFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modHomePageFieldActionPerformed
-
-    private void mcVersionSelectActionPerformed(ActionEvent evt) {//GEN-FIRST:event_mcVersionSelectActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mcVersionSelectActionPerformed
-
-    private void modPackageFieldActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modPackageFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modPackageFieldActionPerformed
-
-    private void modNameFieldActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modNameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modNameFieldActionPerformed
-
-    private void modGenerateButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modGenerateButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modGenerateButtonActionPerformed
-
-    private void eclipseRadButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_eclipseRadButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eclipseRadButtonActionPerformed
-
-    private void menuItemCopyActionPerformed(ActionEvent evt) {//GEN-FIRST:event_menuItemCopyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItemCopyActionPerformed
-
-    private void menuItemCleanActionPerformed(ActionEvent evt) {//GEN-FIRST:event_menuItemCleanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItemCleanActionPerformed
-
-    private void menuItemSelectAllActionPerformed(ActionEvent evt) {//GEN-FIRST:event_menuItemSelectAllActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItemSelectAllActionPerformed
-
-    private void menuItemOnlineSupportActionPerformed(ActionEvent evt) {//GEN-FIRST:event_menuItemOnlineSupportActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItemOnlineSupportActionPerformed
-
-    private void menuItemManualActionPerformed(ActionEvent evt) {//GEN-FIRST:event_menuItemManualActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItemManualActionPerformed
-
-    private void menuItemNewActionPerformed(ActionEvent evt) {//GEN-FIRST:event_menuItemNewActionPerformed
-        // TODO add your handling code here:
-        System.out.println("New button pressed!");
-    }//GEN-LAST:event_menuItemNewActionPerformed
-
-    private void menuItemCutActionPerformed(ActionEvent evt) {//GEN-FIRST:event_menuItemCutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItemCutActionPerformed
-
-    private void modLogoFieldActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modLogoFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modLogoFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
