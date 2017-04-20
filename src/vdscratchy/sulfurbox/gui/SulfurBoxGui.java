@@ -35,11 +35,16 @@ import java.util.Properties;
 public class SulfurBoxGui extends javax.swing.JFrame {
 
     private Properties properties = new Properties();
+    
+    private static final int CTRLCMD
+        = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
     /**
      * Creates new form SulfurBoxGui
      */
     public SulfurBoxGui() {
+        System.setProperty("apple.laf.useScreenMenuBar", "true"); // Needed for macOS
+        
         loadProperties();
         initComponents();
         initLAFMenu();
@@ -194,8 +199,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         menuItemOpen = new JMenuItem();
         menuItemSave = new JMenuItem();
         menuItemSaveAs = new JMenuItem();
-        jSeparator1 = new JPopupMenu.Separator();
-        menuItemExit = new JMenuItem();
         editMenu = new JMenu();
         menuItemCopy = new JMenuItem();
         menuItemCut = new JMenuItem();
@@ -810,7 +813,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         fileMenu.setText("File");
 
-        menuItemNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
+        menuItemNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, CTRLCMD));
         menuItemNew.setText("New");
         menuItemNew.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -819,29 +822,25 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         });
         fileMenu.add(menuItemNew);
 
-        menuItemOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
+        menuItemOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, CTRLCMD));
         menuItemOpen.setText("Open");
         fileMenu.add(menuItemOpen);
 
-        menuItemSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
+        menuItemSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, CTRLCMD));
         menuItemSave.setText("Save");
         fileMenu.add(menuItemSave);
 
-        menuItemSaveAs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_MASK | InputEvent.CTRL_MASK));
+        menuItemSaveAs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, CTRLCMD | InputEvent.ALT_MASK));
         menuItemSaveAs.setText("Save As");
         fileMenu.add(menuItemSaveAs);
-        fileMenu.add(jSeparator1);
-
-        menuItemExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
-        menuItemExit.setText("Exit");
-        fileMenu.add(menuItemExit);
 
         menuBar.add(fileMenu);
 
         editMenu.setText("Edit");
 
-        menuItemCopy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
+        menuItemCopy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, CTRLCMD));
         menuItemCopy.setText("Copy");
+        menuItemCopy.setToolTipText("");
         menuItemCopy.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 menuItemCopyActionPerformed(evt);
@@ -849,7 +848,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         });
         editMenu.add(menuItemCopy);
 
-        menuItemCut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
+        menuItemCut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, CTRLCMD));
         menuItemCut.setText("Cut");
         menuItemCut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -858,11 +857,11 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         });
         editMenu.add(menuItemCut);
 
-        menuItemPaste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_MASK));
+        menuItemPaste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, CTRLCMD));
         menuItemPaste.setText("Paste");
         editMenu.add(menuItemPaste);
 
-        menuItemSelectAll.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
+        menuItemSelectAll.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, CTRLCMD));
         menuItemSelectAll.setText("Select All");
         menuItemSelectAll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -871,7 +870,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         });
         editMenu.add(menuItemSelectAll);
 
-        menuItemDeselect.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.ALT_MASK | InputEvent.CTRL_MASK));
+        menuItemDeselect.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, CTRLCMD | InputEvent.ALT_MASK));
         menuItemDeselect.setText("Deselect");
         editMenu.add(menuItemDeselect);
 
@@ -879,11 +878,11 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         projectMenu.setText("Project");
 
-        menuItemGenerate.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_MASK));
+        menuItemGenerate.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, CTRLCMD));
         menuItemGenerate.setText("Generate");
         projectMenu.add(menuItemGenerate);
 
-        menuItemClean.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, InputEvent.SHIFT_MASK | InputEvent.CTRL_MASK));
+        menuItemClean.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, CTRLCMD | InputEvent.SHIFT_MASK));
         menuItemClean.setText("Clean");
         menuItemClean.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -892,7 +891,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         });
         projectMenu.add(menuItemClean);
 
-        menuItemCompileJar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.SHIFT_MASK | InputEvent.CTRL_MASK));
+        menuItemCompileJar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, CTRLCMD | InputEvent.SHIFT_MASK));
         menuItemCompileJar.setText("Compile Jar");
         projectMenu.add(menuItemCompileJar);
 
@@ -1127,7 +1126,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
     private JMenuItem menuItemCopy;
     private JMenuItem menuItemCut;
     private JMenuItem menuItemDeselect;
-    private JMenuItem menuItemExit;
     private JMenuItem menuItemGenerate;
     private JMenuItem menuItemManual;
     private JMenuItem menuItemNew;
