@@ -18,6 +18,11 @@ import vdscratchy.sulfurbox.data.types.MavenRepository;
  * @see vdscratchy.sulfurbox.construct.ConstructModInfo
  */
 public class ConstructGradle {
+	public static String construct(Mod modInfo) {
+		// TODO Create me!
+		return "";
+	}
+
 	public static String projectVars(Mod modInfo) {
 		String output = "";
 		output += "group = " + modInfo.packageName + "\n";
@@ -45,22 +50,27 @@ public class ConstructGradle {
 	}
 
 	public static String javaDeps(Mod modInfo) {
+		// TODO Create me!
 		return "";
 	}
 
 	public static String dependencies(Mod modInfo) {
+		// TODO Create me!
 		return "";
 	}
 
 	public static String manifest(Mod modInfo) {
+		// TODO Create me!
 		return "";
 	}
 
 	public static String curseforge(Mod modInfo) {
+		// TODO Create me!
 		return "";
 	}
 
 	public static String repositoryUpload(Mod modInfo) {
+		// TODO Create me!
 		return "";
 	}
 }

@@ -1,5 +1,7 @@
 package vdscratchy.sulfurbox.construct;
 
+import vdscratchy.sulfurbox.data.Mod;
+
 /**
  * SulfurBox - vdscratchy.sulfurbox.construct.ConstructModInfo
  *
@@ -15,31 +17,43 @@ package vdscratchy.sulfurbox.construct;
  * @see vdscratchy.sulfurbox.construct.ConstructGradle
  */
 public class ConstructModInfo {
-	public static String modid() {
+	public static String construct(Mod modInfo) {
+		// TODO Create me!
 		return "";
 	}
 
-	public static String modname() {
+	public static String modid(Mod modInfo) {
+		// TODO Create me!
 		return "";
 	}
 
-	public static String description() {
+	public static String modname(Mod modInfo) {
+		// TODO Create me!
 		return "";
 	}
 
-	public static String modversion() {
+	public static String description(Mod modInfo) {
+		// TODO Create me!
 		return "";
 	}
 
-	public static String links() {
+	public static String modversion(Mod modInfo) {
+		// TODO Create me!
 		return "";
 	}
 
-	public static String authorList() {
+	public static String links(Mod modInfo) {
+		// TODO Create me!
 		return "";
 	}
 
-	public static String parentMod() {
+	public static String authorList(Mod modInfo) {
+		// TODO Create me!
+		return "";
+	}
+
+	public static String parentMod(Mod modInfo) {
+		// TODO Create me!
 		return "";
 	}
 }
