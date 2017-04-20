@@ -112,80 +112,79 @@ public class SulfurBoxGui extends javax.swing.JFrame {
     private void initComponents() {
 
         ideButtonGroup = new ButtonGroup();
-        jTabbedPane1 = new JTabbedPane();
+        modPropertyTabs = new JTabbedPane();
         modPanel = new JPanel();
+        modNameLabel = new JLabel();
         modNameField = new JTextField();
+        modPackageLabel = new JLabel();
         modPackageField = new JTextField();
-        jLabel2 = new JLabel();
-        modPackageExtField = new JTextField();
+        modPackageSeparatorLabel = new JLabel();
+        modPackageMemberField = new JTextField();
+        modVersionLabel = new JLabel();
         modVersionField = new JTextField();
-        jLabel1 = new JLabel();
-        jLabel3 = new JLabel();
-        jLabel4 = new JLabel();
+        mcForgeVersionLabel = new JLabel();
         mcVersionSelect = new JComboBox<>();
         forgeVersionSelect = new JComboBox<>();
-        jLabel5 = new JLabel();
-        jScrollPane1 = new JScrollPane();
-        jTextArea1 = new JTextArea();
-        jLabel6 = new JLabel();
-        jComboBox3 = new JComboBox<>();
+        modDescriptionLabel = new JLabel();
+        modDescriptionScrlPane = new JScrollPane();
+        modDescriptionField = new JTextArea();
+        modHomePageLabel = new JLabel();
+        modHomePageHttpsSelect = new JComboBox<>();
         modHomePageField = new JTextField();
-        jLabel7 = new JLabel();
+        modRepoLabel = new JLabel();
         modRepoField = new JTextField();
-        jLabel8 = new JLabel();
-        modUpdateChecksField = new JTextField();
-        jLabel9 = new JLabel();
-        modCurseIDField = new JTextField();
-        modLicenseField = new JComboBox<>();
-        modLogoField = new JTextField();
-        modLogoBrowsButton = new JButton();
-        jLabel10 = new JLabel();
-        jLabel11 = new JLabel();
-        jLabel12 = new JLabel();
+        issueTrackerLabel = new JLabel();
         issueTrackerField = new JTextField();
-        jLabel21 = new JLabel();
+        modUpdateChecksLabel = new JLabel();
+        modUpdateChecksField = new JTextField();
+        modCurseIDLabel = new JLabel();
+        modCurseIDField = new JTextField();
+        modLicenseLabel = new JLabel();
+        modLicenseField = new JComboBox<>();
+        modLogoLabel = new JLabel();
+        modLogoField = new JTextField();
+        modLogoBrowseButton = new JButton();
         attribPanel = new JPanel();
-        jScrollPane2 = new JScrollPane();
-        atribContrubuterTable = new JTable();
-        atribAddContributer = new JButton();
-        atribRemoveContributer = new JButton();
-        jLabel15 = new JLabel();
-        jScrollPane3 = new JScrollPane();
-        atribCreditsTextBox = new JTextArea();
+        attribContributorScrlPane = new JScrollPane();
+        attribContributorTable = new JTable();
+        attribContributorAdd = new JButton();
+        attribContributorRemove = new JButton();
+        attribCreditsLabel = new JLabel();
+        attribCreditsScrlPane = new JScrollPane();
+        attribCreditsField = new JTextArea();
         depPanel = new JPanel();
-        jLabel22 = new JLabel();
-        atribParantModCheck1 = new JCheckBox();
-        atribParentModField1 = new JTextField();
-        jPanel13 = new JPanel();
-        jLabel23 = new JLabel();
-        atribRemModDep1 = new JButton();
-        atribAddModDep1 = new JButton();
-        jScrollPane7 = new JScrollPane();
-        depModDepTable = new JTable();
-        jPanel14 = new JPanel();
-        jLabel24 = new JLabel();
-        atribRemJavaDep1 = new JButton();
-        atribAddJavaDep1 = new JButton();
-        jScrollPane8 = new JScrollPane();
-        depJavaDepList = new JList<>();
-        jPanel15 = new JPanel();
-        jLabel25 = new JLabel();
-        atribRemMavenRepo1 = new JButton();
-        atribAddRepo1 = new JButton();
-        jScrollPane9 = new JScrollPane();
-        depMavenRepoList = new JList<>();
-        jPanel16 = new JPanel();
-        jLabel26 = new JLabel();
-        atribAddManifest1 = new JButton();
-        atribRemManifest1 = new JButton();
-        jScrollPane10 = new JScrollPane();
+        depParentLabel = new JLabel();
+        depParentCheck = new JCheckBox();
+        depParentField = new JTextField();
+        depModsPanel = new JPanel();
+        depModsLabel = new JLabel();
+        depModsAdd = new JButton();
+        depModsRemove = new JButton();
+        depModsScrlPane = new JScrollPane();
+        depModsTable = new JTable();
+        depJavaLibsPanel = new JPanel();
+        depJavaLibsFields = new JLabel();
+        depJavaLibsAdd = new JButton();
+        depJavaLibsRemove = new JButton();
+        depJavaLibsScrlPane = new JScrollPane();
+        depJavaLibsList = new JList<>();
+        depMavenRepsPanel = new JPanel();
+        depMavenRepsLabel = new JLabel();
+        depMavenRepsAdd = new JButton();
+        depMavenRepsRemove = new JButton();
+        depMavenRepsScrlPane = new JScrollPane();
+        depMavenRepsList = new JList<>();
+        depManifestPanel = new JPanel();
+        depManifestLabel = new JLabel();
+        depManifestAdd = new JButton();
+        depManifestRemove = new JButton();
+        depManifestScrlPane = new JScrollPane();
         depManifestList = new JList<>();
-        jPanel4 = new JPanel();
         intellijRadButton = new JRadioButton();
         eclipseRadButton = new JRadioButton();
-        jLabel14 = new JLabel();
-        jLabel13 = new JLabel();
-        jPanel6 = new JPanel();
+        gradleVersionLabel = new JLabel();
+        javaVersionLabel = new JLabel();
+        modGeneratePanel = new JPanel();
         modGenerateButton = new JButton();
         filler1 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(32767, 0));
         filler2 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(32767, 0));
@@ -222,12 +221,16 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         modPanel.setBorder(BorderFactory.createEtchedBorder());
 
+        modNameLabel.setText("Name");
+
         modNameField.setText("Test Mod");
         modNameField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 modNameFieldActionPerformed(evt);
             }
         });
+
+        modPackageLabel.setText("Package");
 
         modPackageField.setText("mods.badhandwriting.org");
         modPackageField.addActionListener(new ActionListener() {
@@ -236,20 +239,18 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText(".");
+        modPackageSeparatorLabel.setText(".");
 
-        modPackageExtField.setText("testmod");
-        modPackageExtField.setMaximumSize(new Dimension(73, 24));
-        modPackageExtField.setMinimumSize(new Dimension(73, 24));
-        modPackageExtField.setName(""); // NOI18N
+        modPackageMemberField.setText("testmod");
+        modPackageMemberField.setMaximumSize(new Dimension(73, 24));
+        modPackageMemberField.setMinimumSize(new Dimension(73, 24));
+        modPackageMemberField.setName(""); // NOI18N
+
+        modVersionLabel.setText("Version");
 
         modVersionField.setText("0.0.1.# - DEV");
 
-        jLabel1.setText("Name");
-
-        jLabel3.setText("Package");
-
-        jLabel4.setText("Version");
+        mcForgeVersionLabel.setText("Forge Version");
 
         mcVersionSelect.setModel(new DefaultComboBoxModel<>(new String[] { "MC 1.11.2" }));
         mcVersionSelect.addActionListener(new ActionListener() {
@@ -260,15 +261,15 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         forgeVersionSelect.setModel(new DefaultComboBoxModel<>(new String[] { "13.20.10.2228 - Recommended" }));
 
-        jLabel5.setText("Forge Version");
+        modDescriptionLabel.setText("Description");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        modDescriptionField.setColumns(20);
+        modDescriptionField.setRows(5);
+        modDescriptionScrlPane.setViewportView(modDescriptionField);
 
-        jLabel6.setText("Description");
+        modHomePageLabel.setText("Home Page");
 
-        jComboBox3.setModel(new DefaultComboBoxModel<>(new String[] { "https://", "http://" }));
+        modHomePageHttpsSelect.setModel(new DefaultComboBoxModel<>(new String[] { "https://", "http://" }));
 
         modHomePageField.setText("www.???.org");
         modHomePageField.addActionListener(new ActionListener() {
@@ -277,15 +278,19 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Home Page");
+        modRepoLabel.setText("Repository");
 
         modRepoField.setText("https://github.com/brandon3055/Draconic-Evolution");
 
-        jLabel8.setText("Repository");
+        issueTrackerLabel.setText("Issue Tracker");
+
+        issueTrackerField.setText("https://github.com/brandon3055/Draconic-Evolution/issues");
+
+        modUpdateChecksLabel.setText("Update Checks");
 
         modUpdateChecksField.setText("www.blablabla.com/stuff");
 
-        jLabel9.setText("Update Checks");
+        modCurseIDLabel.setText("CurseForge ID");
 
         modCurseIDField.setText("907694083706973409786");
         modCurseIDField.addActionListener(new ActionListener() {
@@ -294,26 +299,25 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             }
         });
 
+        modLicenseLabel.setText("License");
+
         modLicenseField.setModel(new DefaultComboBoxModel<>(new String[] { "GNU GPL V3.0" }));
 
-        modLogoField.setText("resources/textures/logo.png");
+        modLogoLabel.setText("Logo File");
 
-        modLogoBrowsButton.setText("Brows");
-        modLogoBrowsButton.addActionListener(new ActionListener() {
+        modLogoField.setText("resources/textures/logo.png");
+        modLogoField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                modLogoBrowsButtonActionPerformed(evt);
+                modLogoFieldActionPerformed(evt);
             }
         });
 
-        jLabel10.setText("CurseForge ID");
-
-        jLabel11.setText("License");
-
-        jLabel12.setText("Logo File");
-
-        issueTrackerField.setText("https://github.com/brandon3055/Draconic-Evolution/issues");
-
-        jLabel21.setText("Issue Tracker");
+        modLogoBrowseButton.setText("Browse");
+        modLogoBrowseButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                modLogoBrowseButtonActionPerformed(evt);
+            }
+        });
 
         GroupLayout modPanelLayout = new GroupLayout(modPanel);
         modPanel.setLayout(modPanelLayout);
@@ -321,45 +325,45 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             .addGroup(modPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
+                    .addComponent(modUpdateChecksLabel)
                     .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel12, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel11, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel10, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(modLogoLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modLicenseLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modCurseIDLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel6, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel8, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21))
+                        .addComponent(modDescriptionLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modVersionLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modPackageLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modNameLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mcForgeVersionLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(modRepoLabel, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modHomePageLabel, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(issueTrackerLabel))
                 .addGap(18, 18, 18)
                 .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(modRepoField, GroupLayout.Alignment.TRAILING)
                     .addGroup(modPanelLayout.createSequentialGroup()
                         .addComponent(modPackageField)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
+                        .addComponent(modPackageSeparatorLabel)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(modPackageExtField, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(modPackageMemberField, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
                     .addComponent(modNameField)
                     .addComponent(modVersionField)
                     .addGroup(modPanelLayout.createSequentialGroup()
                         .addComponent(mcVersionSelect, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(forgeVersionSelect, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1)
+                    .addComponent(modDescriptionScrlPane)
                     .addComponent(modUpdateChecksField)
                     .addComponent(modCurseIDField)
                     .addComponent(modLicenseField, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(modPanelLayout.createSequentialGroup()
                         .addComponent(modLogoField)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(modLogoBrowsButton))
+                        .addComponent(modLogoBrowseButton))
                     .addGroup(modPanelLayout.createSequentialGroup()
-                        .addComponent(jComboBox3, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(modHomePageHttpsSelect, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(modHomePageField))
                     .addComponent(issueTrackerField, GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE))
@@ -370,62 +374,62 @@ public class SulfurBoxGui extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(modNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(modNameLabel))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(modPackageField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(modPackageExtField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(modPackageSeparatorLabel)
+                    .addComponent(modPackageMemberField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modPackageLabel))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(modVersionField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(modVersionLabel))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(mcVersionSelect, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(forgeVersionSelect, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(mcForgeVersionLabel))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                    .addComponent(modDescriptionLabel)
+                    .addComponent(modDescriptionScrlPane, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(modHomePageField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(modHomePageHttpsSelect, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modHomePageLabel))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(modRepoField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(modRepoLabel))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(issueTrackerField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21))
+                    .addComponent(issueTrackerLabel))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(modUpdateChecksField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(modUpdateChecksLabel))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(modCurseIDField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(modCurseIDLabel))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(modLicenseField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(modLicenseLabel))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(modPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(modLogoLabel)
                     .addComponent(modLogoField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modLogoBrowsButton)
-                    .addComponent(jLabel12))
-                .addGap(8, 8, 8))
+                    .addComponent(modLogoBrowseButton))
+                .addGap(16, 16, 16))
         );
 
-        jTabbedPane1.addTab("Mod Info", modPanel);
+        modPropertyTabs.addTab("Mod Info", modPanel);
 
-        atribContrubuterTable.setModel(new DefaultTableModel(
+        attribContributorTable.setModel(new DefaultTableModel(
             new Object [][] {
                 { "//TODO", "//TODO", "//TODO", "//TODO"}
             },
@@ -443,24 +447,24 @@ public class SulfurBoxGui extends javax.swing.JFrame {
                 return c == null ? String.class : c.getClass();
             }
         });
-        jScrollPane2.setViewportView(atribContrubuterTable);
+        attribContributorScrlPane.setViewportView(attribContributorTable);
 
-        atribAddContributer.setText("+");
-        atribAddContributer.setToolTipText("Add Contributer");
+        attribContributorAdd.setText("+");
+        attribContributorAdd.setToolTipText("Add Contributer");
 
-        atribRemoveContributer.setText("x");
-        atribRemoveContributer.setToolTipText("Remove Selected");
-        atribRemoveContributer.addActionListener(new ActionListener() {
+        attribContributorRemove.setText("x");
+        attribContributorRemove.setToolTipText("Remove Selected");
+        attribContributorRemove.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                atribRemoveContributerActionPerformed(evt);
+                attribContributorRemoveActionPerformed(evt);
             }
         });
 
-        jLabel15.setText("Credits");
+        attribCreditsLabel.setText("Credits");
 
-        atribCreditsTextBox.setColumns(20);
-        atribCreditsTextBox.setRows(5);
-        jScrollPane3.setViewportView(atribCreditsTextBox);
+        attribCreditsField.setColumns(20);
+        attribCreditsField.setRows(5);
+        attribCreditsScrlPane.setViewportView(attribCreditsField);
 
         GroupLayout attribPanelLayout = new GroupLayout(attribPanel);
         attribPanel.setLayout(attribPanelLayout);
@@ -468,52 +472,52 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             .addGroup(attribPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(attribPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
+                    .addComponent(attribCreditsScrlPane)
                     .addGroup(attribPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel15, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(attribCreditsLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(atribAddContributer)
+                        .addComponent(attribContributorAdd)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(atribRemoveContributer))
-                    .addComponent(jScrollPane2, GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE))
+                        .addComponent(attribContributorRemove))
+                    .addComponent(attribContributorScrlPane, GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE))
                 .addContainerGap())
         );
         attribPanelLayout.setVerticalGroup(attribPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(attribPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)
+                .addComponent(attribContributorScrlPane, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(attribPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(atribRemoveContributer, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(atribAddContributer, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
+                    .addComponent(attribContributorRemove, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(attribContributorAdd, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(attribCreditsLabel))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                .addComponent(attribCreditsScrlPane, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Attribution", attribPanel);
+        modPropertyTabs.addTab("Attribution", attribPanel);
 
         depPanel.setBorder(BorderFactory.createEtchedBorder());
 
-        jLabel22.setText("Parent Mod");
+        depParentLabel.setText("Parent Mod");
 
-        jPanel13.setBorder(BorderFactory.createEtchedBorder());
+        depModsPanel.setBorder(BorderFactory.createEtchedBorder());
 
-        jLabel23.setText("Mod Dependencies");
+        depModsLabel.setText("Mod Dependencies");
 
-        atribRemModDep1.setText("x");
-        atribRemModDep1.setToolTipText("Remove Selected");
-        atribRemModDep1.addActionListener(new ActionListener() {
+        depModsAdd.setText("+");
+        depModsAdd.setToolTipText("Add New");
+
+        depModsRemove.setText("x");
+        depModsRemove.setToolTipText("Remove Selected");
+        depModsRemove.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                atribRemModDep1ActionPerformed(evt);
+                depModsRemoveActionPerformed(evt);
             }
         });
 
-        atribAddModDep1.setText("+");
-        atribAddModDep1.setToolTipText("Add New");
-
-        depModDepTable.setModel(new DefaultTableModel(
+        depModsTable.setModel(new DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -532,157 +536,157 @@ public class SulfurBoxGui extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        depModDepTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane7.setViewportView(depModDepTable);
-        if (depModDepTable.getColumnModel().getColumnCount() > 0) {
-            depModDepTable.getColumnModel().getColumn(0).setPreferredWidth(200);
-            depModDepTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+        depModsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        depModsScrlPane.setViewportView(depModsTable);
+        if (depModsTable.getColumnModel().getColumnCount() > 0) {
+            depModsTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            depModsTable.getColumnModel().getColumn(1).setPreferredWidth(100);
         }
 
-        GroupLayout jPanel13Layout = new GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(jPanel13Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
+        GroupLayout depModsPanelLayout = new GroupLayout(depModsPanel);
+        depModsPanel.setLayout(depModsPanelLayout);
+        depModsPanelLayout.setHorizontalGroup(depModsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(depModsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel13Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addGroup(depModsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(depModsScrlPane, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(GroupLayout.Alignment.TRAILING, depModsPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(atribAddModDep1)
+                        .addComponent(depModsAdd)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(atribRemModDep1))
-                    .addComponent(jLabel23, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(depModsRemove))
+                    .addComponent(depModsLabel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel13Layout.setVerticalGroup(jPanel13Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
+        depModsPanelLayout.setVerticalGroup(depModsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(depModsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel23)
+                .addComponent(depModsLabel)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(depModsScrlPane, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel13Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(atribRemModDep1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(atribAddModDep1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+                .addGroup(depModsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(depModsRemove, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(depModsAdd, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jPanel14.setBorder(BorderFactory.createEtchedBorder());
+        depJavaLibsPanel.setBorder(BorderFactory.createEtchedBorder());
 
-        jLabel24.setText("Java Dependencies");
+        depJavaLibsFields.setText("Java Dependencies");
 
-        atribRemJavaDep1.setText("x");
-        atribRemJavaDep1.setToolTipText("Remove Selected");
-        atribRemJavaDep1.addActionListener(new ActionListener() {
+        depJavaLibsAdd.setText("+");
+        depJavaLibsAdd.setToolTipText("Add New");
+
+        depJavaLibsRemove.setText("x");
+        depJavaLibsRemove.setToolTipText("Remove Selected");
+        depJavaLibsRemove.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                atribRemJavaDep1ActionPerformed(evt);
+                depJavaLibsRemoveActionPerformed(evt);
             }
         });
 
-        atribAddJavaDep1.setText("+");
-        atribAddJavaDep1.setToolTipText("Add New");
-
-        depJavaDepList.setModel(new AbstractListModel<String>() {
+        depJavaLibsList.setModel(new AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        depJavaDepList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane8.setViewportView(depJavaDepList);
+        depJavaLibsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        depJavaLibsScrlPane.setViewportView(depJavaLibsList);
 
-        GroupLayout jPanel14Layout = new GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(jPanel14Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
+        GroupLayout depJavaLibsPanelLayout = new GroupLayout(depJavaLibsPanel);
+        depJavaLibsPanel.setLayout(depJavaLibsPanelLayout);
+        depJavaLibsPanelLayout.setHorizontalGroup(depJavaLibsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(depJavaLibsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel14Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8)
-                    .addComponent(jLabel24, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addGroup(depJavaLibsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(depJavaLibsScrlPane)
+                    .addComponent(depJavaLibsFields, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(GroupLayout.Alignment.TRAILING, depJavaLibsPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(atribAddJavaDep1)
+                        .addComponent(depJavaLibsAdd)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(atribRemJavaDep1)))
+                        .addComponent(depJavaLibsRemove)))
                 .addContainerGap())
         );
-        jPanel14Layout.setVerticalGroup(jPanel14Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
+        depJavaLibsPanelLayout.setVerticalGroup(depJavaLibsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(depJavaLibsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel24)
+                .addComponent(depJavaLibsFields)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                .addComponent(depJavaLibsScrlPane, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel14Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(atribRemJavaDep1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(atribAddJavaDep1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+                .addGroup(depJavaLibsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(depJavaLibsRemove, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(depJavaLibsAdd, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jPanel15.setBorder(BorderFactory.createEtchedBorder());
+        depMavenRepsPanel.setBorder(BorderFactory.createEtchedBorder());
 
-        jLabel25.setText("Maven Repositories");
+        depMavenRepsLabel.setText("Maven Repositories");
 
-        atribRemMavenRepo1.setText("x");
-        atribRemMavenRepo1.setToolTipText("Remove Selected");
-        atribRemMavenRepo1.addActionListener(new ActionListener() {
+        depMavenRepsAdd.setText("+");
+        depMavenRepsAdd.setToolTipText("Add New");
+
+        depMavenRepsRemove.setText("x");
+        depMavenRepsRemove.setToolTipText("Remove Selected");
+        depMavenRepsRemove.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                atribRemMavenRepo1ActionPerformed(evt);
+                depMavenRepsRemoveActionPerformed(evt);
             }
         });
 
-        atribAddRepo1.setText("+");
-        atribAddRepo1.setToolTipText("Add New");
-
-        depMavenRepoList.setModel(new AbstractListModel<String>() {
+        depMavenRepsList.setModel(new AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        depMavenRepoList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane9.setViewportView(depMavenRepoList);
+        depMavenRepsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        depMavenRepsScrlPane.setViewportView(depMavenRepsList);
 
-        GroupLayout jPanel15Layout = new GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(jPanel15Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
+        GroupLayout depMavenRepsPanelLayout = new GroupLayout(depMavenRepsPanel);
+        depMavenRepsPanel.setLayout(depMavenRepsPanelLayout);
+        depMavenRepsPanelLayout.setHorizontalGroup(depMavenRepsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(depMavenRepsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel15Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane9)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGroup(jPanel15Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel25, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addGroup(depMavenRepsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(depMavenRepsScrlPane)
+                    .addGroup(depMavenRepsPanelLayout.createSequentialGroup()
+                        .addGroup(depMavenRepsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(depMavenRepsLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(GroupLayout.Alignment.TRAILING, depMavenRepsPanelLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(atribAddRepo1)
+                                .addComponent(depMavenRepsAdd)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(atribRemMavenRepo1)))
+                                .addComponent(depMavenRepsRemove)))
                         .addContainerGap())))
         );
-        jPanel15Layout.setVerticalGroup(jPanel15Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
+        depMavenRepsPanelLayout.setVerticalGroup(depMavenRepsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(depMavenRepsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel25)
+                .addComponent(depMavenRepsLabel)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane9, GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addComponent(depMavenRepsScrlPane, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(atribRemMavenRepo1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(atribAddRepo1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+                .addGroup(depMavenRepsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(depMavenRepsRemove, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(depMavenRepsAdd, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jPanel16.setBorder(BorderFactory.createEtchedBorder());
+        depManifestPanel.setBorder(BorderFactory.createEtchedBorder());
 
-        jLabel26.setText("Manifest");
+        depManifestLabel.setText("Manifest");
 
-        atribAddManifest1.setText("+");
-        atribAddManifest1.setToolTipText("Add New");
+        depManifestAdd.setText("+");
+        depManifestAdd.setToolTipText("Add New");
 
-        atribRemManifest1.setText("x");
-        atribRemManifest1.setToolTipText("Remove Selected");
-        atribRemManifest1.addActionListener(new ActionListener() {
+        depManifestRemove.setText("x");
+        depManifestRemove.setToolTipText("Remove Selected");
+        depManifestRemove.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                atribRemManifest1ActionPerformed(evt);
+                depManifestRemoveActionPerformed(evt);
             }
         });
 
@@ -692,33 +696,33 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         depManifestList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane10.setViewportView(depManifestList);
+        depManifestScrlPane.setViewportView(depManifestList);
 
-        GroupLayout jPanel16Layout = new GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(jPanel16Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
+        GroupLayout depManifestPanelLayout = new GroupLayout(depManifestPanel);
+        depManifestPanel.setLayout(depManifestPanelLayout);
+        depManifestPanelLayout.setHorizontalGroup(depManifestPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(depManifestPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel16Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane10)
-                    .addComponent(jLabel26, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                .addGroup(depManifestPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(depManifestScrlPane)
+                    .addComponent(depManifestLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(GroupLayout.Alignment.TRAILING, depManifestPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(atribAddManifest1)
+                        .addComponent(depManifestAdd)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(atribRemManifest1)))
+                        .addComponent(depManifestRemove)))
                 .addContainerGap())
         );
-        jPanel16Layout.setVerticalGroup(jPanel16Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
+        depManifestPanelLayout.setVerticalGroup(depManifestPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(depManifestPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel26)
+                .addComponent(depManifestLabel)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane10, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(depManifestScrlPane, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel16Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(atribRemManifest1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(atribAddManifest1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+                .addGroup(depManifestPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(depManifestRemove, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(depManifestAdd, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -727,66 +731,55 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         depPanelLayout.setHorizontalGroup(depPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(depPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel22)
+                .addComponent(depParentLabel)
                 .addGap(34, 34, 34)
-                .addComponent(atribParantModCheck1)
+                .addComponent(depParentCheck)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(atribParentModField1)
+                .addComponent(depParentField)
                 .addContainerGap())
             .addGroup(GroupLayout.Alignment.TRAILING, depPanelLayout.createSequentialGroup()
                 .addGroup(depPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel15, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel13, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(depMavenRepsPanel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(depModsPanel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(depPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel14, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel16, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(depJavaLibsPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(depManifestPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         depPanelLayout.setVerticalGroup(depPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(depPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(depPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(atribParantModCheck1)
+                    .addComponent(depParentCheck)
                     .addGroup(depPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel22)
-                        .addComponent(atribParentModField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(depParentLabel)
+                        .addComponent(depParentField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(depPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel14, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel13, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(depJavaLibsPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(depModsPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(depPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel15, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel16, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(depMavenRepsPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(depManifestPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("Dependencies", depPanel);
-
-        GroupLayout jPanel4Layout = new GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 541, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Support", jPanel4);
+        modPropertyTabs.addTab("Dependencies", depPanel);
 
         intellijRadButton.setText("IntelliJ");
 
-        eclipseRadButton.setText("Eclips");
+        eclipseRadButton.setText("Eclipse");
         eclipseRadButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 eclipseRadButtonActionPerformed(evt);
             }
         });
 
-        jLabel14.setHorizontalAlignment(SwingConstants.TRAILING);
-        jLabel14.setText("Gradle 3.14");
+        gradleVersionLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+        gradleVersionLabel.setText("Gradle 3.14");
 
-        jLabel13.setHorizontalAlignment(SwingConstants.TRAILING);
-        jLabel13.setText("Java 9.232");
+        javaVersionLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+        javaVersionLabel.setText("Java 9.232");
 
         modGenerateButton.setText("Generate");
         modGenerateButton.addActionListener(new ActionListener() {
@@ -795,21 +788,21 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             }
         });
 
-        GroupLayout jPanel6Layout = new GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(filler2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        GroupLayout modGeneratePanelLayout = new GroupLayout(modGeneratePanel);
+        modGeneratePanel.setLayout(modGeneratePanelLayout);
+        modGeneratePanelLayout.setHorizontalGroup(modGeneratePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(modGeneratePanelLayout.createSequentialGroup()
+                .addComponent(filler1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(modGenerateButton, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(filler1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(filler2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel6Layout.setVerticalGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(filler1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        modGeneratePanelLayout.setVerticalGroup(modGeneratePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addComponent(filler2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+            .addComponent(filler1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(GroupLayout.Alignment.TRAILING, modGeneratePanelLayout.createSequentialGroup()
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(modGenerateButton)
                 .addGap(15, 15, 15))
@@ -950,65 +943,66 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1)
+                    .addComponent(modPropertyTabs)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addComponent(eclipseRadButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                             .addComponent(intellijRadButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modGeneratePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel14, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel13, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(gradleVersionLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(javaVersionLabel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(modPropertyTabs)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(modGeneratePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(gradleVersionLabel)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(javaVersionLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(eclipseRadButton)
-                        .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(intellijRadButton)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel13)))))
-                .addContainerGap())
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(intellijRadButton))))
         );
 
         ideButtonGroup.add(intellijRadButton);
         ideButtonGroup.add(eclipseRadButton);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void atribRemManifest1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_atribRemManifest1ActionPerformed
+    private void depManifestRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depManifestRemoveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_atribRemManifest1ActionPerformed
+    }//GEN-LAST:event_depManifestRemoveActionPerformed
 
-    private void atribRemMavenRepo1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_atribRemMavenRepo1ActionPerformed
+    private void depMavenRepsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depMavenRepsRemoveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_atribRemMavenRepo1ActionPerformed
+    }//GEN-LAST:event_depMavenRepsRemoveActionPerformed
 
-    private void atribRemJavaDep1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_atribRemJavaDep1ActionPerformed
+    private void depJavaLibsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depJavaLibsRemoveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_atribRemJavaDep1ActionPerformed
+    }//GEN-LAST:event_depJavaLibsRemoveActionPerformed
 
-    private void atribRemModDep1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_atribRemModDep1ActionPerformed
+    private void depModsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depModsRemoveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_atribRemModDep1ActionPerformed
+    }//GEN-LAST:event_depModsRemoveActionPerformed
 
-    private void atribRemoveContributerActionPerformed(ActionEvent evt) {//GEN-FIRST:event_atribRemoveContributerActionPerformed
+    private void attribContributorRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_attribContributorRemoveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_atribRemoveContributerActionPerformed
+    }//GEN-LAST:event_attribContributorRemoveActionPerformed
 
-    private void modLogoBrowsButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modLogoBrowsButtonActionPerformed
+    private void modLogoBrowseButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modLogoBrowseButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_modLogoBrowsButtonActionPerformed
+    }//GEN-LAST:event_modLogoBrowseButtonActionPerformed
 
     private void modCurseIDFieldActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modCurseIDFieldActionPerformed
         // TODO add your handling code here:
@@ -1067,77 +1061,63 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuItemCutActionPerformed
 
+    private void modLogoFieldActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modLogoFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modLogoFieldActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JMenu aboutMenu;
-    private JButton atribAddContributer;
-    private JButton atribAddJavaDep1;
-    private JButton atribAddManifest1;
-    private JButton atribAddModDep1;
-    private JButton atribAddRepo1;
-    private JTable atribContrubuterTable;
-    private JTextArea atribCreditsTextBox;
-    private JCheckBox atribParantModCheck1;
-    private JTextField atribParentModField1;
-    private JButton atribRemJavaDep1;
-    private JButton atribRemManifest1;
-    private JButton atribRemMavenRepo1;
-    private JButton atribRemModDep1;
-    private JButton atribRemoveContributer;
+    private JButton attribContributorAdd;
+    private JButton attribContributorRemove;
+    private JScrollPane attribContributorScrlPane;
+    private JTable attribContributorTable;
+    private JTextArea attribCreditsField;
+    private JLabel attribCreditsLabel;
+    private JScrollPane attribCreditsScrlPane;
     private JPanel attribPanel;
-    private JList<String> depJavaDepList;
+    private JButton depJavaLibsAdd;
+    private JLabel depJavaLibsFields;
+    private JList<String> depJavaLibsList;
+    private JPanel depJavaLibsPanel;
+    private JButton depJavaLibsRemove;
+    private JScrollPane depJavaLibsScrlPane;
+    private JButton depManifestAdd;
+    private JLabel depManifestLabel;
     private JList<String> depManifestList;
-    private JList<String> depMavenRepoList;
-    private JTable depModDepTable;
+    private JPanel depManifestPanel;
+    private JButton depManifestRemove;
+    private JScrollPane depManifestScrlPane;
+    private JButton depMavenRepsAdd;
+    private JLabel depMavenRepsLabel;
+    private JList<String> depMavenRepsList;
+    private JPanel depMavenRepsPanel;
+    private JButton depMavenRepsRemove;
+    private JScrollPane depMavenRepsScrlPane;
+    private JButton depModsAdd;
+    private JLabel depModsLabel;
+    private JPanel depModsPanel;
+    private JButton depModsRemove;
+    private JScrollPane depModsScrlPane;
+    private JTable depModsTable;
     private JPanel depPanel;
+    private JCheckBox depParentCheck;
+    private JTextField depParentField;
+    private JLabel depParentLabel;
     private JRadioButton eclipseRadButton;
     private JMenu editMenu;
     private JMenu fileMenu;
     private Box.Filler filler1;
     private Box.Filler filler2;
     private JComboBox<String> forgeVersionSelect;
+    private JLabel gradleVersionLabel;
     private ButtonGroup ideButtonGroup;
     private JRadioButton intellijRadButton;
     private JTextField issueTrackerField;
-    private JComboBox<String> jComboBox3;
-    private JLabel jLabel1;
-    private JLabel jLabel10;
-    private JLabel jLabel11;
-    private JLabel jLabel12;
-    private JLabel jLabel13;
-    private JLabel jLabel14;
-    private JLabel jLabel15;
-    private JLabel jLabel2;
-    private JLabel jLabel21;
-    private JLabel jLabel22;
-    private JLabel jLabel23;
-    private JLabel jLabel24;
-    private JLabel jLabel25;
-    private JLabel jLabel26;
-    private JLabel jLabel3;
-    private JLabel jLabel4;
-    private JLabel jLabel5;
-    private JLabel jLabel6;
-    private JLabel jLabel7;
-    private JLabel jLabel8;
-    private JLabel jLabel9;
-    private JPanel jPanel13;
-    private JPanel jPanel14;
-    private JPanel jPanel15;
-    private JPanel jPanel16;
-    private JPanel jPanel4;
-    private JPanel jPanel6;
-    private JScrollPane jScrollPane1;
-    private JScrollPane jScrollPane10;
-    private JScrollPane jScrollPane2;
-    private JScrollPane jScrollPane3;
-    private JScrollPane jScrollPane7;
-    private JScrollPane jScrollPane8;
-    private JScrollPane jScrollPane9;
-    private JPopupMenu.Separator jSeparator1;
-    private JTabbedPane jTabbedPane1;
-    private JTextArea jTextArea1;
+    private JLabel issueTrackerLabel;
+    private JLabel javaVersionLabel;
     private JMenu lafMenu;
+    private JLabel mcForgeVersionLabel;
     private JComboBox<String> mcVersionSelect;
     private JMenuBar menuBar;
     private JMenuItem menuItemAboutSB;
@@ -1159,18 +1139,34 @@ public class SulfurBoxGui extends javax.swing.JFrame {
     private JMenuItem menuItemSaveAs;
     private JMenuItem menuItemSelectAll;
     private JTextField modCurseIDField;
+    private JLabel modCurseIDLabel;
+    private JTextArea modDescriptionField;
+    private JLabel modDescriptionLabel;
+    private JScrollPane modDescriptionScrlPane;
     private JButton modGenerateButton;
+    private JPanel modGeneratePanel;
     private JTextField modHomePageField;
+    private JComboBox<String> modHomePageHttpsSelect;
+    private JLabel modHomePageLabel;
     private JComboBox<String> modLicenseField;
-    private JButton modLogoBrowsButton;
+    private JLabel modLicenseLabel;
+    private JButton modLogoBrowseButton;
     private JTextField modLogoField;
+    private JLabel modLogoLabel;
     private JTextField modNameField;
-    private JTextField modPackageExtField;
+    private JLabel modNameLabel;
     private JTextField modPackageField;
+    private JLabel modPackageLabel;
+    private JTextField modPackageMemberField;
+    private JLabel modPackageSeparatorLabel;
     private JPanel modPanel;
+    private JTabbedPane modPropertyTabs;
     private JTextField modRepoField;
+    private JLabel modRepoLabel;
     private JTextField modUpdateChecksField;
+    private JLabel modUpdateChecksLabel;
     private JTextField modVersionField;
+    private JLabel modVersionLabel;
     private JMenu optionsMenu;
     private JMenu projectMenu;
     // End of variables declaration//GEN-END:variables

@@ -231,18 +231,18 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="modPropertyTabs" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="eclipseRadButton" min="-2" pref="100" max="-2" attributes="0"/>
                           <Component id="intellijRadButton" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jPanel6" max="32767" attributes="0"/>
+                      <Component id="modGeneratePanel" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel14" max="32767" attributes="0"/>
-                          <Component id="jLabel13" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="gradleVersionLabel" max="32767" attributes="0"/>
+                          <Component id="javaVersionLabel" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -254,30 +254,30 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" max="32767" attributes="0"/>
+              <Component id="modPropertyTabs" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jPanel6" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="modGeneratePanel" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="gradleVersionLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="javaVersionLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="eclipseRadButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="intellijRadButton" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="intellijRadButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+    <Container class="javax.swing.JTabbedPane" name="modPropertyTabs">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -303,22 +303,22 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="modUpdateChecksLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLabel12" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel11" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
+                              <Component id="modLogoLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="modLicenseLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="modCurseIDLabel" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
+                              <Component id="modDescriptionLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="modVersionLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="modPackageLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="modNameLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="mcForgeVersionLabel" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jLabel8" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
-                          <Component id="jLabel7" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
-                          <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="modRepoLabel" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
+                          <Component id="modHomePageLabel" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
+                          <Component id="issueTrackerLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -326,9 +326,9 @@
                           <Group type="102" attributes="0">
                               <Component id="modPackageField" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <Component id="modPackageSeparatorLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="modPackageExtField" min="-2" pref="92" max="-2" attributes="0"/>
+                              <Component id="modPackageMemberField" min="-2" pref="92" max="-2" attributes="0"/>
                           </Group>
                           <Component id="modNameField" max="32767" attributes="0"/>
                           <Component id="modVersionField" max="32767" attributes="0"/>
@@ -337,17 +337,17 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="forgeVersionSelect" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Component id="modDescriptionScrlPane" max="32767" attributes="0"/>
                           <Component id="modUpdateChecksField" alignment="0" max="32767" attributes="0"/>
                           <Component id="modCurseIDField" alignment="0" max="32767" attributes="0"/>
                           <Component id="modLicenseField" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="modLogoField" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="modLogoBrowsButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="modLogoBrowseButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="jComboBox3" min="-2" pref="69" max="-2" attributes="0"/>
+                              <Component id="modHomePageHttpsSelect" min="-2" pref="69" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="modHomePageField" max="32767" attributes="0"/>
                           </Group>
@@ -363,74 +363,79 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="modNameField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="modNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="modPackageField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="modPackageExtField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="modPackageSeparatorLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="modPackageMemberField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="modPackageLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="modVersionField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="modVersionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="mcVersionSelect" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="forgeVersionSelect" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mcForgeVersionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="113" max="32767" attributes="0"/>
+                          <Component id="modDescriptionLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="modDescriptionScrlPane" pref="133" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="modHomePageField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="modHomePageHttpsSelect" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="modHomePageLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="modRepoField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="modRepoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="issueTrackerField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="issueTrackerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="modUpdateChecksField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="modUpdateChecksLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="modCurseIDField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="modCurseIDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="modLicenseField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="modLicenseLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="modLogoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="modLogoField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="modLogoBrowsButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="modLogoBrowseButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
+            <Component class="javax.swing.JLabel" name="modNameLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Name"/>
+              </Properties>
+            </Component>
             <Component class="javax.swing.JTextField" name="modNameField">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Test Mod"/>
@@ -438,6 +443,11 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modNameFieldActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="modPackageLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Package"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="modPackageField">
               <Properties>
@@ -447,12 +457,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modPackageFieldActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="modPackageSeparatorLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="."/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="modPackageExtField">
+            <Component class="javax.swing.JTextField" name="modPackageMemberField">
               <Properties>
                 <Property name="text" type="java.lang.String" value="testmod"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -464,24 +474,19 @@
                 <Property name="name" type="java.lang.String" value="" noResource="true"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="modVersionLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Version"/>
+              </Properties>
+            </Component>
             <Component class="javax.swing.JTextField" name="modVersionField">
               <Properties>
                 <Property name="text" type="java.lang.String" value="0.0.1.# - DEV"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="mcForgeVersionLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Name"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Package"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Version"/>
+                <Property name="text" type="java.lang.String" value="Forge Version"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="mcVersionSelect">
@@ -511,19 +516,19 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
+            <Component class="javax.swing.JLabel" name="modDescriptionLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Forge Version"/>
+                <Property name="text" type="java.lang.String" value="Description"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+            <Container class="javax.swing.JScrollPane" name="modDescriptionScrlPane">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="jTextArea1">
+                <Component class="javax.swing.JTextArea" name="modDescriptionField">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
@@ -531,12 +536,12 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel6">
+            <Component class="javax.swing.JLabel" name="modHomePageLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Description"/>
+                <Property name="text" type="java.lang.String" value="Home Page"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox3">
+            <Component class="javax.swing.JComboBox" name="modHomePageHttpsSelect">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
@@ -557,9 +562,9 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modHomePageFieldActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel7">
+            <Component class="javax.swing.JLabel" name="modRepoLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Home Page"/>
+                <Property name="text" type="java.lang.String" value="Repository"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="modRepoField">
@@ -567,9 +572,19 @@
                 <Property name="text" type="java.lang.String" value="https://github.com/brandon3055/Draconic-Evolution"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel8">
+            <Component class="javax.swing.JLabel" name="issueTrackerLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Repository"/>
+                <Property name="text" type="java.lang.String" value="Issue Tracker"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="issueTrackerField">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="https://github.com/brandon3055/Draconic-Evolution/issues"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="modUpdateChecksLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Update Checks"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="modUpdateChecksField">
@@ -577,9 +592,9 @@
                 <Property name="text" type="java.lang.String" value="www.blablabla.com/stuff"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel9">
+            <Component class="javax.swing.JLabel" name="modCurseIDLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Update Checks"/>
+                <Property name="text" type="java.lang.String" value="CurseForge ID"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="modCurseIDField">
@@ -589,6 +604,11 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modCurseIDFieldActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="modLicenseLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="License"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="modLicenseField">
               <Properties>
@@ -602,43 +622,26 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="modLogoField">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="resources/textures/logo.png"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="modLogoBrowsButton">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Brows"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modLogoBrowsButtonActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel10">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="CurseForge ID"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel11">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="License"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel12">
+            <Component class="javax.swing.JLabel" name="modLogoLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Logo File"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="issueTrackerField">
+            <Component class="javax.swing.JTextField" name="modLogoField">
               <Properties>
-                <Property name="text" type="java.lang.String" value="https://github.com/brandon3055/Draconic-Evolution/issues"/>
+                <Property name="text" type="java.lang.String" value="resources/textures/logo.png"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modLogoFieldActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel21">
+            <Component class="javax.swing.JButton" name="modLogoBrowseButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Issue Tracker"/>
+                <Property name="text" type="java.lang.String" value="Browse"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modLogoBrowseButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -657,15 +660,15 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane3" max="32767" attributes="0"/>
+                          <Component id="attribCreditsScrlPane" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jLabel15" max="32767" attributes="0"/>
+                              <Component id="attribCreditsLabel" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="atribAddContributer" min="-2" max="-2" attributes="0"/>
+                              <Component id="attribContributorAdd" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="atribRemoveContributer" min="-2" max="-2" attributes="0"/>
+                              <Component id="attribContributorRemove" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane2" pref="706" max="32767" attributes="0"/>
+                          <Component id="attribContributorScrlPane" pref="714" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -675,29 +678,29 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="258" max="-2" attributes="0"/>
+                      <Component id="attribContributorScrlPane" min="-2" pref="350" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="atribRemoveContributer" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
-                          <Component id="atribAddContributer" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
-                          <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="attribContributorRemove" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
+                          <Component id="attribContributorAdd" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
+                          <Component id="attribCreditsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" pref="240" max="32767" attributes="0"/>
+                      <Component id="attribCreditsScrlPane" pref="170" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+            <Container class="javax.swing.JScrollPane" name="attribContributorScrlPane">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="atribContrubuterTable">
+                <Component class="javax.swing.JTable" name="attribContributorTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        { &quot;//TODO&quot;, &quot;//TODO&quot;, &quot;//TODO&quot;, &quot;//TODO&quot;}&#xa;    },&#xa;    new String [] {&#xa;        &quot;&quot;, &quot;Name&quot;, &quot;Username&quot;, &quot;Role&quot;&#xa;    }&#xa;)&#xa;{&#xa;    Class[] types = new Class [] {&#xa;        java.lang.Boolean.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;&#xa;    public Class getColumnClass(int column) {&#xa;        Object c = getValueAt(0, column);&#xa;        return c == null ? String.class : c.getClass();&#xa;    }&#xa;}" type="code"/>
@@ -706,34 +709,34 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="atribAddContributer">
+            <Component class="javax.swing.JButton" name="attribContributorAdd">
               <Properties>
                 <Property name="text" type="java.lang.String" value="+"/>
                 <Property name="toolTipText" type="java.lang.String" value="Add Contributer"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="atribRemoveContributer">
+            <Component class="javax.swing.JButton" name="attribContributorRemove">
               <Properties>
                 <Property name="text" type="java.lang.String" value="x"/>
                 <Property name="toolTipText" type="java.lang.String" value="Remove Selected"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="atribRemoveContributerActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="attribContributorRemoveActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel15">
+            <Component class="javax.swing.JLabel" name="attribCreditsLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Credits"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+            <Container class="javax.swing.JScrollPane" name="attribCreditsScrlPane">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="atribCreditsTextBox">
+                <Component class="javax.swing.JTextArea" name="attribCreditsField">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
@@ -764,22 +767,22 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                      <Component id="depParentLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="atribParantModCheck1" min="-2" max="-2" attributes="0"/>
+                      <Component id="depParentCheck" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="atribParentModField1" max="32767" attributes="0"/>
+                      <Component id="depParentField" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jPanel15" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jPanel13" alignment="0" max="32767" attributes="0"/>
+                          <Component id="depMavenRepsPanel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="depModsPanel" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel14" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jPanel16" alignment="0" max="32767" attributes="0"/>
+                          <Component id="depJavaLibsPanel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="depManifestPanel" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -789,37 +792,37 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="atribParantModCheck1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="depParentCheck" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="atribParentModField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="depParentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="depParentField" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel14" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jPanel13" alignment="0" max="32767" attributes="0"/>
+                          <Component id="depJavaLibsPanel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="depModsPanel" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel15" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jPanel16" alignment="0" max="32767" attributes="0"/>
+                          <Component id="depMavenRepsPanel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="depManifestPanel" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel22">
+            <Component class="javax.swing.JLabel" name="depParentLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Parent Mod"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="atribParantModCheck1">
+            <Component class="javax.swing.JCheckBox" name="depParentCheck">
             </Component>
-            <Component class="javax.swing.JTextField" name="atribParentModField1">
+            <Component class="javax.swing.JTextField" name="depParentField">
             </Component>
-            <Container class="javax.swing.JPanel" name="jPanel13">
+            <Container class="javax.swing.JPanel" name="depModsPanel">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -834,14 +837,14 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane7" alignment="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="depModsScrlPane" alignment="0" pref="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="atribAddModDep1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="depModsAdd" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="atribRemModDep1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="depModsRemove" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jLabel23" alignment="1" max="32767" attributes="0"/>
+                              <Component id="depModsLabel" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -851,13 +854,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                          <Component id="depModsLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane7" pref="0" max="32767" attributes="0"/>
+                          <Component id="depModsScrlPane" pref="0" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="atribRemModDep1" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
-                              <Component id="atribAddModDep1" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="depModsRemove" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="depModsAdd" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -865,34 +868,34 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel23">
+                <Component class="javax.swing.JLabel" name="depModsLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Mod Dependencies"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="atribRemModDep1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="x"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Remove Selected"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="atribRemModDep1ActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="atribAddModDep1">
+                <Component class="javax.swing.JButton" name="depModsAdd">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="+"/>
                     <Property name="toolTipText" type="java.lang.String" value="Add New"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane7">
+                <Component class="javax.swing.JButton" name="depModsRemove">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="x"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Remove Selected"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="depModsRemoveActionPerformed"/>
+                  </Events>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="depModsScrlPane">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="depModDepTable">
+                    <Component class="javax.swing.JTable" name="depModsTable">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="2" rowCount="4">
@@ -926,7 +929,7 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel14">
+            <Container class="javax.swing.JPanel" name="depJavaLibsPanel">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -941,13 +944,13 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane8" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel24" alignment="0" max="32767" attributes="0"/>
+                              <Component id="depJavaLibsScrlPane" alignment="0" max="32767" attributes="0"/>
+                              <Component id="depJavaLibsFields" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="atribAddJavaDep1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="depJavaLibsAdd" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="atribRemJavaDep1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="depJavaLibsRemove" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -958,13 +961,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                          <Component id="depJavaLibsFields" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane8" pref="185" max="32767" attributes="0"/>
+                          <Component id="depJavaLibsScrlPane" pref="195" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="atribRemJavaDep1" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
-                              <Component id="atribAddJavaDep1" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="depJavaLibsRemove" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="depJavaLibsAdd" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -972,34 +975,34 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel24">
+                <Component class="javax.swing.JLabel" name="depJavaLibsFields">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Java Dependencies"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="atribRemJavaDep1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="x"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Remove Selected"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="atribRemJavaDep1ActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="atribAddJavaDep1">
+                <Component class="javax.swing.JButton" name="depJavaLibsAdd">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="+"/>
                     <Property name="toolTipText" type="java.lang.String" value="Add New"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane8">
+                <Component class="javax.swing.JButton" name="depJavaLibsRemove">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="x"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Remove Selected"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="depJavaLibsRemoveActionPerformed"/>
+                  </Events>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="depJavaLibsScrlPane">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JList" name="depJavaDepList">
+                    <Component class="javax.swing.JList" name="depJavaLibsList">
                       <Properties>
                         <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                           <StringArray count="5">
@@ -1020,7 +1023,7 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel15">
+            <Container class="javax.swing.JPanel" name="depMavenRepsPanel">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -1035,15 +1038,15 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane9" alignment="0" max="32767" attributes="0"/>
+                              <Component id="depMavenRepsScrlPane" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel25" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="depMavenRepsLabel" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Component id="atribAddRepo1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="depMavenRepsAdd" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="atribRemMavenRepo1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="depMavenRepsRemove" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1056,13 +1059,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
+                          <Component id="depMavenRepsLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane9" pref="184" max="32767" attributes="0"/>
+                          <Component id="depMavenRepsScrlPane" pref="196" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="atribRemMavenRepo1" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
-                              <Component id="atribAddRepo1" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="depMavenRepsRemove" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="depMavenRepsAdd" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -1070,34 +1073,34 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel25">
+                <Component class="javax.swing.JLabel" name="depMavenRepsLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Maven Repositories"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="atribRemMavenRepo1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="x"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Remove Selected"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="atribRemMavenRepo1ActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="atribAddRepo1">
+                <Component class="javax.swing.JButton" name="depMavenRepsAdd">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="+"/>
                     <Property name="toolTipText" type="java.lang.String" value="Add New"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane9">
+                <Component class="javax.swing.JButton" name="depMavenRepsRemove">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="x"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Remove Selected"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="depMavenRepsRemoveActionPerformed"/>
+                  </Events>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="depMavenRepsScrlPane">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JList" name="depMavenRepoList">
+                    <Component class="javax.swing.JList" name="depMavenRepsList">
                       <Properties>
                         <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                           <StringArray count="5">
@@ -1118,7 +1121,7 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel16">
+            <Container class="javax.swing.JPanel" name="depManifestPanel">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -1133,13 +1136,13 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane10" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel26" alignment="0" max="32767" attributes="0"/>
+                              <Component id="depManifestScrlPane" alignment="0" max="32767" attributes="0"/>
+                              <Component id="depManifestLabel" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="atribAddManifest1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="depManifestAdd" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="atribRemManifest1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="depManifestRemove" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1150,13 +1153,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
+                          <Component id="depManifestLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane10" pref="0" max="32767" attributes="0"/>
+                          <Component id="depManifestScrlPane" pref="0" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="atribRemManifest1" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
-                              <Component id="atribAddManifest1" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="depManifestRemove" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="depManifestAdd" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -1164,27 +1167,27 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel26">
+                <Component class="javax.swing.JLabel" name="depManifestLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Manifest"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="atribAddManifest1">
+                <Component class="javax.swing.JButton" name="depManifestAdd">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="+"/>
                     <Property name="toolTipText" type="java.lang.String" value="Add New"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="atribRemManifest1">
+                <Component class="javax.swing.JButton" name="depManifestRemove">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="x"/>
                     <Property name="toolTipText" type="java.lang.String" value="Remove Selected"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="atribRemManifest1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="depManifestRemoveActionPerformed"/>
                   </Events>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane10">
+                <Container class="javax.swing.JScrollPane" name="depManifestScrlPane">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
@@ -1214,28 +1217,6 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel4">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Support">
-                <Property name="tabTitle" type="java.lang.String" value="Support"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="718" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="541" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-        </Container>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JRadioButton" name="intellijRadButton">
@@ -1248,7 +1229,7 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="eclipseRadButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Eclips"/>
+        <Property name="text" type="java.lang.String" value="Eclipse"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eclipseRadButtonActionPerformed"/>
@@ -1257,37 +1238,37 @@
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ideButtonGroup.add(eclipseRadButton);"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel14">
+    <Component class="javax.swing.JLabel" name="gradleVersionLabel">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="11"/>
         <Property name="text" type="java.lang.String" value="Gradle 3.14"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel13">
+    <Component class="javax.swing.JLabel" name="javaVersionLabel">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="11"/>
         <Property name="text" type="java.lang.String" value="Java 9.232"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JPanel" name="jPanel6">
+    <Container class="javax.swing.JPanel" name="modGeneratePanel">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="filler2" max="32767" attributes="0"/>
+                  <Component id="filler1" max="32767" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="modGenerateButton" min="-2" pref="133" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="filler1" max="32767" attributes="0"/>
+                  <Component id="filler2" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="filler1" alignment="0" max="32767" attributes="0"/>
               <Component id="filler2" alignment="0" max="32767" attributes="0"/>
+              <Component id="filler1" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="modGenerateButton" min="-2" max="-2" attributes="0"/>
