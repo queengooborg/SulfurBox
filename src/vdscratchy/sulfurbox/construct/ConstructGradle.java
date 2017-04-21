@@ -16,6 +16,7 @@ import vdscratchy.sulfurbox.data.types.MavenRepository;
  *
  * @see vdscratchy.sulfurbox.data.Mod
  * @see vdscratchy.sulfurbox.construct.ConstructModInfo
+ * @see vdscratchy.sulfurbox.construct.GenerateAll
  */
 public class ConstructGradle {
 	public static String construct(Mod modInfo) {

@@ -15,6 +15,7 @@ import vdscratchy.sulfurbox.data.Mod;
  *
  * @see vdscratchy.sulfurbox.data.Mod
  * @see vdscratchy.sulfurbox.construct.ConstructGradle
+ * @see vdscratchy.sulfurbox.construct.GenerateAll
  */
 public class ConstructModInfo {
 	public static String construct(Mod modInfo) {
