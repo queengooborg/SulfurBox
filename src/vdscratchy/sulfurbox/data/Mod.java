@@ -35,7 +35,6 @@ public class Mod {
 	public Version modVersion;
 	public Version mcVersion;
 	public Version forgeVersion;
-	public String forgeMapping = "";
 	public String parentMod = "";
 	public ArrayList<Dependency> dependencies = new ArrayList<Dependency>();
 	public ArrayList<Dependency> javaDependencies = new ArrayList<Dependency>();
@@ -105,7 +104,6 @@ public class Mod {
 		if (!(packageName.equals(other.packageName))) return false;
 		if (!(packageModuleName.equals(other.packageModuleName))) return false;
 		if (!(description.equals(other.description))) return false;
-		if (!(forgeMapping.equals(other.forgeMapping))) return false;
 		if (!(parentMod.equals(other.parentMod))) return false;
 		if (!(logopath.equals(other.logopath))) return false;
 		if (!(homepage.equals(other.homepage))) return false;

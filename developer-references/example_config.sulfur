@@ -21,7 +21,6 @@
   "version": "0.0.1",
   "mcversion": "1.11.2",
   "forgeversion": "13.20.0.2224",
-  "forgemapping": "snapshot_20161220",
   "parentmod": null,
   "dependencies": [
     "codechicken.codechickenlib:2.6.*",

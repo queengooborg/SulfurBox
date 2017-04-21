@@ -163,17 +163,6 @@ public class CurrentProjectHandler {
 		return error;
 	}
 
-	public String getForgeMapping() {
-		return this.currentProject.forgeMapping;
-	}
-
-	public String setForgeMapping(String forgeMapping) {
-		// TODO: Map with future error handler when ready
-		// TODO: make validator
-		this.currentProject.forgeMapping = forgeMapping;
-		return "";
-	}
-
 	public String getParentMod() {
 		return this.currentProject.parentMod;
 	}
