@@ -28,6 +28,7 @@ apply plugin: "org.openbakery.xcode-plugin"
 
 dependencies {
 	compile files('libs/darcula.jar')
+	compile files('libs/beans-binding/beansbinding-1.2.1.jar')
 }
 
 mainClassName = "vdscratchy.sulfurbox.Main"

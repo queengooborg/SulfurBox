@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vdscratchy.sulfurbox.gui;
 
 import javax.swing.*;
@@ -10,18 +5,11 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.InputEvent;
-import java.awt.event.InputMethodEvent;
-import java.awt.event.InputMethodListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.beans.Beans;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -29,8 +17,6 @@ import java.io.IOException;
 import java.util.Properties;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import org.jdesktop.beansbinding.AutoBinding;
 import org.jdesktop.beansbinding.BeanProperty;
 import org.jdesktop.beansbinding.Binding;
@@ -56,8 +42,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
     private Properties properties = new Properties();
     
-    private static final int CTRLCMD
-        = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    private static final int CTRLCMD = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
     /**
      * Creates new form SulfurBoxGui
@@ -1096,7 +1081,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
     private void modNameFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modNameFieldKeyPressed
         // TODO add your handling code here:
-        System.out.println("Foo!");
     }//GEN-LAST:event_modNameFieldKeyPressed
 
     private void modPackageFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modPackageFieldKeyPressed

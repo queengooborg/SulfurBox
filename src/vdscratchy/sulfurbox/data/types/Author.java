@@ -1,8 +1,5 @@
 package vdscratchy.sulfurbox.data.types;
 
-import java.util.List;
-import java.util.ListIterator;
-
 /**
  * SulfurBox - vdscratchy.sulfurbox.data.types.Author
  *
