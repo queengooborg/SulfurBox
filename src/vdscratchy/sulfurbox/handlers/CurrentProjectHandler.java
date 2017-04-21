@@ -117,7 +117,11 @@ public class CurrentProjectHandler {
 		// TODO: Map with future error handler when ready
 		String error = "";
 
-		if (modVersion.matches("((\\d*)\\.){0,3}(\\d+)")) error = "Mod version validation failed"; // TODO: make the validation in Version class
+		if (!modVersion.matches("(\\d\\.)*")) error = "Version number must only consist of numbers and periods";
+		else if (modVersion.matches("\\.$")) error = "Version number cannot end with a period";
+		else if (modVersion.matches("^\\.")) error = "Version number cannot start with a period";
+		else if (modVersion.matches("\\.(\\.)+")) error = "Version number must have numbers between every period";
+		else if (!modVersion.matches("((\\d*)\\.){0,3}(\\d+)")) error = "Mod version validation failed"; // TODO: make the validation in Version class
 
 		this.currentProject.modVersion = new Version(modVersion);
 		return error;
@@ -137,7 +141,11 @@ public class CurrentProjectHandler {
 		// TODO: Map with future error handler when ready
 		String error = "";
 
-		if (mcVersion.matches("((\\d*)\\.){0,3}(\\d+)")) error = "Minecraft version validation failed"; // TODO: make the validation in Version class
+		if (!mcVersion.matches("(\\d\\.)*")) error = "Version number must only consist of numbers and periods";
+		else if (mcVersion.matches("\\.$")) error = "Version number cannot end with a period";
+		else if (mcVersion.matches("^\\.")) error = "Version number cannot start with a period";
+		else if (mcVersion.matches("\\.(\\.)+")) error = "Version number must have numbers between every period";
+		else if (!mcVersion.matches("((\\d*)\\.){0,3}(\\d+)")) error = "Minecraft version validation failed"; // TODO: make the validation in Version class
 
 		this.currentProject.mcVersion = new Version(mcVersion);
 		return error;
@@ -157,7 +165,11 @@ public class CurrentProjectHandler {
 		// TODO: Map with future error handler when ready
 		String error = "";
 
-		if (forgeVersion.matches("((\\d*)\\.){0,3}(\\d+)")) error = "Forge version validation failed"; // TODO: make the validation in Version class
+		if (!forgeVersion.matches("(\\d\\.)*")) error = "Version number must only consist of numbers and periods";
+		else if (forgeVersion.matches("\\.$")) error = "Version number cannot end with a period";
+		else if (forgeVersion.matches("^\\.")) error = "Version number cannot start with a period";
+		else if (forgeVersion.matches("\\.(\\.)+")) error = "Version number must have numbers between every period";
+		else if (!forgeVersion.matches("((\\d*)\\.){0,3}(\\d+)")) error = "Forge version validation failed"; // TODO: make the validation in Version class
 
 		this.currentProject.forgeVersion = new Version(forgeVersion);
 		return error;
@@ -169,9 +181,16 @@ public class CurrentProjectHandler {
 
 	public String setParentMod(String parentMod) {
 		// TODO: Map with future error handler when ready
-		// TODO: make validator
+		// TODO: confirm that the requested mod is valid
+		String error = "";
+
+		if (!parentMod.matches("[a-zA-Z\\d_$]*")) error = "Package names only allow alphanumerical characters, underscores, dollar signs, and periods";
+		else if (parentMod.matches("^\\d") || parentMod.matches("(\\.\\d)")) error = "Package and package module names cannot start with a number";
+		else if (parentMod.matches("\\.$")) error = "Package names cannot end with a period";
+		else if (!parentMod.matches("^([a-zA-Z_$][a-zA-Z\\d_$]*\\.)*[a-zA-Z_$][a-zA-Z\\d_$]*$")) error = "Parent mod package name is in an invalid format";
+
 		this.currentProject.parentMod = parentMod;
-		return "";
+		return error;
 	}
 
 	public ArrayList<Dependency> getDependencies() {
@@ -221,8 +240,10 @@ public class CurrentProjectHandler {
 	public String setLogopath(String logopath) {
 		// TODO: Map with future error handler when ready
 		// TODO: make validator
+		String error = "";
+
 		this.currentProject.logopath = logopath;
-		return "";
+		return error;
 	}
 
 	public ArrayList<MavenRepository> getMavenRepositories() {
@@ -271,9 +292,12 @@ public class CurrentProjectHandler {
 
 	public String setHomepage(String homepage) {
 		// TODO: Map with future error handler when ready
-		// TODO: make validator
+		String error = "";
+
+		if (!homepage.matches("^(\\?:http(s)?:\\\\/\\\\/)?[\\w.-]+(?:\\.[\\w.-]+)+[\\w\\-._~:/?#[\\\\]@!$&'()*+,;=]+$")) error = "Not a valid URL";
+
 		this.currentProject.homepage = homepage;
-		return "";
+		return error;
 	}
 
 	public String getUpdateCheck() {
@@ -282,9 +306,12 @@ public class CurrentProjectHandler {
 
 	public String setUpdateCheck(String updateCheck) {
 		// TODO: Map with future error handler when ready
-		// TODO: make validator
+		String error = "";
+
+		if (!updateCheck.matches("^(\\?:http(s)?:\\\\/\\\\/)?[\\w.-]+(?:\\.[\\w.-]+)+[\\w\\-._~:/?#[\\\\]@!$&'()*+,;=]+$")) error = "Not a valid URL";
+
 		this.currentProject.updateCheck = updateCheck;
-		return "";
+		return error;
 	}
 
 	public String getModRepository() {
@@ -293,9 +320,12 @@ public class CurrentProjectHandler {
 
 	public String setModRepository(String modRepository) {
 		// TODO: Map with future error handler when ready
-		// TODO: make validator
+		String error = "";
+
+		if (!modRepository.matches("^(\\?:http(s)?:\\\\/\\\\/)?[\\w.-]+(?:\\.[\\w.-]+)+[\\w\\-._~:/?#[\\\\]@!$&'()*+,;=]+$")) error = "Not a valid URL";
+
 		this.currentProject.modRepository = modRepository;
-		return "";
+		return error;
 	}
 
 	public String getModMavenRepository() {
@@ -304,9 +334,12 @@ public class CurrentProjectHandler {
 
 	public String setModMavenRepository(String modMavenRepository) {
 		// TODO: Map with future error handler when ready
-		// TODO: make validator
+		String error = "";
+
+		if (!modMavenRepository.matches("^(\\?:http(s)?:\\\\/\\\\/)?[\\w.-]+(?:\\.[\\w.-]+)+[\\w\\-._~:/?#[\\\\]@!$&'()*+,;=]+$")) error = "Not a valid URL";
+
 		this.currentProject.modMavenRepository = modMavenRepository;
-		return "";
+		return error;
 	}
 
 	public String getIssuesPage() {
@@ -315,9 +348,12 @@ public class CurrentProjectHandler {
 
 	public String setIssuesPage(String issuesPage) {
 		// TODO: Map with future error handler when ready
-		// TODO: make validator
+		String error = "";
+
+		if (!issuesPage.matches("^(\\?:http(s)?:\\\\/\\\\/)?[\\w.-]+(?:\\.[\\w.-]+)+[\\w\\-._~:/?#[\\\\]@!$&'()*+,;=]+$")) error = "Not a valid URL";
+
 		this.currentProject.issuesPage = issuesPage;
-		return "";
+		return error;
 	}
 
 	public int getCurseforgeID() {
@@ -326,9 +362,11 @@ public class CurrentProjectHandler {
 
 	public String setCurseforgeID(int curseforgeID) {
 		// TODO: Map with future error handler when ready
-		// TODO: make validator
+		// TODO: confirm that the CurseForge project ID is valid
+		String error = "";
+
 		this.currentProject.curseforgeID = curseforgeID;
-		return "";
+		return error;
 	}
 
 	public String getLicense() {
@@ -338,8 +376,10 @@ public class CurrentProjectHandler {
 	public String setLicense(String license) {
 		// TODO: Map with future error handler when ready
 		// TODO: make validator
+		String error = "";
+
 		this.currentProject.license = license;
-		return "";
+		return error;
 	}
 
 	public String getCredits() {
@@ -348,7 +388,6 @@ public class CurrentProjectHandler {
 
 	public String setCredits(String credits) {
 		// TODO: Map with future error handler when ready
-		// TODO: make validator
 		this.currentProject.credits = credits;
 		return "";
 	}
