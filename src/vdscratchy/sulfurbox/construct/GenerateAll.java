@@ -18,9 +18,9 @@ import vdscratchy.sulfurbox.data.Mod;
  * @see vdscratchy.sulfurbox.construct.ConstructGradle
  */
 public class GenerateAll {
-	public static String[] construct(Mod modInfo) {
-		String out[] = {ConstructGradle.construct(modInfo), ConstructModInfo.construct(modInfo)};
-		return out;
+	public static void construct(Mod modInfo) {
+		ConstructGradle.construct(modInfo);
+		ConstructModInfo.construct(modInfo);
 	}
 
 	public static void clean(Mod modInfo) {
