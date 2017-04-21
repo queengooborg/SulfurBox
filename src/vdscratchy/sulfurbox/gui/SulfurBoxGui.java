@@ -23,6 +23,7 @@ import org.jdesktop.beansbinding.Binding;
 import org.jdesktop.beansbinding.BindingGroup;
 import org.jdesktop.beansbinding.Bindings;
 import org.jdesktop.beansbinding.ELProperty;
+import vdscratchy.sulfurbox.construct.GenerateAll;
 import vdscratchy.sulfurbox.handlers.CurrentProjectHandler;
 
 /**
@@ -1220,7 +1221,9 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
 	private void modGenerateButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modGenerateButtonActionPerformed
 		// TODO: Add handler code
-		// );
+		GenerateAll.construct(currentProject.project);
+		if (eclipseRadButton.isSelected()) GenerateAll.generateIDE(currentProject.project, "eclipse");
+		if (intellijRadButton.isSelected()) GenerateAll.generateIDE(currentProject.project, "idea");
 	}//GEN-LAST:event_modGenerateButtonActionPerformed
 
 	private void attribContributorTableKeyReleased(KeyEvent evt) {//GEN-FIRST:event_attribContributorTableKeyReleased

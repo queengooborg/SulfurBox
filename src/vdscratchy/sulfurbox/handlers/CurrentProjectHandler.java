@@ -23,10 +23,10 @@ import java.util.ArrayList;
  * @see vdscratchy.sulfurbox.Main
  */
 public class CurrentProjectHandler {
-	public Mod currentProject = new Mod();
+	public Mod project = new Mod();
 
 	public String getModName() {
-		return this.currentProject.modName;
+		return this.project.modName;
 	}
 
 	public String setModName(String modName) {
@@ -37,12 +37,12 @@ public class CurrentProjectHandler {
 		else if (modName.length() < 3) error = "Mod name is too short";
 		else if (modName.length() > 80) error = "Mod name is too long";
 
-		this.currentProject.modName = modName;
+		this.project.modName = modName;
 		return error;
 	}
 
 	public String getPackageName() {
-		return this.currentProject.packageName;
+		return this.project.packageName;
 	}
 
 	public String setPackageName(String packageName) {
@@ -56,12 +56,12 @@ public class CurrentProjectHandler {
 		else if (packageName.matches(".*\\.$")) error = "Package names cannot end with a period";
 		else if (!packageName.matches("^([a-zA-Z_$][a-zA-Z\\d_$]*\\.)*[a-zA-Z_$][a-zA-Z\\d_$]*$")) error = "Package name is in an invalid format";
 
-		this.currentProject.packageName = packageName;
+		this.project.packageName = packageName;
 		return error;
 	}
 
 	public String getPackageModuleName() {
-		return this.currentProject.packageModuleName;
+		return this.project.packageModuleName;
 	}
 
 	public String setPackageModuleName(String packageModuleName) {
@@ -73,47 +73,47 @@ public class CurrentProjectHandler {
 		else if (packageModuleName.matches("^\\d.*")) error = "Package module names cannot start with a number";
 		else if (!packageModuleName.matches("^[a-zA-Z_$][a-zA-Z\\d_$]*$")) error = "Package module name is in an invalid format";
 
-		this.currentProject.packageModuleName = packageModuleName;
+		this.project.packageModuleName = packageModuleName;
 		return error;
 	}
 
 	public String getDescription() {
-		return this.currentProject.description;
+		return this.project.description;
 	}
 
 	public String setDescription(String description) {
 		// TODO: Map with future error handler when ready
-		this.currentProject.description = description;
+		this.project.description = description;
 		return "";
 	}
 
 	public ArrayList<Author> getAuthors() {
-		return this.currentProject.authors;
+		return this.project.authors;
 	}
 
 	public Author getAuthor(int index) {
-		return this.currentProject.authors.get(index);
+		return this.project.authors.get(index);
 	}
 
 	public void addAuthor(Author newAuthor) {
-		this.currentProject.authors.add(newAuthor);
+		this.project.authors.add(newAuthor);
 	}
 
 	public void addAuthor(Author newAuthor, int index) {
-		this.currentProject.authors.add(index, newAuthor);
+		this.project.authors.add(index, newAuthor);
 	}
 
 	public void delAuthor(int index) {
-		this.currentProject.authors.remove(index);
+		this.project.authors.remove(index);
 	}
 
 	public Version getModVersion() {
-		return this.currentProject.modVersion;
+		return this.project.modVersion;
 	}
 
 	public String setModVersion(Version modVersion) {
 		// TODO: Map with future error handler when ready
-		this.currentProject.modVersion = modVersion;
+		this.project.modVersion = modVersion;
 		return "";
 	}
 
@@ -128,17 +128,17 @@ public class CurrentProjectHandler {
 		else if (modVersion.matches(".*\\.(\\.)+.*")) error = "Version number must have numbers between every period";
 		else if (!modVersion.matches("((\\d*)\\.){0,3}(\\d+)")) error = "Mod version validation failed"; // TODO: make the validation in Version class
 
-		this.currentProject.modVersion = new Version(modVersion);
+		this.project.modVersion = new Version(modVersion);
 		return error;
 	}
 
 	public Version getMcVersion() {
-		return this.currentProject.mcVersion;
+		return this.project.mcVersion;
 	}
 
 	public String setMcVersion(Version mcVersion) {
 		// TODO: Map with future error handler when ready
-		this.currentProject.mcVersion = mcVersion;
+		this.project.mcVersion = mcVersion;
 		return "";
 	}
 
@@ -153,17 +153,17 @@ public class CurrentProjectHandler {
 		else if (mcVersion.matches(".*\\.(\\.)+.*")) error = "Version number must have numbers between every period";
 		else if (!mcVersion.matches("((\\d*)\\.){0,3}(\\d+)")) error = "Minecraft version validation failed"; // TODO: make the validation in Version class
 
-		this.currentProject.mcVersion = new Version(mcVersion);
+		this.project.mcVersion = new Version(mcVersion);
 		return error;
 	}
 
 	public Version getForgeVersion() {
-		return this.currentProject.forgeVersion;
+		return this.project.forgeVersion;
 	}
 
 	public String setForgeVersion(Version forgeVersion) {
 		// TODO: Map with future error handler when ready
-		this.currentProject.forgeVersion = forgeVersion;
+		this.project.forgeVersion = forgeVersion;
 		return "";
 	}
 
@@ -178,12 +178,12 @@ public class CurrentProjectHandler {
 		else if (forgeVersion.matches(".*\\.(\\.)+.*")) error = "Version number must have numbers between every period";
 		else if (!forgeVersion.matches("((\\d*)\\.){0,3}(\\d+)")) error = "Forge version validation failed"; // TODO: make the validation in Version class
 
-		this.currentProject.forgeVersion = new Version(forgeVersion);
+		this.project.forgeVersion = new Version(forgeVersion);
 		return error;
 	}
 
 	public String getParentMod() {
-		return this.currentProject.parentMod;
+		return this.project.parentMod;
 	}
 
 	public String setParentMod(String parentMod) {
@@ -197,52 +197,52 @@ public class CurrentProjectHandler {
 		else if (parentMod.matches(".*\\.$")) error = "Package names cannot end with a period";
 		else if (!parentMod.matches("^([a-zA-Z_$][a-zA-Z\\d_$]*\\.)*[a-zA-Z_$][a-zA-Z\\d_$]*$")) error = "Parent mod package name is in an invalid format";
 
-		this.currentProject.parentMod = parentMod;
+		this.project.parentMod = parentMod;
 		return error;
 	}
 
 	public ArrayList<Dependency> getDependencies() {
-		return this.currentProject.dependencies;
+		return this.project.dependencies;
 	}
 
 	public Dependency getDependency(int index) {
-		return this.currentProject.dependencies.get(index);
+		return this.project.dependencies.get(index);
 	}
 
 	public void addDependency(Dependency newDependency) {
-		this.currentProject.dependencies.add(newDependency);
+		this.project.dependencies.add(newDependency);
 	}
 
 	public void addDependency(Dependency newDependency, int index) {
-		this.currentProject.dependencies.add(index, newDependency);
+		this.project.dependencies.add(index, newDependency);
 	}
 
 	public void delDependency(int index) {
-		this.currentProject.dependencies.remove(index);
+		this.project.dependencies.remove(index);
 	}
 
 	public ArrayList<Dependency> getJavaDependencies() {
-		return this.currentProject.javaDependencies;
+		return this.project.javaDependencies;
 	}
 
 	public Dependency getJavaDependency(int index) {
-		return this.currentProject.javaDependencies.get(index);
+		return this.project.javaDependencies.get(index);
 	}
 
 	public void addJavaDependency(Dependency newJavaDependency) {
-		this.currentProject.javaDependencies.add(newJavaDependency);
+		this.project.javaDependencies.add(newJavaDependency);
 	}
 
 	public void addJavaDependency(Dependency newJavaDependency, int index) {
-		this.currentProject.javaDependencies.add(index, newJavaDependency);
+		this.project.javaDependencies.add(index, newJavaDependency);
 	}
 
 	public void delJavaDependency(int index) {
-		this.currentProject.javaDependencies.remove(index);
+		this.project.javaDependencies.remove(index);
 	}
 
 	public String getLogopath() {
-		return this.currentProject.logopath;
+		return this.project.logopath;
 	}
 
 	public String setLogopath(String logopath) {
@@ -252,52 +252,52 @@ public class CurrentProjectHandler {
 
 		if (logopath.length() == 0) error = "";
 
-		this.currentProject.logopath = logopath;
+		this.project.logopath = logopath;
 		return error;
 	}
 
 	public ArrayList<MavenRepository> getMavenRepositories() {
-		return this.currentProject.mavenRepositories;
+		return this.project.mavenRepositories;
 	}
 
 	public MavenRepository getMavenRepository(int index) {
-		return this.currentProject.mavenRepositories.get(index);
+		return this.project.mavenRepositories.get(index);
 	}
 
 	public void addMavenRepository(MavenRepository newMavenRepository) {
-		this.currentProject.mavenRepositories.add(newMavenRepository);
+		this.project.mavenRepositories.add(newMavenRepository);
 	}
 
 	public void addMavenRepository(MavenRepository newMavenRepository, int index) {
-		this.currentProject.mavenRepositories.add(index, newMavenRepository);
+		this.project.mavenRepositories.add(index, newMavenRepository);
 	}
 
 	public void delMavenRepository(int index) {
-		this.currentProject.mavenRepositories.remove(index);
+		this.project.mavenRepositories.remove(index);
 	}
 
 	public Manifest getManifestAttributes() {
-		return this.currentProject.manifestAttributes;
+		return this.project.manifestAttributes;
 	}
 
 	public ManifestAttribute getManifestAttribute(String key) {
-		return this.currentProject.manifestAttributes.getAttribute(key);
+		return this.project.manifestAttributes.getAttribute(key);
 	}
 
 	public void addManifestAttribute(ManifestAttribute newAttribute) {
-		this.currentProject.manifestAttributes.addAttribute(newAttribute);
+		this.project.manifestAttributes.addAttribute(newAttribute);
 	}
 
 	public void addManifestAttribute(String key, String value) {
-		this.currentProject.manifestAttributes.addAttribute(key, value);
+		this.project.manifestAttributes.addAttribute(key, value);
 	}
 
 	public void delManifestAttribute(String key) {
-		this.currentProject.manifestAttributes.delAttribute(key);
+		this.project.manifestAttributes.delAttribute(key);
 	}
 
 	public String getHomepage() {
-		return this.currentProject.homepage;
+		return this.project.homepage;
 	}
 
 	public String setHomepage(String homepage) {
@@ -307,12 +307,12 @@ public class CurrentProjectHandler {
 		if (homepage.length() == 0) error = "";
 		else if (!homepage.matches("^(?:(?:https?|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:/[^\\s]*)?$")) error = "Not a valid URL";
 
-		this.currentProject.homepage = homepage;
+		this.project.homepage = homepage;
 		return error;
 	}
 
 	public String getUpdateCheck() {
-		return this.currentProject.updateCheck;
+		return this.project.updateCheck;
 	}
 
 	public String setUpdateCheck(String updateCheck) {
@@ -322,12 +322,12 @@ public class CurrentProjectHandler {
 		if (updateCheck.length() == 0) error = "";
 		else if (!updateCheck.matches("^(?:(?:https?|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:/[^\\s]*)?$")) error = "Not a valid URL";
 
-		this.currentProject.updateCheck = updateCheck;
+		this.project.updateCheck = updateCheck;
 		return error;
 	}
 
 	public String getModRepository() {
-		return this.currentProject.modRepository;
+		return this.project.modRepository;
 	}
 
 	public String setModRepository(String modRepository) {
@@ -337,12 +337,12 @@ public class CurrentProjectHandler {
 		if (modRepository.length() == 0) error = "";
 		else if (!modRepository.matches("^(?:(?:https?|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:/[^\\s]*)?$")) error = "Not a valid URL";
 
-		this.currentProject.modRepository = modRepository;
+		this.project.modRepository = modRepository;
 		return error;
 	}
 
 	public String getModMavenRepository() {
-		return this.currentProject.modMavenRepository;
+		return this.project.modMavenRepository;
 	}
 
 	public String setModMavenRepository(String modMavenRepository) {
@@ -352,12 +352,12 @@ public class CurrentProjectHandler {
 		if (modMavenRepository.length() == 0) error = "";
 		else if (!modMavenRepository.matches("^(?:(?:https?|ftp)://)(?:\\S(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:/[^\\s]*)?$")) error = "Not a valid URL";
 
-		this.currentProject.modMavenRepository = modMavenRepository;
+		this.project.modMavenRepository = modMavenRepository;
 		return error;
 	}
 
 	public String getIssuesPage() {
-		return this.currentProject.issuesPage;
+		return this.project.issuesPage;
 	}
 
 	public String setIssuesPage(String issuesPage) {
@@ -367,12 +367,12 @@ public class CurrentProjectHandler {
 		if (issuesPage.length() == 0) error = "";
 		else if (!issuesPage.matches("^(?:(?:https?|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:/[^\\s]*)?$")) error = "Not a valid URL";
 
-		this.currentProject.issuesPage = issuesPage;
+		this.project.issuesPage = issuesPage;
 		return error;
 	}
 
 	public int getCurseforgeID() {
-		return this.currentProject.curseforgeID;
+		return this.project.curseforgeID;
 	}
 
 	public String setCurseforgeID(int curseforgeID) {
@@ -380,7 +380,7 @@ public class CurrentProjectHandler {
 		// TODO: confirm that the CurseForge project ID is valid
 		String error = "";
 
-		this.currentProject.curseforgeID = curseforgeID;
+		this.project.curseforgeID = curseforgeID;
 		return error;
 	}
 
@@ -392,12 +392,12 @@ public class CurrentProjectHandler {
 		if (curseforgeID.length() == 0) error = "";
 		else if (!curseforgeID.matches("(\\d)*")) error = "CurseForge project ID must only consist of numbers";
 
-		this.currentProject.curseforgeID = Integer.parseInt(curseforgeID);
+		this.project.curseforgeID = Integer.parseInt(curseforgeID);
 		return error;
 	}
 
 	public String getLicense() {
-		return this.currentProject.license;
+		return this.project.license;
 	}
 
 	public String setLicense(String license) {
@@ -407,21 +407,21 @@ public class CurrentProjectHandler {
 
 		if (license.length() == 0) error = "";
 
-		this.currentProject.license = license;
+		this.project.license = license;
 		return error;
 	}
 
 	public String getCredits() {
-		return this.currentProject.credits;
+		return this.project.credits;
 	}
 
 	public String setCredits(String credits) {
 		// TODO: Map with future error handler when ready
-		this.currentProject.credits = credits;
+		this.project.credits = credits;
 		return "";
 	}
 
 	public void clearModData() {
-		currentProject = new Mod();
+		project = new Mod();
 	}
 }
