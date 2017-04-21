@@ -23,6 +23,7 @@ import org.jdesktop.beansbinding.Binding;
 import org.jdesktop.beansbinding.BindingGroup;
 import org.jdesktop.beansbinding.Bindings;
 import org.jdesktop.beansbinding.ELProperty;
+import vdscratchy.sulfurbox.handlers.CurrentProjectHandler;
 
 /**
  * SulfurBox - vdscratchy.sulfurbox.gui.SulfurBoxGui
@@ -40,84 +41,98 @@ import org.jdesktop.beansbinding.ELProperty;
  */
 public class SulfurBoxGui extends javax.swing.JFrame {
 
-    private Properties properties = new Properties();
-    
-    private static final int CTRLCMD = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+	private Properties properties = new Properties();
+	private CurrentProjectHandler currentProject = new CurrentProjectHandler();
+	private Color invalidTextFieldInputColor;
+	private Color invalidChoiceInputColor;
 
-    /**
-     * Creates new form SulfurBoxGui
-     */
-    public SulfurBoxGui() {
-        System.setProperty("apple.laf.useScreenMenuBar", "true"); // Needed for macOS
-        
-        loadProperties();
-        initComponents();
-        initLAFMenu();
-        pack();
-    }
+	private static final int CTRLCMD = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
-    //TODO Create a proper global properties handler
-    private void loadProperties() {
-        try {
-            File propertyFile = new File("properties");
-            if (!propertyFile.exists()) {
-                propertyFile.createNewFile();
-            }
-            properties.load(new FileInputStream(propertyFile));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+	/**
+	 * Creates new form SulfurBoxGui
+	 */
+	public SulfurBoxGui() {
+		System.setProperty("apple.laf.useScreenMenuBar", "true"); // Needed for macOS
 
-        try {
-            UIManager.setLookAndFeel(properties.getProperty("laf", "com.bulenkov.darcula.DarculaLaf"));
-            SwingUtilities.updateComponentTreeUI(SulfurBoxGui.this);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+		loadProperties();
 
-    /**
-     * This is done runtime rather then hard coded into the gui so that it can support all installed LAF's including OS dependent LAF's
-     * ps. LAF = LookAndFeel
-     */
-    private void initLAFMenu() {
-        ButtonGroup btnGroup = new ButtonGroup();
+		invalidTextFieldInputColor = new Color((int)(Math.max(0.0, Math.min(UIManager.getDefaults().getColor("TextField.background").getRed() * 2.0, 255.0))),
+				(int)(Math.max(0.0, Math.min(UIManager.getDefaults().getColor("TextField.background").getGreen() * 0.8, 255.0))),
+				(int)(Math.max(0.0, Math.min(UIManager.getDefaults().getColor("TextField.background").getBlue() * 0.8, 255.0))),
+				UIManager.getDefaults().getColor("TextField.background").getAlpha());
 
-        for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-            JRadioButtonMenuItem laf = new JRadioButtonMenuItem(info.getName());
-            btnGroup.add(laf);
-            lafMenu.add(laf);
+		invalidChoiceInputColor = new Color((int)(Math.max(0.0, Math.min(UIManager.getDefaults().getColor("ComboBox.background").getRed() * 2.0, 255.0))),
+				(int)(Math.max(0.0, Math.min(UIManager.getDefaults().getColor("ComboBox.background").getGreen() * 0.8, 255.0))),
+				(int)(Math.max(0.0, Math.min(UIManager.getDefaults().getColor("ComboBox.background").getBlue() * 0.8, 255.0))),
+				UIManager.getDefaults().getColor("ComboBox.background").getAlpha());
 
-            if (UIManager.getLookAndFeel().getName().equals(info.getName())) {
-                laf.setSelected(true);
-            }
+		initComponents();
+		initLAFMenu();
+		pack();
+	}
 
-            laf.addActionListener(event -> {
-                try {
-                    properties.setProperty("laf", info.getClassName());
-                    properties.store(new FileOutputStream("properties"), "Props //TODO create a proper global properties file");
+	//TODO Create a proper global properties handler
+	private void loadProperties() {
+		try {
+			File propertyFile = new File("properties");
+			if (!propertyFile.exists()) {
+				propertyFile.createNewFile();
+			}
+			properties.load(new FileInputStream(propertyFile));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 
-                    UIManager.setLookAndFeel(info.getClassName());
-                    SwingUtilities.updateComponentTreeUI(SulfurBoxGui.this);
-                    if (info.getName().equals("Metal")) {
-                        JOptionPane.showMessageDialog(SulfurBoxGui.this, "A restart may be required to correctly apply this change.", "Info", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                    JOptionPane.showMessageDialog(SulfurBoxGui.this, "Something when wrong while setting new look and feel!\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            });
-        }
-    }
+		try {
+			UIManager.setLookAndFeel(properties.getProperty("laf", "com.bulenkov.darcula.DarculaLaf"));
+			SwingUtilities.updateComponentTreeUI(SulfurBoxGui.this);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
+	/**
+	 * This is done runtime rather then hard coded into the gui so that it can support all installed LAF's including OS dependent LAF's
+	 * ps. LAF = LookAndFeel
+	 */
+	private void initLAFMenu() {
+		ButtonGroup btnGroup = new ButtonGroup();
+
+		for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+			JRadioButtonMenuItem laf = new JRadioButtonMenuItem(info.getName());
+			btnGroup.add(laf);
+			lafMenu.add(laf);
+
+			if (UIManager.getLookAndFeel().getName().equals(info.getName())) {
+				laf.setSelected(true);
+			}
+
+			laf.addActionListener(event -> {
+				try {
+					properties.setProperty("laf", info.getClassName());
+					properties.store(new FileOutputStream("properties"), "Props //TODO create a proper global properties file");
+
+					UIManager.setLookAndFeel(info.getClassName());
+					SwingUtilities.updateComponentTreeUI(SulfurBoxGui.this);
+					if (info.getName().equals("Metal")) {
+						JOptionPane.showMessageDialog(SulfurBoxGui.this, "A restart may be required to correctly apply this change.", "Info", JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(SulfurBoxGui.this, "Something when wrong while setting new look and feel!\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			});
+		}
+	}
+
+	/**
+	 * This method is called from within the constructor to initialize the form.
+	 * WARNING: Do NOT modify this code. The content of this method is always
+	 * regenerated by the Form Editor.
+	 */
+	@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         bindingGroup = new BindingGroup();
@@ -234,8 +249,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         modNameField.setText("Test Mod");
         modNameField.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                modNameFieldKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                modNameFieldKeyReleased(evt);
             }
         });
 
@@ -243,8 +258,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         modPackageField.setText("mods.badhandwriting.org");
         modPackageField.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                modPackageFieldKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                modPackageFieldKeyReleased(evt);
             }
         });
 
@@ -255,8 +270,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         modPackageMemberField.setMinimumSize(new Dimension(73, 24));
         modPackageMemberField.setName(""); // NOI18N
         modPackageMemberField.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                modPackageMemberFieldKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                modPackageMemberFieldKeyReleased(evt);
             }
         });
 
@@ -264,8 +279,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         modVersionField.setText("0.0.1.# - DEV");
         modVersionField.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                modVersionFieldKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                modVersionFieldKeyReleased(evt);
             }
         });
 
@@ -290,8 +305,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         modDescriptionField.setColumns(20);
         modDescriptionField.setRows(5);
         modDescriptionField.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                modDescriptionFieldKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                modDescriptionFieldKeyReleased(evt);
             }
         });
         modDescriptionScrlPane.setViewportView(modDescriptionField);
@@ -307,8 +322,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         modHomePageField.setText("www.???.org");
         modHomePageField.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                modHomePageFieldKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                modHomePageFieldKeyReleased(evt);
             }
         });
 
@@ -316,8 +331,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         modRepoField.setText("https://github.com/brandon3055/Draconic-Evolution");
         modRepoField.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                modRepoFieldKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                modRepoFieldKeyReleased(evt);
             }
         });
 
@@ -325,8 +340,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         issueTrackerField.setText("https://github.com/brandon3055/Draconic-Evolution/issues");
         issueTrackerField.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                issueTrackerFieldKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                issueTrackerFieldKeyReleased(evt);
             }
         });
 
@@ -334,8 +349,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         modUpdateChecksField.setText("www.blablabla.com/stuff");
         modUpdateChecksField.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                modUpdateChecksFieldKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                modUpdateChecksFieldKeyReleased(evt);
             }
         });
 
@@ -343,8 +358,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         modCurseIDField.setText("907694083706973409786");
         modCurseIDField.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                modCurseIDFieldKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                modCurseIDFieldKeyReleased(evt);
             }
         });
 
@@ -358,8 +373,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             }
         });
         modLicenseField.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                modLicenseFieldKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                modLicenseFieldKeyReleased(evt);
             }
         });
 
@@ -367,8 +382,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         modLogoField.setText("resources/textures/logo.png");
         modLogoField.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                modLogoFieldKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                modLogoFieldKeyReleased(evt);
             }
         });
 
@@ -508,8 +523,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             }
         });
         attribContributorTable.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                attribContributorTableKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                attribContributorTableKeyReleased(evt);
             }
         });
         attribContributorScrlPane.setViewportView(attribContributorTable);
@@ -535,8 +550,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         attribCreditsField.setColumns(20);
         attribCreditsField.setRows(5);
         attribCreditsField.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                attribCreditsFieldKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                attribCreditsFieldKeyReleased(evt);
             }
         });
         attribCreditsScrlPane.setViewportView(attribCreditsField);
@@ -587,8 +602,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         bindingGroup.addBinding(binding);
 
         depParentField.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                depParentFieldKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                depParentFieldKeyReleased(evt);
             }
         });
 
@@ -633,8 +648,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         });
         depModsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         depModsTable.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                depModsTableKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                depModsTableKeyReleased(evt);
             }
         });
         depModsScrlPane.setViewportView(depModsTable);
@@ -698,8 +713,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         });
         depJavaLibsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         depJavaLibsList.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                depJavaLibsListKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                depJavaLibsListKeyReleased(evt);
             }
         });
         depJavaLibsScrlPane.setViewportView(depJavaLibsList);
@@ -759,8 +774,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         });
         depMavenRepsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         depMavenRepsList.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                depMavenRepsListKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                depMavenRepsListKeyReleased(evt);
             }
         });
         depMavenRepsScrlPane.setViewportView(depMavenRepsList);
@@ -822,8 +837,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         });
         depManifestList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         depManifestList.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
-                depManifestListKeyPressed(evt);
+            public void keyReleased(KeyEvent evt) {
+                depManifestListKeyReleased(evt);
             }
         });
         depManifestScrlPane.setViewportView(depManifestList);
@@ -1079,158 +1094,228 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         bindingGroup.bind();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void modNameFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modNameFieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modNameFieldKeyPressed
+	private void modNameFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modNameFieldKeyReleased
+		String error = currentProject.setModName(modNameField.getText());
+		if (error.length() > 0) modNameField.setBackground(invalidTextFieldInputColor);
+		else modNameField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
+		modNameField.setToolTipText(error);
+	}//GEN-LAST:event_modNameFieldKeyReleased
 
-    private void modPackageFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modPackageFieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modPackageFieldKeyPressed
+	private void modPackageFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modPackageFieldKeyReleased
+		String error = currentProject.setPackageName(modPackageField.getText());
+		if (error.length() > 0) modPackageField.setBackground(invalidTextFieldInputColor);
+		else modPackageField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
+		modPackageField.setToolTipText(error);
+	}//GEN-LAST:event_modPackageFieldKeyReleased
 
-    private void modPackageMemberFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modPackageMemberFieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modPackageMemberFieldKeyPressed
+	private void modPackageMemberFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modPackageMemberFieldKeyReleased
+		String error = currentProject.setPackageModuleName(modPackageMemberField.getText());
+		if (error.length() > 0) modPackageMemberField.setBackground(invalidTextFieldInputColor);
+		else modPackageMemberField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
+		modPackageMemberField.setToolTipText(error);
+	}//GEN-LAST:event_modPackageMemberFieldKeyReleased
 
-    private void modVersionFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modVersionFieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modVersionFieldKeyPressed
+	private void modVersionFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modVersionFieldKeyReleased
+		String error = currentProject.setModVersion(modVersionField.getText());
+		if (error.length() > 0) modVersionField.setBackground(invalidTextFieldInputColor);
+		else modVersionField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
+		modVersionField.setToolTipText(error);
+	}//GEN-LAST:event_modVersionFieldKeyReleased
 
-    private void mcVersionSelectItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_mcVersionSelectItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mcVersionSelectItemStateChanged
+	private void mcVersionSelectItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_mcVersionSelectItemStateChanged
+		String error = currentProject.setMcVersion(mcVersionSelect.getSelectedItem().toString());
+		if (error.length() > 0) mcVersionSelect.setBackground(invalidChoiceInputColor);
+		else mcVersionSelect.setBackground(UIManager.getDefaults().getColor("ComboBox.background"));
+		mcVersionSelect.setToolTipText(error);
+	}//GEN-LAST:event_mcVersionSelectItemStateChanged
 
-    private void forgeVersionSelectItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_forgeVersionSelectItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_forgeVersionSelectItemStateChanged
+	private void forgeVersionSelectItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_forgeVersionSelectItemStateChanged
+		String error = currentProject.setForgeVersion(forgeVersionSelect.getSelectedItem().toString());
+		if (error.length() > 0) forgeVersionSelect.setBackground(invalidChoiceInputColor);
+		else forgeVersionSelect.setBackground(UIManager.getDefaults().getColor("ComboBox.background"));
+		forgeVersionSelect.setToolTipText(error);
+	}//GEN-LAST:event_forgeVersionSelectItemStateChanged
 
-    private void modDescriptionFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modDescriptionFieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modDescriptionFieldKeyPressed
+	private void modDescriptionFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modDescriptionFieldKeyReleased
+		String error = currentProject.setDescription(modDescriptionField.getText());
+		if (error.length() > 0) modDescriptionField.setBackground(invalidTextFieldInputColor);
+		else modDescriptionField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
+		modDescriptionField.setToolTipText(error);
+	}//GEN-LAST:event_modDescriptionFieldKeyReleased
 
-    private void modHomePageHttpsSelectItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_modHomePageHttpsSelectItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modHomePageHttpsSelectItemStateChanged
+	private void modHomePageHttpsSelectItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_modHomePageHttpsSelectItemStateChanged
+		String error = currentProject.setHomepage(modHomePageHttpsSelect.getSelectedItem().toString() + modHomePageField.getText());
+	}//GEN-LAST:event_modHomePageHttpsSelectItemStateChanged
 
-    private void modHomePageFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modHomePageFieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modHomePageFieldKeyPressed
+	private void modHomePageFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modHomePageFieldKeyReleased
+		String error = currentProject.setHomepage(modHomePageHttpsSelect.getSelectedItem().toString() + modHomePageField.getText());
+		if (error.length() > 0) modHomePageField.setBackground(invalidTextFieldInputColor);
+		else modHomePageField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
+		modHomePageField.setToolTipText(error);
+	}//GEN-LAST:event_modHomePageFieldKeyReleased
 
-    private void modRepoFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modRepoFieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modRepoFieldKeyPressed
+	private void modRepoFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modRepoFieldKeyReleased
+		String error = currentProject.setModRepository(modRepoField.getText());
+		if (error.length() > 0) modRepoField.setBackground(invalidTextFieldInputColor);
+		else modRepoField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
+		modRepoField.setToolTipText(error);
+	}//GEN-LAST:event_modRepoFieldKeyReleased
 
-    private void issueTrackerFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_issueTrackerFieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_issueTrackerFieldKeyPressed
+	private void issueTrackerFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_issueTrackerFieldKeyReleased
+		String error = currentProject.setIssuesPage(issueTrackerField.getText());
+		if (error.length() > 0) issueTrackerField.setBackground(invalidTextFieldInputColor);
+		else issueTrackerField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
+		issueTrackerField.setToolTipText(error);
+	}//GEN-LAST:event_issueTrackerFieldKeyReleased
 
-    private void modUpdateChecksFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modUpdateChecksFieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modUpdateChecksFieldKeyPressed
+	private void modUpdateChecksFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modUpdateChecksFieldKeyReleased
+		String error = currentProject.setUpdateCheck(modUpdateChecksField.getText());
+		if (error.length() > 0) modUpdateChecksField.setBackground(invalidTextFieldInputColor);
+		else modUpdateChecksField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
+		modUpdateChecksField.setToolTipText(error);
+	}//GEN-LAST:event_modUpdateChecksFieldKeyReleased
 
-    private void modCurseIDFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modCurseIDFieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modCurseIDFieldKeyPressed
+	private void modCurseIDFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modCurseIDFieldKeyReleased
+		String error = currentProject.setCurseforgeID(modCurseIDField.getText());
+		if (error.length() > 0) modCurseIDField.setBackground(invalidTextFieldInputColor);
+		else modCurseIDField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
+		modCurseIDField.setToolTipText(error);
+	}//GEN-LAST:event_modCurseIDFieldKeyReleased
 
-    private void modLicenseFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modLicenseFieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modLicenseFieldKeyPressed
+	private void modLicenseFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modLicenseFieldKeyReleased
+		String error = currentProject.setLicense(modLicenseField.getSelectedItem().toString());
+		if (error.length() > 0) modLicenseField.setBackground(invalidTextFieldInputColor);
+		else modLicenseField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
+		modLicenseField.setToolTipText(error);
+	}//GEN-LAST:event_modLicenseFieldKeyReleased
 
-    private void modLicenseFieldItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_modLicenseFieldItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modLicenseFieldItemStateChanged
+	private void modLicenseFieldItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_modLicenseFieldItemStateChanged
+		String error = currentProject.setLicense(modLicenseField.getSelectedItem().toString());
+		if (error.length() > 0) modLicenseField.setBackground(invalidTextFieldInputColor);
+		else modLicenseField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
+		modLicenseField.setToolTipText(error);
+	}//GEN-LAST:event_modLicenseFieldItemStateChanged
 
-    private void modLogoFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modLogoFieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modLogoFieldKeyPressed
+	private void modLogoFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modLogoFieldKeyReleased
+		String error = currentProject.setLogopath(modLogoField.getText());
+		if (error.length() > 0) modLogoField.setBackground(invalidTextFieldInputColor);
+		else modLogoField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
+		modLogoField.setToolTipText(error);
+	}//GEN-LAST:event_modLogoFieldKeyReleased
 
-    private void modLogoBrowseButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modLogoBrowseButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modLogoBrowseButtonActionPerformed
+	private void modLogoBrowseButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modLogoBrowseButtonActionPerformed
+		// TODO: Add handler code
 
-    private void eclipseRadButtonStateChanged(ChangeEvent evt) {//GEN-FIRST:event_eclipseRadButtonStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eclipseRadButtonStateChanged
+	}//GEN-LAST:event_modLogoBrowseButtonActionPerformed
 
-    private void intellijRadButtonStateChanged(ChangeEvent evt) {//GEN-FIRST:event_intellijRadButtonStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_intellijRadButtonStateChanged
+	private void eclipseRadButtonStateChanged(ChangeEvent evt) {//GEN-FIRST:event_eclipseRadButtonStateChanged
+		// TODO: Add handler code
 
-    private void modGenerateButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modGenerateButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modGenerateButtonActionPerformed
+	}//GEN-LAST:event_eclipseRadButtonStateChanged
 
-    private void attribContributorTableKeyPressed(KeyEvent evt) {//GEN-FIRST:event_attribContributorTableKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_attribContributorTableKeyPressed
+	private void intellijRadButtonStateChanged(ChangeEvent evt) {//GEN-FIRST:event_intellijRadButtonStateChanged
+		// TODO: Add handler code
 
-    private void attribContributorAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_attribContributorAddActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_attribContributorAddActionPerformed
+	}//GEN-LAST:event_intellijRadButtonStateChanged
 
-    private void attribContributorRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_attribContributorRemoveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_attribContributorRemoveActionPerformed
+	private void modGenerateButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modGenerateButtonActionPerformed
+		// TODO: Add handler code
+		// );
+	}//GEN-LAST:event_modGenerateButtonActionPerformed
 
-    private void attribCreditsFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_attribCreditsFieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_attribCreditsFieldKeyPressed
+	private void attribContributorTableKeyReleased(KeyEvent evt) {//GEN-FIRST:event_attribContributorTableKeyReleased
+		// TODO: Add handler code
 
-    private void depParentCheckStateChanged(ChangeEvent evt) {//GEN-FIRST:event_depParentCheckStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depParentCheckStateChanged
+	}//GEN-LAST:event_attribContributorTableKeyReleased
 
-    private void depParentFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_depParentFieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depParentFieldKeyPressed
+	private void attribContributorAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_attribContributorAddActionPerformed
+		// TODO: Add handler code
 
-    private void depModsTableKeyPressed(KeyEvent evt) {//GEN-FIRST:event_depModsTableKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depModsTableKeyPressed
+	}//GEN-LAST:event_attribContributorAddActionPerformed
 
-    private void depModsAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depModsAddActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depModsAddActionPerformed
+	private void attribContributorRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_attribContributorRemoveActionPerformed
+		// TODO: Add handler code
 
-    private void depModsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depModsRemoveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depModsRemoveActionPerformed
+	}//GEN-LAST:event_attribContributorRemoveActionPerformed
 
-    private void depJavaLibsListKeyPressed(KeyEvent evt) {//GEN-FIRST:event_depJavaLibsListKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depJavaLibsListKeyPressed
+	private void attribCreditsFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_attribCreditsFieldKeyReleased
+		String error = currentProject.setCredits(attribCreditsField.getText());
+		if (error.length() > 0) attribCreditsField.setBackground(invalidTextFieldInputColor);
+		else attribCreditsField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
+		attribCreditsField.setToolTipText(error);
+	}//GEN-LAST:event_attribCreditsFieldKeyReleased
 
-    private void depJavaLibsAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depJavaLibsAddActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depJavaLibsAddActionPerformed
+	private void depParentCheckStateChanged(ChangeEvent evt) {//GEN-FIRST:event_depParentCheckStateChanged
+		// TODO: Add handler code
 
-    private void depJavaLibsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depJavaLibsRemoveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depJavaLibsRemoveActionPerformed
+	}//GEN-LAST:event_depParentCheckStateChanged
 
-    private void depMavenRepsListKeyPressed(KeyEvent evt) {//GEN-FIRST:event_depMavenRepsListKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depMavenRepsListKeyPressed
+	private void depParentFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depParentFieldKeyReleased
+		String error = currentProject.setParentMod(depParentField.getText());
+		if (error.length() > 0) depParentField.setBackground(invalidTextFieldInputColor);
+		else depParentField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
+		depParentField.setToolTipText(error);
+	}//GEN-LAST:event_depParentFieldKeyReleased
 
-    private void depMavenRepsAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depMavenRepsAddActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depMavenRepsAddActionPerformed
+	private void depModsTableKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depModsTableKeyReleased
+		// TODO: Add handler code
 
-    private void depMavenRepsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depMavenRepsRemoveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depMavenRepsRemoveActionPerformed
+	}//GEN-LAST:event_depModsTableKeyReleased
 
-    private void depManifestListKeyPressed(KeyEvent evt) {//GEN-FIRST:event_depManifestListKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depManifestListKeyPressed
+	private void depModsAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depModsAddActionPerformed
+		// TODO: Add handler code
 
-    private void depManifestAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depManifestAddActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depManifestAddActionPerformed
+	}//GEN-LAST:event_depModsAddActionPerformed
 
-    private void depManifestRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depManifestRemoveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depManifestRemoveActionPerformed
+	private void depModsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depModsRemoveActionPerformed
+		// TODO: Add handler code
 
+	}//GEN-LAST:event_depModsRemoveActionPerformed
+
+	private void depJavaLibsListKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depJavaLibsListKeyReleased
+		// TODO: Add handler code
+
+	}//GEN-LAST:event_depJavaLibsListKeyReleased
+
+	private void depJavaLibsAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depJavaLibsAddActionPerformed
+		// TODO: Add handler code
+
+	}//GEN-LAST:event_depJavaLibsAddActionPerformed
+
+	private void depJavaLibsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depJavaLibsRemoveActionPerformed
+		// TODO: Add handler code
+
+	}//GEN-LAST:event_depJavaLibsRemoveActionPerformed
+
+	private void depMavenRepsListKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depMavenRepsListKeyReleased
+		// TODO: Add handler code
+
+	}//GEN-LAST:event_depMavenRepsListKeyReleased
+
+	private void depMavenRepsAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depMavenRepsAddActionPerformed
+		// TODO: Add handler code
+
+	}//GEN-LAST:event_depMavenRepsAddActionPerformed
+
+	private void depMavenRepsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depMavenRepsRemoveActionPerformed
+		// TODO: Add handler code
+
+	}//GEN-LAST:event_depMavenRepsRemoveActionPerformed
+
+	private void depManifestListKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depManifestListKeyReleased
+		// TODO: Add handler code
+
+	}//GEN-LAST:event_depManifestListKeyReleased
+
+	private void depManifestAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depManifestAddActionPerformed
+		// TODO: Add handler code
+
+	}//GEN-LAST:event_depManifestAddActionPerformed
+
+	private void depManifestRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depManifestRemoveActionPerformed
+		// TODO: Add handler code
+
+	}//GEN-LAST:event_depManifestRemoveActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JMenu aboutMenu;

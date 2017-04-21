@@ -33,7 +33,8 @@ public class CurrentProjectHandler {
 		// TODO: Map with future error handler when ready
 		String error = "";
 
-		if (modName.length() < 3) error = "Mod name is too short";
+		if (modName.length() == 0) error = "";
+		else if (modName.length() < 3) error = "Mod name is too short";
 		else if (modName.length() > 80) error = "Mod name is too long";
 
 		this.currentProject.modName = modName;
@@ -48,9 +49,11 @@ public class CurrentProjectHandler {
 		// TODO: Map with future error handler when ready
 		String error = "";
 
-		if (!packageName.matches("[a-zA-Z\\d_$]*")) error = "Package names only allow alphanumerical characters, underscores, dollar signs, and periods";
-		else if (packageName.matches("^\\d") || packageName.matches("(\\.\\d)")) error = "Package and package module names cannot start with a number";
-		else if (packageName.matches("\\.$")) error = "Package names cannot end with a period";
+		if (packageName.length() == 0) error = "";
+		else if (!packageName.matches("[a-zA-Z\\d_$.]*")) error = "Package names only allow alphanumerical characters, underscores, dollar signs, and periods";
+		else if (packageName.matches("^\\d.*") || packageName.matches(".*(\\.\\d).*")) error = "Package and package module names cannot start with a number";
+		else if (packageName.matches("^\\..*")) error = "Package names cannot start with a period";
+		else if (packageName.matches(".*\\.$")) error = "Package names cannot end with a period";
 		else if (!packageName.matches("^([a-zA-Z_$][a-zA-Z\\d_$]*\\.)*[a-zA-Z_$][a-zA-Z\\d_$]*$")) error = "Package name is in an invalid format";
 
 		this.currentProject.packageName = packageName;
@@ -65,8 +68,9 @@ public class CurrentProjectHandler {
 		// TODO: Map with future error handler when ready
 		String error = "";
 
-		if (!packageModuleName.matches("[a-zA-Z\\d_$]*")) error = "Package module names only allow alphanumerical characters, underscores, and dollar signs";
-		else if (packageModuleName.matches("^\\d")) error = "Package module names cannot start with a number";
+		if (packageModuleName.length() == 0) error = "";
+		else if (!packageModuleName.matches("[a-zA-Z\\d_$]*")) error = "Package module names only allow alphanumerical characters, underscores, and dollar signs";
+		else if (packageModuleName.matches("^\\d.*")) error = "Package module names cannot start with a number";
 		else if (!packageModuleName.matches("^[a-zA-Z_$][a-zA-Z\\d_$]*$")) error = "Package module name is in an invalid format";
 
 		this.currentProject.packageModuleName = packageModuleName;
@@ -117,10 +121,11 @@ public class CurrentProjectHandler {
 		// TODO: Map with future error handler when ready
 		String error = "";
 
-		if (!modVersion.matches("(\\d\\.)*")) error = "Version number must only consist of numbers and periods";
-		else if (modVersion.matches("\\.$")) error = "Version number cannot end with a period";
-		else if (modVersion.matches("^\\.")) error = "Version number cannot start with a period";
-		else if (modVersion.matches("\\.(\\.)+")) error = "Version number must have numbers between every period";
+		if (modVersion.length() == 0) error = "";
+		else if (!modVersion.matches("[0-9.]*")) error = "Version number must only consist of numbers and periods";
+		else if (modVersion.matches("^\\..*")) error = "Version number cannot start with a period";
+		else if (modVersion.matches(".*\\.$")) error = "Version number cannot end with a period";
+		else if (modVersion.matches(".*\\.(\\.)+.*")) error = "Version number must have numbers between every period";
 		else if (!modVersion.matches("((\\d*)\\.){0,3}(\\d+)")) error = "Mod version validation failed"; // TODO: make the validation in Version class
 
 		this.currentProject.modVersion = new Version(modVersion);
@@ -141,10 +146,11 @@ public class CurrentProjectHandler {
 		// TODO: Map with future error handler when ready
 		String error = "";
 
-		if (!mcVersion.matches("(\\d\\.)*")) error = "Version number must only consist of numbers and periods";
-		else if (mcVersion.matches("\\.$")) error = "Version number cannot end with a period";
-		else if (mcVersion.matches("^\\.")) error = "Version number cannot start with a period";
-		else if (mcVersion.matches("\\.(\\.)+")) error = "Version number must have numbers between every period";
+		if (mcVersion.length() == 0) error = "";
+		else if (!mcVersion.matches("[0-9.]*")) error = "Version number must only consist of numbers and periods";
+		else if (mcVersion.matches("^\\..*")) error = "Version number cannot start with a period";
+		else if (mcVersion.matches(".*\\.$")) error = "Version number cannot end with a period";
+		else if (mcVersion.matches(".*\\.(\\.)+.*")) error = "Version number must have numbers between every period";
 		else if (!mcVersion.matches("((\\d*)\\.){0,3}(\\d+)")) error = "Minecraft version validation failed"; // TODO: make the validation in Version class
 
 		this.currentProject.mcVersion = new Version(mcVersion);
@@ -165,10 +171,11 @@ public class CurrentProjectHandler {
 		// TODO: Map with future error handler when ready
 		String error = "";
 
-		if (!forgeVersion.matches("(\\d\\.)*")) error = "Version number must only consist of numbers and periods";
-		else if (forgeVersion.matches("\\.$")) error = "Version number cannot end with a period";
-		else if (forgeVersion.matches("^\\.")) error = "Version number cannot start with a period";
-		else if (forgeVersion.matches("\\.(\\.)+")) error = "Version number must have numbers between every period";
+		if (forgeVersion.length() == 0) error = "";
+		else if (!forgeVersion.matches("[0-9.]*")) error = "Version number must only consist of numbers and periods";
+		else if (forgeVersion.matches("^\\..*")) error = "Version number cannot start with a period";
+		else if (forgeVersion.matches(".*\\.$")) error = "Version number cannot end with a period";
+		else if (forgeVersion.matches(".*\\.(\\.)+.*")) error = "Version number must have numbers between every period";
 		else if (!forgeVersion.matches("((\\d*)\\.){0,3}(\\d+)")) error = "Forge version validation failed"; // TODO: make the validation in Version class
 
 		this.currentProject.forgeVersion = new Version(forgeVersion);
@@ -184,9 +191,10 @@ public class CurrentProjectHandler {
 		// TODO: confirm that the requested mod is valid
 		String error = "";
 
-		if (!parentMod.matches("[a-zA-Z\\d_$]*")) error = "Package names only allow alphanumerical characters, underscores, dollar signs, and periods";
-		else if (parentMod.matches("^\\d") || parentMod.matches("(\\.\\d)")) error = "Package and package module names cannot start with a number";
-		else if (parentMod.matches("\\.$")) error = "Package names cannot end with a period";
+		if (parentMod.length() == 0) error = "";
+		else if (!parentMod.matches("[a-zA-Z\\d_$.]*")) error = "Package names only allow alphanumerical characters, underscores, dollar signs, and periods";
+		else if (parentMod.matches("^\\d.*") || parentMod.matches(".*(\\.\\d).*")) error = "Package and package module names cannot start with a number";
+		else if (parentMod.matches(".*\\.$")) error = "Package names cannot end with a period";
 		else if (!parentMod.matches("^([a-zA-Z_$][a-zA-Z\\d_$]*\\.)*[a-zA-Z_$][a-zA-Z\\d_$]*$")) error = "Parent mod package name is in an invalid format";
 
 		this.currentProject.parentMod = parentMod;
@@ -242,6 +250,8 @@ public class CurrentProjectHandler {
 		// TODO: make validator
 		String error = "";
 
+		if (logopath.length() == 0) error = "";
+
 		this.currentProject.logopath = logopath;
 		return error;
 	}
@@ -294,7 +304,8 @@ public class CurrentProjectHandler {
 		// TODO: Map with future error handler when ready
 		String error = "";
 
-		if (!homepage.matches("^(\\?:http(s)?:\\\\/\\\\/)?[\\w.-]+(?:\\.[\\w.-]+)+[\\w\\-._~:/?#[\\\\]@!$&'()*+,;=]+$")) error = "Not a valid URL";
+		if (homepage.length() == 0) error = "";
+		else if (!homepage.matches("^(?:(?:https?|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:/[^\\s]*)?$")) error = "Not a valid URL";
 
 		this.currentProject.homepage = homepage;
 		return error;
@@ -308,7 +319,8 @@ public class CurrentProjectHandler {
 		// TODO: Map with future error handler when ready
 		String error = "";
 
-		if (!updateCheck.matches("^(\\?:http(s)?:\\\\/\\\\/)?[\\w.-]+(?:\\.[\\w.-]+)+[\\w\\-._~:/?#[\\\\]@!$&'()*+,;=]+$")) error = "Not a valid URL";
+		if (updateCheck.length() == 0) error = "";
+		else if (!updateCheck.matches("^(?:(?:https?|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:/[^\\s]*)?$")) error = "Not a valid URL";
 
 		this.currentProject.updateCheck = updateCheck;
 		return error;
@@ -322,7 +334,8 @@ public class CurrentProjectHandler {
 		// TODO: Map with future error handler when ready
 		String error = "";
 
-		if (!modRepository.matches("^(\\?:http(s)?:\\\\/\\\\/)?[\\w.-]+(?:\\.[\\w.-]+)+[\\w\\-._~:/?#[\\\\]@!$&'()*+,;=]+$")) error = "Not a valid URL";
+		if (modRepository.length() == 0) error = "";
+		else if (!modRepository.matches("^(?:(?:https?|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:/[^\\s]*)?$")) error = "Not a valid URL";
 
 		this.currentProject.modRepository = modRepository;
 		return error;
@@ -336,7 +349,8 @@ public class CurrentProjectHandler {
 		// TODO: Map with future error handler when ready
 		String error = "";
 
-		if (!modMavenRepository.matches("^(\\?:http(s)?:\\\\/\\\\/)?[\\w.-]+(?:\\.[\\w.-]+)+[\\w\\-._~:/?#[\\\\]@!$&'()*+,;=]+$")) error = "Not a valid URL";
+		if (modMavenRepository.length() == 0) error = "";
+		else if (!modMavenRepository.matches("^(?:(?:https?|ftp)://)(?:\\S(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:/[^\\s]*)?$")) error = "Not a valid URL";
 
 		this.currentProject.modMavenRepository = modMavenRepository;
 		return error;
@@ -350,7 +364,8 @@ public class CurrentProjectHandler {
 		// TODO: Map with future error handler when ready
 		String error = "";
 
-		if (!issuesPage.matches("^(\\?:http(s)?:\\\\/\\\\/)?[\\w.-]+(?:\\.[\\w.-]+)+[\\w\\-._~:/?#[\\\\]@!$&'()*+,;=]+$")) error = "Not a valid URL";
+		if (issuesPage.length() == 0) error = "";
+		else if (!issuesPage.matches("^(?:(?:https?|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:/[^\\s]*)?$")) error = "Not a valid URL";
 
 		this.currentProject.issuesPage = issuesPage;
 		return error;
@@ -369,6 +384,18 @@ public class CurrentProjectHandler {
 		return error;
 	}
 
+	public String setCurseforgeID(String curseforgeID) {
+		// TODO: Map with future error handler when ready
+		// TODO: confirm that the CurseForge project ID is valid
+		String error = "";
+
+		if (curseforgeID.length() == 0) error = "";
+		else if (!curseforgeID.matches("(\\d)*")) error = "CurseForge project ID must only consist of numbers";
+
+		this.currentProject.curseforgeID = Integer.parseInt(curseforgeID);
+		return error;
+	}
+
 	public String getLicense() {
 		return this.currentProject.license;
 	}
@@ -377,6 +404,8 @@ public class CurrentProjectHandler {
 		// TODO: Map with future error handler when ready
 		// TODO: make validator
 		String error = "";
+
+		if (license.length() == 0) error = "";
 
 		this.currentProject.license = license;
 		return error;

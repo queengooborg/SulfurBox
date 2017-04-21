@@ -414,7 +414,7 @@
                 <Property name="text" type="java.lang.String" value="Test Mod"/>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modNameFieldKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modNameFieldKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="modPackageLabel">
@@ -427,7 +427,7 @@
                 <Property name="text" type="java.lang.String" value="mods.badhandwriting.org"/>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modPackageFieldKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modPackageFieldKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="modPackageSeparatorLabel">
@@ -447,7 +447,7 @@
                 <Property name="name" type="java.lang.String" value="" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modPackageMemberFieldKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modPackageMemberFieldKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="modVersionLabel">
@@ -460,7 +460,7 @@
                 <Property name="text" type="java.lang.String" value="0.0.1.# - DEV"/>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modVersionFieldKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modVersionFieldKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="mcForgeVersionLabel">
@@ -516,7 +516,7 @@
                     <Property name="rows" type="int" value="5"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modDescriptionFieldKeyPressed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modDescriptionFieldKeyReleased"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -547,7 +547,7 @@
                 <Property name="text" type="java.lang.String" value="www.???.org"/>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modHomePageFieldKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modHomePageFieldKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="modRepoLabel">
@@ -560,7 +560,7 @@
                 <Property name="text" type="java.lang.String" value="https://github.com/brandon3055/Draconic-Evolution"/>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modRepoFieldKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modRepoFieldKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="issueTrackerLabel">
@@ -573,7 +573,7 @@
                 <Property name="text" type="java.lang.String" value="https://github.com/brandon3055/Draconic-Evolution/issues"/>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="issueTrackerFieldKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="issueTrackerFieldKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="modUpdateChecksLabel">
@@ -586,7 +586,7 @@
                 <Property name="text" type="java.lang.String" value="www.blablabla.com/stuff"/>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modUpdateChecksFieldKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modUpdateChecksFieldKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="modCurseIDLabel">
@@ -599,7 +599,7 @@
                 <Property name="text" type="java.lang.String" value="907694083706973409786"/>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modCurseIDFieldKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modCurseIDFieldKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="modLicenseLabel">
@@ -618,7 +618,7 @@
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="modLicenseFieldItemStateChanged"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modLicenseFieldKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modLicenseFieldKeyReleased"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -634,7 +634,7 @@
                 <Property name="text" type="java.lang.String" value="resources/textures/logo.png"/>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modLogoFieldKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modLogoFieldKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="modLogoBrowseButton">
@@ -709,7 +709,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="attribContributorTableKeyPressed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="attribContributorTableKeyReleased"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -750,7 +750,7 @@
                     <Property name="rows" type="int" value="5"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="attribCreditsFieldKeyPressed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="attribCreditsFieldKeyReleased"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -839,7 +839,7 @@
                 <BindingProperty name="enabled" source="depParentCheck" sourcePath="${selected}" target="depParentField" targetPath="enabled" updateStrategy="0" immediately="false"/>
               </BindingProperties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depParentFieldKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depParentFieldKeyReleased"/>
               </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="depModsPanel">
@@ -948,7 +948,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depModsTableKeyPressed"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depModsTableKeyReleased"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -1045,7 +1045,7 @@
                         <Property name="selectionMode" type="int" value="0"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depJavaLibsListKeyPressed"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depJavaLibsListKeyReleased"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -1149,7 +1149,7 @@
                         <Property name="selectionMode" type="int" value="0"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depMavenRepsListKeyPressed"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depMavenRepsListKeyReleased"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -1249,7 +1249,7 @@
                         <Property name="selectionMode" type="int" value="0"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depManifestListKeyPressed"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depManifestListKeyReleased"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
