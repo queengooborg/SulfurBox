@@ -10,9 +10,16 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.InputEvent;
+import java.awt.event.InputMethodEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.beans.Beans;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
@@ -20,6 +27,16 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import org.jdesktop.beansbinding.AutoBinding;
+import org.jdesktop.beansbinding.BeanProperty;
+import org.jdesktop.beansbinding.Binding;
+import org.jdesktop.beansbinding.BindingGroup;
+import org.jdesktop.beansbinding.Bindings;
+import org.jdesktop.beansbinding.ELProperty;
 
 /**
  * SulfurBox - vdscratchy.sulfurbox.gui.SulfurBoxGui
@@ -118,6 +135,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new BindingGroup();
 
         ideButtonGroup = new ButtonGroup();
         modPropertyTabs = new JTabbedPane();
@@ -230,10 +248,20 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         modNameLabel.setText("Name");
 
         modNameField.setText("Test Mod");
+        modNameField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                modNameFieldKeyPressed(evt);
+            }
+        });
 
         modPackageLabel.setText("Package");
 
         modPackageField.setText("mods.badhandwriting.org");
+        modPackageField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                modPackageFieldKeyPressed(evt);
+            }
+        });
 
         modPackageSeparatorLabel.setText(".");
 
@@ -241,55 +269,130 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         modPackageMemberField.setMaximumSize(new Dimension(73, 24));
         modPackageMemberField.setMinimumSize(new Dimension(73, 24));
         modPackageMemberField.setName(""); // NOI18N
+        modPackageMemberField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                modPackageMemberFieldKeyPressed(evt);
+            }
+        });
 
         modVersionLabel.setText("Version");
 
         modVersionField.setText("0.0.1.# - DEV");
+        modVersionField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                modVersionFieldKeyPressed(evt);
+            }
+        });
 
         mcForgeVersionLabel.setText("Forge Version");
 
         mcVersionSelect.setModel(new DefaultComboBoxModel<>(new String[] { "MC 1.11.2" }));
+        mcVersionSelect.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                mcVersionSelectItemStateChanged(evt);
+            }
+        });
 
         forgeVersionSelect.setModel(new DefaultComboBoxModel<>(new String[] { "13.20.10.2228 - Recommended" }));
+        forgeVersionSelect.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                forgeVersionSelectItemStateChanged(evt);
+            }
+        });
 
         modDescriptionLabel.setText("Description");
 
         modDescriptionField.setColumns(20);
         modDescriptionField.setRows(5);
+        modDescriptionField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                modDescriptionFieldKeyPressed(evt);
+            }
+        });
         modDescriptionScrlPane.setViewportView(modDescriptionField);
 
         modHomePageLabel.setText("Home Page");
 
         modHomePageHttpsSelect.setModel(new DefaultComboBoxModel<>(new String[] { "https://", "http://" }));
+        modHomePageHttpsSelect.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                modHomePageHttpsSelectItemStateChanged(evt);
+            }
+        });
 
         modHomePageField.setText("www.???.org");
+        modHomePageField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                modHomePageFieldKeyPressed(evt);
+            }
+        });
 
         modRepoLabel.setText("Repository");
 
         modRepoField.setText("https://github.com/brandon3055/Draconic-Evolution");
+        modRepoField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                modRepoFieldKeyPressed(evt);
+            }
+        });
 
         issueTrackerLabel.setText("Issue Tracker");
 
         issueTrackerField.setText("https://github.com/brandon3055/Draconic-Evolution/issues");
+        issueTrackerField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                issueTrackerFieldKeyPressed(evt);
+            }
+        });
 
         modUpdateChecksLabel.setText("Update Checks");
 
         modUpdateChecksField.setText("www.blablabla.com/stuff");
+        modUpdateChecksField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                modUpdateChecksFieldKeyPressed(evt);
+            }
+        });
 
         modCurseIDLabel.setText("CurseForge ID");
 
         modCurseIDField.setText("907694083706973409786");
+        modCurseIDField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                modCurseIDFieldKeyPressed(evt);
+            }
+        });
 
         modLicenseLabel.setText("License");
 
         modLicenseField.setEditable(true);
         modLicenseField.setModel(new DefaultComboBoxModel<>(new String[] { "GNU GPL V3.0" }));
+        modLicenseField.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                modLicenseFieldItemStateChanged(evt);
+            }
+        });
+        modLicenseField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                modLicenseFieldKeyPressed(evt);
+            }
+        });
 
         modLogoLabel.setText("Logo File");
 
         modLogoField.setText("resources/textures/logo.png");
+        modLogoField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                modLogoFieldKeyPressed(evt);
+            }
+        });
 
         modLogoBrowseButton.setText("Browse");
+        modLogoBrowseButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                modLogoBrowseButtonActionPerformed(evt);
+            }
+        });
 
         GroupLayout modPanelLayout = new GroupLayout(modPanel);
         modPanel.setLayout(modPanelLayout);
@@ -419,18 +522,38 @@ public class SulfurBoxGui extends javax.swing.JFrame {
                 return c == null ? String.class : c.getClass();
             }
         });
+        attribContributorTable.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                attribContributorTableKeyPressed(evt);
+            }
+        });
         attribContributorScrlPane.setViewportView(attribContributorTable);
 
         attribContributorAdd.setText("+");
         attribContributorAdd.setToolTipText("Add Contributer");
+        attribContributorAdd.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                attribContributorAddActionPerformed(evt);
+            }
+        });
 
         attribContributorRemove.setText("x");
         attribContributorRemove.setToolTipText("Remove Selected");
+        attribContributorRemove.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                attribContributorRemoveActionPerformed(evt);
+            }
+        });
 
         attribCreditsLabel.setText("Credits");
 
         attribCreditsField.setColumns(20);
         attribCreditsField.setRows(5);
+        attribCreditsField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                attribCreditsFieldKeyPressed(evt);
+            }
+        });
         attribCreditsScrlPane.setViewportView(attribCreditsField);
 
         GroupLayout attribPanelLayout = new GroupLayout(attribPanel);
@@ -469,15 +592,40 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         depParentLabel.setText("Parent Mod");
 
+        depParentCheck.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                depParentCheckStateChanged(evt);
+            }
+        });
+
+        Binding binding = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ_WRITE, depParentCheck, ELProperty.create("${selected}"), depParentField, BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
+        depParentField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                depParentFieldKeyPressed(evt);
+            }
+        });
+
         depModsPanel.setBorder(BorderFactory.createEtchedBorder());
 
         depModsLabel.setText("Mod Dependencies");
 
         depModsAdd.setText("+");
         depModsAdd.setToolTipText("Add New");
+        depModsAdd.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                depModsAddActionPerformed(evt);
+            }
+        });
 
         depModsRemove.setText("x");
         depModsRemove.setToolTipText("Remove Selected");
+        depModsRemove.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                depModsRemoveActionPerformed(evt);
+            }
+        });
 
         depModsTable.setModel(new DefaultTableModel(
             new Object [][] {
@@ -499,6 +647,11 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             }
         });
         depModsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        depModsTable.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                depModsTableKeyPressed(evt);
+            }
+        });
         depModsScrlPane.setViewportView(depModsTable);
         if (depModsTable.getColumnModel().getColumnCount() > 0) {
             depModsTable.getColumnModel().getColumn(0).setPreferredWidth(200);
@@ -539,9 +692,19 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         depJavaLibsAdd.setText("+");
         depJavaLibsAdd.setToolTipText("Add New");
+        depJavaLibsAdd.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                depJavaLibsAddActionPerformed(evt);
+            }
+        });
 
         depJavaLibsRemove.setText("x");
         depJavaLibsRemove.setToolTipText("Remove Selected");
+        depJavaLibsRemove.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                depJavaLibsRemoveActionPerformed(evt);
+            }
+        });
 
         depJavaLibsList.setModel(new AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item" };
@@ -549,6 +712,11 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         depJavaLibsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        depJavaLibsList.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                depJavaLibsListKeyPressed(evt);
+            }
+        });
         depJavaLibsScrlPane.setViewportView(depJavaLibsList);
 
         GroupLayout depJavaLibsPanelLayout = new GroupLayout(depJavaLibsPanel);
@@ -585,9 +753,19 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         depMavenRepsAdd.setText("+");
         depMavenRepsAdd.setToolTipText("Add New");
+        depMavenRepsAdd.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                depMavenRepsAddActionPerformed(evt);
+            }
+        });
 
         depMavenRepsRemove.setText("x");
         depMavenRepsRemove.setToolTipText("Remove Selected");
+        depMavenRepsRemove.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                depMavenRepsRemoveActionPerformed(evt);
+            }
+        });
 
         depMavenRepsList.setModel(new AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -595,6 +773,11 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         depMavenRepsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        depMavenRepsList.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                depMavenRepsListKeyPressed(evt);
+            }
+        });
         depMavenRepsScrlPane.setViewportView(depMavenRepsList);
 
         GroupLayout depMavenRepsPanelLayout = new GroupLayout(depMavenRepsPanel);
@@ -633,9 +816,19 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         depManifestAdd.setText("+");
         depManifestAdd.setToolTipText("Add New");
+        depManifestAdd.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                depManifestAddActionPerformed(evt);
+            }
+        });
 
         depManifestRemove.setText("x");
         depManifestRemove.setToolTipText("Remove Selected");
+        depManifestRemove.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                depManifestRemoveActionPerformed(evt);
+            }
+        });
 
         depManifestList.setModel(new AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -643,6 +836,11 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         depManifestList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        depManifestList.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                depManifestListKeyPressed(evt);
+            }
+        });
         depManifestScrlPane.setViewportView(depManifestList);
 
         GroupLayout depManifestPanelLayout = new GroupLayout(depManifestPanel);
@@ -714,8 +912,18 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         modPropertyTabs.addTab("Dependencies", depPanel);
 
         intellijRadButton.setText("IntelliJ");
+        intellijRadButton.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                intellijRadButtonStateChanged(evt);
+            }
+        });
 
         eclipseRadButton.setText("Eclipse");
+        eclipseRadButton.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                eclipseRadButtonStateChanged(evt);
+            }
+        });
 
         gradleVersionLabel.setHorizontalAlignment(SwingConstants.TRAILING);
         gradleVersionLabel.setText("Gradle 3.14");
@@ -724,6 +932,11 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         javaVersionLabel.setText("Java 9.232");
 
         modGenerateButton.setText("Generate");
+        modGenerateButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                modGenerateButtonActionPerformed(evt);
+            }
+        });
 
         GroupLayout modGeneratePanelLayout = new GroupLayout(modGeneratePanel);
         modGeneratePanel.setLayout(modGeneratePanelLayout);
@@ -877,7 +1090,162 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         ideButtonGroup.add(intellijRadButton);
         ideButtonGroup.add(eclipseRadButton);
+
+        bindingGroup.bind();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void modNameFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modNameFieldKeyPressed
+        // TODO add your handling code here:
+        System.out.println("Foo!");
+    }//GEN-LAST:event_modNameFieldKeyPressed
+
+    private void modPackageFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modPackageFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modPackageFieldKeyPressed
+
+    private void modPackageMemberFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modPackageMemberFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modPackageMemberFieldKeyPressed
+
+    private void modVersionFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modVersionFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modVersionFieldKeyPressed
+
+    private void mcVersionSelectItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_mcVersionSelectItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mcVersionSelectItemStateChanged
+
+    private void forgeVersionSelectItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_forgeVersionSelectItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_forgeVersionSelectItemStateChanged
+
+    private void modDescriptionFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modDescriptionFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modDescriptionFieldKeyPressed
+
+    private void modHomePageHttpsSelectItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_modHomePageHttpsSelectItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modHomePageHttpsSelectItemStateChanged
+
+    private void modHomePageFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modHomePageFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modHomePageFieldKeyPressed
+
+    private void modRepoFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modRepoFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modRepoFieldKeyPressed
+
+    private void issueTrackerFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_issueTrackerFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_issueTrackerFieldKeyPressed
+
+    private void modUpdateChecksFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modUpdateChecksFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modUpdateChecksFieldKeyPressed
+
+    private void modCurseIDFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modCurseIDFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modCurseIDFieldKeyPressed
+
+    private void modLicenseFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modLicenseFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modLicenseFieldKeyPressed
+
+    private void modLicenseFieldItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_modLicenseFieldItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modLicenseFieldItemStateChanged
+
+    private void modLogoFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_modLogoFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modLogoFieldKeyPressed
+
+    private void modLogoBrowseButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modLogoBrowseButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modLogoBrowseButtonActionPerformed
+
+    private void eclipseRadButtonStateChanged(ChangeEvent evt) {//GEN-FIRST:event_eclipseRadButtonStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eclipseRadButtonStateChanged
+
+    private void intellijRadButtonStateChanged(ChangeEvent evt) {//GEN-FIRST:event_intellijRadButtonStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_intellijRadButtonStateChanged
+
+    private void modGenerateButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modGenerateButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modGenerateButtonActionPerformed
+
+    private void attribContributorTableKeyPressed(KeyEvent evt) {//GEN-FIRST:event_attribContributorTableKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_attribContributorTableKeyPressed
+
+    private void attribContributorAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_attribContributorAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_attribContributorAddActionPerformed
+
+    private void attribContributorRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_attribContributorRemoveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_attribContributorRemoveActionPerformed
+
+    private void attribCreditsFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_attribCreditsFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_attribCreditsFieldKeyPressed
+
+    private void depParentCheckStateChanged(ChangeEvent evt) {//GEN-FIRST:event_depParentCheckStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depParentCheckStateChanged
+
+    private void depParentFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_depParentFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depParentFieldKeyPressed
+
+    private void depModsTableKeyPressed(KeyEvent evt) {//GEN-FIRST:event_depModsTableKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depModsTableKeyPressed
+
+    private void depModsAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depModsAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depModsAddActionPerformed
+
+    private void depModsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depModsRemoveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depModsRemoveActionPerformed
+
+    private void depJavaLibsListKeyPressed(KeyEvent evt) {//GEN-FIRST:event_depJavaLibsListKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depJavaLibsListKeyPressed
+
+    private void depJavaLibsAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depJavaLibsAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depJavaLibsAddActionPerformed
+
+    private void depJavaLibsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depJavaLibsRemoveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depJavaLibsRemoveActionPerformed
+
+    private void depMavenRepsListKeyPressed(KeyEvent evt) {//GEN-FIRST:event_depMavenRepsListKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depMavenRepsListKeyPressed
+
+    private void depMavenRepsAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depMavenRepsAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depMavenRepsAddActionPerformed
+
+    private void depMavenRepsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depMavenRepsRemoveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depMavenRepsRemoveActionPerformed
+
+    private void depManifestListKeyPressed(KeyEvent evt) {//GEN-FIRST:event_depManifestListKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depManifestListKeyPressed
+
+    private void depManifestAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depManifestAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depManifestAddActionPerformed
+
+    private void depManifestRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depManifestRemoveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depManifestRemoveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -982,5 +1350,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
     private JLabel modVersionLabel;
     private JMenu optionsMenu;
     private JMenu projectMenu;
+    private BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
