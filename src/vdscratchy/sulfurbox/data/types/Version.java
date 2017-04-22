@@ -1,5 +1,7 @@
 package vdscratchy.sulfurbox.data.types;
 
+import vdscratchy.sulfurbox.handlers.Convert;
+
 /**
  * SulfurBox - vdscratchy.sulfurbox.data.types.Version
  *
@@ -13,6 +15,7 @@ package vdscratchy.sulfurbox.data.types;
  *
  * @see vdscratchy.sulfurbox.data.types.Dependency
  * @see vdscratchy.sulfurbox.data.collections.ForgeMappings
+ * @see vdscratchy.sulfurbox.handlers.Convert
  */
 public class Version {
 	public int major = -1;
@@ -48,10 +51,10 @@ public class Version {
 
 	public Version(String version) {
 		String[] versionBits = version.replaceAll("[^\\d.]", "").split("\\.");
-		if (versionBits.length > 0) {this.major = parseInt(versionBits[0]);}
-		if (versionBits.length > 1) {this.minor = parseInt(versionBits[1]);}
-		if (versionBits.length > 2) {this.patch = parseInt(versionBits[2]);}
-		if (versionBits.length > 3) {this.build = parseInt(versionBits[3]);}
+		if (versionBits.length > 0) {this.major = Convert.parseInt(versionBits[0]);}
+		if (versionBits.length > 1) {this.minor = Convert.parseInt(versionBits[1]);}
+		if (versionBits.length > 2) {this.patch = Convert.parseInt(versionBits[2]);}
+		if (versionBits.length > 3) {this.build = Convert.parseInt(versionBits[3]);}
 	}
 
 	@Override
@@ -80,15 +83,5 @@ public class Version {
 		}
 
 		return output;
-	}
-
-	public static int parseInt(String s) {
-		if (s == "#") return -2;
-		try {
-			return Integer.parseInt(s);
-		}
-		catch (NumberFormatException e) {
-			return -1;
-		}
 	}
 }
