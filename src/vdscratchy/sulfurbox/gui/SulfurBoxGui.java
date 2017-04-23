@@ -1,31 +1,26 @@
 package vdscratchy.sulfurbox.gui;
 
+import com.google.common.collect.Lists;
+import org.jdesktop.beansbinding.*;
+import vdscratchy.sulfurbox.construct.GenerateAll;
+import vdscratchy.sulfurbox.data.types.*;
+import vdscratchy.sulfurbox.handlers.CurrentProjectHandler;
+import vdscratchy.sulfurbox.handlers.ValidationError;
+
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Properties;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import org.jdesktop.beansbinding.AutoBinding;
-import org.jdesktop.beansbinding.BeanProperty;
-import org.jdesktop.beansbinding.Binding;
-import org.jdesktop.beansbinding.BindingGroup;
-import org.jdesktop.beansbinding.Bindings;
-import org.jdesktop.beansbinding.ELProperty;
-import vdscratchy.sulfurbox.construct.GenerateAll;
-import vdscratchy.sulfurbox.handlers.CurrentProjectHandler;
-import vdscratchy.sulfurbox.handlers.ValidationError;
 
 /**
  * SulfurBox - vdscratchy.sulfurbox.gui.SulfurBoxGui
@@ -70,7 +65,10 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
 		initComponents();
 		initLAFMenu();
+        initTablesListeners();
 		pack();
+
+        reloadTables();
 	}
 
 	//TODO Create a proper global properties handler
@@ -139,7 +137,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
     private void initComponents() {
         bindingGroup = new BindingGroup();
 
-        ideButtonGroup = new ButtonGroup();
         modPropertyTabs = new JTabbedPane();
         modPanel = new JPanel();
         modNameLabel = new JLabel();
@@ -194,20 +191,20 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         depJavaLibsFields = new JLabel();
         depJavaLibsAdd = new JButton();
         depJavaLibsRemove = new JButton();
-        depJavaLibsScrlPane = new JScrollPane();
-        depJavaLibsList = new JList<>();
+        depModsScrlPane1 = new JScrollPane();
+        depJavaLibsTable = new JTable();
         depMavenRepsPanel = new JPanel();
         depMavenRepsLabel = new JLabel();
         depMavenRepsAdd = new JButton();
         depMavenRepsRemove = new JButton();
-        depMavenRepsScrlPane = new JScrollPane();
-        depMavenRepsList = new JList<>();
+        depModsScrlPane3 = new JScrollPane();
+        depMavenRepsTable = new JTable();
         depManifestPanel = new JPanel();
         depManifestLabel = new JLabel();
         depManifestAdd = new JButton();
         depManifestRemove = new JButton();
-        depManifestScrlPane = new JScrollPane();
-        depManifestList = new JList<>();
+        depModsScrlPane2 = new JScrollPane();
+        depManifestTable = new JTable();
         intellijRadButton = new JRadioButton();
         eclipseRadButton = new JRadioButton();
         gradleVersionLabel = new JLabel();
@@ -506,13 +503,10 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         modPropertyTabs.addTab("Mod Info", modPanel);
 
-        attribContributorTable.setModel(new DefaultTableModel(
-            new Object [][] {
-                { "//TODO", "//TODO", "//TODO", "//TODO"}
-            },
+        attribContributorTable.setModel(contribTableModel = new DefaultTableModel(
             new String [] {
                 "", "Name", "Username", "Role"
-            }
+            },0
         )
         {
             Class[] types = new Class [] {
@@ -524,12 +518,22 @@ public class SulfurBoxGui extends javax.swing.JFrame {
                 return c == null ? String.class : c.getClass();
             }
         });
+        attribContributorTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         attribContributorTable.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 attribContributorTableKeyReleased(evt);
             }
         });
         attribContributorScrlPane.setViewportView(attribContributorTable);
+        //Adds the ComboBox editor to the Role column
+        TableColumn roleColumn = attribContributorTable.getColumnModel().getColumn(3);
+        JComboBox<String> comboBox = new JComboBox<>();
+        Author.ALL_ROLES.forEach(comboBox::addItem);
+        roleColumn.setCellEditor(new DefaultCellEditor(comboBox));
+        //Applies a custom cell renderer with
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        roleColumn.setCellRenderer(centerRenderer);
 
         attribContributorAdd.setText("+");
         attribContributorAdd.setToolTipText("Add Contributer");
@@ -629,19 +633,11 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             }
         });
 
-        depModsTable.setModel(new DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Mod Name", "Required Version"
-            }
+        depModsTable.setModel(depModsTableModel = new DefaultTableModel(
+            new String [] {"Mod Name", "Required Version", "Max Version"}, 0
         ) {
             Class[] types = new Class [] {
-                String.class, String.class
+                String.class, String.class, Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -708,18 +704,28 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             }
         });
 
-        depJavaLibsList.setModel(new AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        depJavaLibsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        depJavaLibsList.addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                depJavaLibsListKeyReleased(evt);
+        depJavaLibsTable.setModel(depJavaLibsTableModel = new DefaultTableModel(
+            new String [] {"Name", "Required Version", "Max Version"}, 0
+        ) {
+            Class[] types = new Class [] {
+                String.class, String.class, Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
-        depJavaLibsScrlPane.setViewportView(depJavaLibsList);
+        depJavaLibsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        depJavaLibsTable.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
+                depJavaLibsTableKeyReleased(evt);
+            }
+        });
+        depModsScrlPane1.setViewportView(depJavaLibsTable);
+        if (depJavaLibsTable.getColumnModel().getColumnCount() > 0) {
+            depJavaLibsTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            depJavaLibsTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+        }
 
         GroupLayout depJavaLibsPanelLayout = new GroupLayout(depJavaLibsPanel);
         depJavaLibsPanel.setLayout(depJavaLibsPanelLayout);
@@ -727,13 +733,13 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             .addGroup(depJavaLibsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(depJavaLibsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(depJavaLibsScrlPane)
                     .addComponent(depJavaLibsFields, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(GroupLayout.Alignment.TRAILING, depJavaLibsPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(depJavaLibsAdd)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(depJavaLibsRemove)))
+                        .addComponent(depJavaLibsRemove))
+                    .addComponent(depModsScrlPane1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
                 .addContainerGap())
         );
         depJavaLibsPanelLayout.setVerticalGroup(depJavaLibsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -741,7 +747,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(depJavaLibsFields)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(depJavaLibsScrlPane, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                .addComponent(depModsScrlPane1, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(depJavaLibsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(depJavaLibsRemove, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
@@ -769,18 +775,28 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             }
         });
 
-        depMavenRepsList.setModel(new AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        depMavenRepsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        depMavenRepsList.addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                depMavenRepsListKeyReleased(evt);
+        depMavenRepsTable.setModel(depMavenRepsTableModel = new DefaultTableModel(
+            new String [] {"Repo Name", "URL"}, 0
+        ) {
+            Class[] types = new Class [] {
+                String.class, String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
-        depMavenRepsScrlPane.setViewportView(depMavenRepsList);
+        depMavenRepsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        depMavenRepsTable.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
+                depMavenRepsTableKeyReleased(evt);
+            }
+        });
+        depModsScrlPane3.setViewportView(depMavenRepsTable);
+        if (depMavenRepsTable.getColumnModel().getColumnCount() > 0) {
+            depMavenRepsTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            depMavenRepsTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+        }
 
         GroupLayout depMavenRepsPanelLayout = new GroupLayout(depMavenRepsPanel);
         depMavenRepsPanel.setLayout(depMavenRepsPanelLayout);
@@ -788,23 +804,21 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             .addGroup(depMavenRepsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(depMavenRepsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(depMavenRepsScrlPane)
-                    .addGroup(depMavenRepsPanelLayout.createSequentialGroup()
-                        .addGroup(depMavenRepsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(depMavenRepsLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(GroupLayout.Alignment.TRAILING, depMavenRepsPanelLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(depMavenRepsAdd)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(depMavenRepsRemove)))
-                        .addContainerGap())))
+                    .addComponent(depModsScrlPane3, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                    .addComponent(depMavenRepsLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(GroupLayout.Alignment.TRAILING, depMavenRepsPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(depMavenRepsAdd)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(depMavenRepsRemove)))
+                .addContainerGap())
         );
         depMavenRepsPanelLayout.setVerticalGroup(depMavenRepsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(depMavenRepsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(depMavenRepsLabel)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(depMavenRepsScrlPane, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                .addComponent(depModsScrlPane3, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(depMavenRepsPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(depMavenRepsRemove, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
@@ -832,18 +846,28 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             }
         });
 
-        depManifestList.setModel(new AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        depManifestList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        depManifestList.addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                depManifestListKeyReleased(evt);
+        depManifestTable.setModel(depManifestTableModel = new DefaultTableModel(
+            new String [] {"Key", "Value"}, 0
+        ) {
+            Class[] types = new Class [] {
+                String.class, String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
-        depManifestScrlPane.setViewportView(depManifestList);
+        depManifestTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        depManifestTable.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
+                depManifestTableKeyReleased(evt);
+            }
+        });
+        depModsScrlPane2.setViewportView(depManifestTable);
+        if (depManifestTable.getColumnModel().getColumnCount() > 0) {
+            depManifestTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            depManifestTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+        }
 
         GroupLayout depManifestPanelLayout = new GroupLayout(depManifestPanel);
         depManifestPanel.setLayout(depManifestPanelLayout);
@@ -851,13 +875,13 @@ public class SulfurBoxGui extends javax.swing.JFrame {
             .addGroup(depManifestPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(depManifestPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(depManifestScrlPane)
                     .addComponent(depManifestLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(GroupLayout.Alignment.TRAILING, depManifestPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(depManifestAdd)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(depManifestRemove)))
+                        .addComponent(depManifestRemove))
+                    .addComponent(depModsScrlPane2, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         depManifestPanelLayout.setVerticalGroup(depManifestPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -865,7 +889,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(depManifestLabel)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(depManifestScrlPane, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(depModsScrlPane2, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(depManifestPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(depManifestRemove, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
@@ -885,13 +909,13 @@ public class SulfurBoxGui extends javax.swing.JFrame {
                 .addComponent(depParentField)
                 .addContainerGap())
             .addGroup(GroupLayout.Alignment.TRAILING, depPanelLayout.createSequentialGroup()
-                .addGroup(depPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(depMavenRepsPanel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(depModsPanel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(depPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(depMavenRepsPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(depModsPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(depPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(depJavaLibsPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(depManifestPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(depManifestPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(depJavaLibsPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         depPanelLayout.setVerticalGroup(depPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(depPanelLayout.createSequentialGroup()
@@ -1090,11 +1114,10 @@ public class SulfurBoxGui extends javax.swing.JFrame {
                         .addContainerGap())))
         );
 
-        ideButtonGroup.add(intellijRadButton);
-        ideButtonGroup.add(eclipseRadButton);
-
         bindingGroup.bind();
     }// </editor-fold>//GEN-END:initComponents
+
+    // <editor-fold defaultstate="collapsed" desc="Events">
 
 	private void modNameFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modNameFieldKeyReleased
 		ValidationError error = currentProject.setModName(modNameField.getText());
@@ -1233,13 +1256,19 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	}//GEN-LAST:event_attribContributorTableKeyReleased
 
 	private void attribContributorAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_attribContributorAddActionPerformed
-		// TODO: Add handler code
+		currentProject.addAuthor(new Author());
+        reloadTables();
 
 	}//GEN-LAST:event_attribContributorAddActionPerformed
 
 	private void attribContributorRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_attribContributorRemoveActionPerformed
-		// TODO: Add handler code
+		int selected = getSelectedRow(attribContributorTable);
+        if (selected == -1) {
+            return;
+        }
 
+        currentProject.delAuthor(selected);
+        reloadTables();
 	}//GEN-LAST:event_attribContributorRemoveActionPerformed
 
 	private void attribCreditsFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_attribCreditsFieldKeyReleased
@@ -1267,59 +1296,226 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	}//GEN-LAST:event_depModsTableKeyReleased
 
 	private void depModsAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depModsAddActionPerformed
-		// TODO: Add handler code
+		currentProject.addDependency(new Dependency());
+        reloadTables();
 
 	}//GEN-LAST:event_depModsAddActionPerformed
 
 	private void depModsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depModsRemoveActionPerformed
-		// TODO: Add handler code
+        int selected = getSelectedRow(depModsTable);
+        if (selected == -1) {
+            return;
+        }
 
+        currentProject.delDependency(selected);
+        reloadTables();
 	}//GEN-LAST:event_depModsRemoveActionPerformed
 
-	private void depJavaLibsListKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depJavaLibsListKeyReleased
-		// TODO: Add handler code
-
-	}//GEN-LAST:event_depJavaLibsListKeyReleased
-
 	private void depJavaLibsAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depJavaLibsAddActionPerformed
-		// TODO: Add handler code
+		currentProject.addJavaDependency(new Dependency());
+        reloadTables();
 
 	}//GEN-LAST:event_depJavaLibsAddActionPerformed
 
 	private void depJavaLibsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depJavaLibsRemoveActionPerformed
-		// TODO: Add handler code
+        int selected = getSelectedRow(depJavaLibsTable);
+        if (selected == -1) {
+            return;
+        }
 
+        currentProject.delJavaDependency(selected);
+        reloadTables();
 	}//GEN-LAST:event_depJavaLibsRemoveActionPerformed
 
-	private void depMavenRepsListKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depMavenRepsListKeyReleased
-		// TODO: Add handler code
-
-	}//GEN-LAST:event_depMavenRepsListKeyReleased
-
 	private void depMavenRepsAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depMavenRepsAddActionPerformed
-		// TODO: Add handler code
+		currentProject.addMavenRepository(new MavenRepository());
+        reloadTables();
 
 	}//GEN-LAST:event_depMavenRepsAddActionPerformed
 
 	private void depMavenRepsRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depMavenRepsRemoveActionPerformed
-		// TODO: Add handler code
+        int selected = getSelectedRow(depMavenRepsTable);
+        if (selected == -1) {
+            return;
+        }
 
+        currentProject.delMavenRepository(selected);
+        reloadTables();
 	}//GEN-LAST:event_depMavenRepsRemoveActionPerformed
 
-	private void depManifestListKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depManifestListKeyReleased
-		// TODO: Add handler code
-
-	}//GEN-LAST:event_depManifestListKeyReleased
-
 	private void depManifestAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depManifestAddActionPerformed
-		// TODO: Add handler code
+		currentProject.addManifestAttribute(new ManifestAttribute());
+        reloadTables();
 
 	}//GEN-LAST:event_depManifestAddActionPerformed
 
 	private void depManifestRemoveActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depManifestRemoveActionPerformed
-		// TODO: Add handler code
+        int selected = getSelectedRow(depManifestTable);
+        if (selected == -1) {
+            return;
+        }
 
+        currentProject.delManifestAttribute((String) depManifestTableModel.getValueAt(selected, 0));
+        reloadTables();
 	}//GEN-LAST:event_depManifestRemoveActionPerformed
+
+    private void depJavaLibsTableKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depJavaLibsTableKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depJavaLibsTableKeyReleased
+
+    private void depManifestTableKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depManifestTableKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depManifestTableKeyReleased
+
+    private void depMavenRepsTableKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depMavenRepsTableKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depMavenRepsTableKeyReleased
+
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="List handlers">
+
+    private void initTablesListeners() {
+        contribTableModel.addTableModelListener(e -> {
+            int row = e.getFirstRow();
+            int column = e.getColumn();
+            if (e.getType() != 0 || row == -1 || column == -1) {
+                return;
+            }
+
+            Object value = contribTableModel.getValueAt(row, column);
+            Author author = currentProject.getAuthor(row);
+            switch (e.getColumn()) {
+                case 1: author.username = (String) value; break;
+                case 2: author.userid = (String) value; break;
+                case 3: author.role = (String) value; break;
+            }
+
+            reloadTables();
+        });
+
+        depModsTableModel.addTableModelListener(e -> {
+            int row = e.getFirstRow();
+            int column = e.getColumn();
+            if (e.getType() != 0 || row == -1 || column == -1) {
+                return;
+            }
+
+            Object value = depModsTableModel.getValueAt(row, column);
+            Dependency dep = currentProject.getDependency(row);
+            switch (e.getColumn()) {
+                case 0: dep.depName = (String) value; break;
+                case 1: dep.depVersion = new Version((String) value); break;
+                case 2: dep.disallowHigherVersion = (Boolean) value; break;
+            }
+
+            reloadTables();
+        });
+
+        depJavaLibsTableModel.addTableModelListener(e -> {
+            int row = e.getFirstRow();
+            int column = e.getColumn();
+            if (e.getType() != 0 || row == -1 || column == -1) {
+                return;
+            }
+
+            Object value = depJavaLibsTableModel.getValueAt(row, column);
+            Dependency dep = currentProject.getJavaDependency(row);
+            switch (e.getColumn()) {
+                case 0: dep.depName = (String) value; break;
+                case 1: dep.depVersion = new Version((String) value); break;
+                case 2: dep.disallowHigherVersion = (Boolean) value; break;
+            }
+
+            reloadTables();
+        });
+
+        depMavenRepsTableModel.addTableModelListener(e -> {
+            int row = e.getFirstRow();
+            int column = e.getColumn();
+            if (e.getType() != 0 || row == -1 || column == -1) {
+                return;
+            }
+
+            Object value = depMavenRepsTableModel.getValueAt(row, column);
+            MavenRepository repo = currentProject.getMavenRepository(row);
+            switch (e.getColumn()) {
+                case 0: repo.name = (String) value; break;
+                case 1: repo.url = (String) value; break;
+            }
+
+            reloadTables();
+        });
+
+        depManifestTableModel.addTableModelListener(e -> {
+            int row = e.getFirstRow();
+            int column = e.getColumn();
+            if (e.getType() != 0 || row == -1 || column == -1) {
+                return;
+            }
+
+            String tableKey = (String) depManifestTableModel.getValueAt(row, 0);
+            String tableValue = (String) depManifestTableModel.getValueAt(row, 1);
+            Map<String, String> attribs = currentProject.getManifestAttributes().getAttributes();
+
+            //Not sure if this is the best way to get a map key by its index in the map.
+            String targetKey = Lists.newArrayList(attribs.keySet()).get(row);
+
+            attribs.remove(targetKey);
+            attribs.put(tableKey, tableValue);
+            System.out.println(tableValue);
+
+            reloadTables();
+        });
+    }
+
+    public void reloadTables() {
+        //Reload Contributor table
+        clearTable(contribTableModel);
+        for (Author author : currentProject.getAuthors()) {
+            contribTableModel.addRow(new Object[] {"", author.username, author.userid, author.role});
+        }
+
+        //Reload the mod deps table
+        clearTable(depModsTableModel);
+        for (Dependency dep : currentProject.getDependencies()) {
+            depModsTableModel.addRow(new Object[] {dep.depName, dep.depVersion, dep.disallowHigherVersion});
+        }
+
+        //Reload the java Libs table
+        clearTable(depJavaLibsTableModel);
+        for (Dependency dep : currentProject.getJavaDependencies()) {
+            depJavaLibsTableModel.addRow(new Object[] {dep.depName, dep.depVersion, dep.disallowHigherVersion});
+        }
+
+        //Reload the Maven Repo table
+        clearTable(depMavenRepsTableModel);
+        for (MavenRepository repo : currentProject.getMavenRepositories()) {
+            depMavenRepsTableModel.addRow(new Object[] {repo.name, repo.url});
+        }
+
+        //Reload the Manifest table
+        clearTable(depManifestTableModel);
+        for (Map.Entry<String, String> entry : currentProject.getManifestAttributes().getAttributes().entrySet()) {
+            depManifestTableModel.addRow(new Object[] {entry.getKey(), entry.getValue()});
+        }
+    }
+
+    private void clearTable(DefaultTableModel tableModel) {
+        while (tableModel.getRowCount() > 0) {
+            tableModel.removeRow(0);
+        }
+    }
+
+    private int getSelectedRow(JTable table) {
+        int row = table.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "No row selected!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return row;
+    }
+
+    //</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JMenu aboutMenu;
@@ -1327,34 +1523,39 @@ public class SulfurBoxGui extends javax.swing.JFrame {
     private JButton attribContributorRemove;
     private JScrollPane attribContributorScrlPane;
     private JTable attribContributorTable;
+    private DefaultTableModel contribTableModel;
     private JTextArea attribCreditsField;
     private JLabel attribCreditsLabel;
     private JScrollPane attribCreditsScrlPane;
     private JPanel attribPanel;
     private JButton depJavaLibsAdd;
     private JLabel depJavaLibsFields;
-    private JList<String> depJavaLibsList;
     private JPanel depJavaLibsPanel;
     private JButton depJavaLibsRemove;
-    private JScrollPane depJavaLibsScrlPane;
+    private JTable depJavaLibsTable;
+    private DefaultTableModel depJavaLibsTableModel;
     private JButton depManifestAdd;
     private JLabel depManifestLabel;
-    private JList<String> depManifestList;
     private JPanel depManifestPanel;
     private JButton depManifestRemove;
-    private JScrollPane depManifestScrlPane;
+    private JTable depManifestTable;
+    private DefaultTableModel depManifestTableModel;
     private JButton depMavenRepsAdd;
     private JLabel depMavenRepsLabel;
-    private JList<String> depMavenRepsList;
     private JPanel depMavenRepsPanel;
     private JButton depMavenRepsRemove;
-    private JScrollPane depMavenRepsScrlPane;
+    private JTable depMavenRepsTable;
+    private DefaultTableModel depMavenRepsTableModel;
     private JButton depModsAdd;
     private JLabel depModsLabel;
     private JPanel depModsPanel;
     private JButton depModsRemove;
     private JScrollPane depModsScrlPane;
+    private JScrollPane depModsScrlPane1;
+    private JScrollPane depModsScrlPane2;
+    private JScrollPane depModsScrlPane3;
     private JTable depModsTable;
+    private DefaultTableModel depModsTableModel;
     private JPanel depPanel;
     private JCheckBox depParentCheck;
     private JTextField depParentField;
@@ -1366,7 +1567,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
     private Box.Filler filler2;
     private JComboBox<String> forgeVersionSelect;
     private JLabel gradleVersionLabel;
-    private ButtonGroup ideButtonGroup;
     private JRadioButton intellijRadButton;
     private JTextField issueTrackerField;
     private JLabel issueTrackerLabel;

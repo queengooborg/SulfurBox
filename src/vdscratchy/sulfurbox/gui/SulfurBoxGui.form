@@ -2,8 +2,6 @@
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="ideButtonGroup">
-    </Component>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="fileMenu">
@@ -705,12 +703,19 @@
                 <Component class="javax.swing.JTable" name="attribContributorTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        { &quot;//TODO&quot;, &quot;//TODO&quot;, &quot;//TODO&quot;, &quot;//TODO&quot;}&#xa;    },&#xa;    new String [] {&#xa;        &quot;&quot;, &quot;Name&quot;, &quot;Username&quot;, &quot;Role&quot;&#xa;    }&#xa;)&#xa;{&#xa;    Class[] types = new Class [] {&#xa;        java.lang.Boolean.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;&#xa;    public Class getColumnClass(int column) {&#xa;        Object c = getValueAt(0, column);&#xa;        return c == null ? String.class : c.getClass();&#xa;    }&#xa;}" type="code"/>
+                      <Connection code="contribTableModel = new javax.swing.table.DefaultTableModel(&#xa;    new String [] {&#xa;        &quot;&quot;, &quot;Name&quot;, &quot;Username&quot;, &quot;Role&quot;&#xa;    },0&#xa;)&#xa;{&#xa;    Class[] types = new Class [] {&#xa;        java.lang.Boolean.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;&#xa;    public Class getColumnClass(int column) {&#xa;        Object c = getValueAt(0, column);&#xa;        return c == null ? String.class : c.getClass();&#xa;    }&#xa;}" type="code"/>
+                    </Property>
+                    <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                      <JTableSelectionModel selectionMode="0"/>
                     </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="attribContributorTableKeyReleased"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="private javax.swing.table.DefaultTableModel contribTableModel;"/>
+                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="//Adds the ComboBox editor to the Role column&#xa;TableColumn roleColumn = attribContributorTable.getColumnModel().getColumn(3);&#xa;JComboBox&lt;String&gt; comboBox = new JComboBox&lt;&gt;();&#xa;Author.ALL_ROLES.forEach(comboBox::addItem);&#xa;roleColumn.setCellEditor(new DefaultCellEditor(comboBox));&#xa;//Applies a custom cell renderer with&#xa;DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();&#xa;centerRenderer.setHorizontalAlignment(JLabel.CENTER);&#xa;roleColumn.setCellRenderer(centerRenderer);"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -786,14 +791,14 @@
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="depMavenRepsPanel" alignment="0" max="32767" attributes="0"/>
-                          <Component id="depModsPanel" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="depMavenRepsPanel" max="32767" attributes="0"/>
+                          <Component id="depModsPanel" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="depJavaLibsPanel" alignment="0" max="32767" attributes="0"/>
-                          <Component id="depManifestPanel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="depManifestPanel" max="32767" attributes="0"/>
+                          <Component id="depJavaLibsPanel" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -920,11 +925,8 @@
                   <SubComponents>
                     <Component class="javax.swing.JTable" name="depModsTable">
                       <Properties>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="2" rowCount="4">
-                            <Column editable="true" title="Mod Name" type="java.lang.String"/>
-                            <Column editable="true" title="Required Version" type="java.lang.String"/>
-                          </Table>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="depModsTableModel = new DefaultTableModel(&#xa;    new String [] {&quot;Mod Name&quot;, &quot;Required Version&quot;, &quot;Max Version&quot;}, 0&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        String.class, String.class, Boolean.class&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;}" type="code"/>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
@@ -950,6 +952,9 @@
                       <Events>
                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depModsTableKeyReleased"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="private javax.swing.table.DefaultTableModel depModsTableModel;"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -970,7 +975,6 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="depJavaLibsScrlPane" alignment="0" max="32767" attributes="0"/>
                               <Component id="depJavaLibsFields" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -978,6 +982,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="depJavaLibsRemove" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="depModsScrlPane1" alignment="1" pref="342" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -989,7 +994,7 @@
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="depJavaLibsFields" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="depJavaLibsScrlPane" pref="195" max="32767" attributes="0"/>
+                          <Component id="depModsScrlPane1" pref="195" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="depJavaLibsRemove" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
@@ -1024,31 +1029,44 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="depJavaLibsRemoveActionPerformed"/>
                   </Events>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="depJavaLibsScrlPane">
+                <Container class="javax.swing.JScrollPane" name="depModsScrlPane1">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JList" name="depJavaLibsList">
+                    <Component class="javax.swing.JTable" name="depJavaLibsTable">
                       <Properties>
-                        <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                          <StringArray count="5">
-                            <StringItem index="0" value="Item 1"/>
-                            <StringItem index="1" value="Item 2"/>
-                            <StringItem index="2" value="Item 3"/>
-                            <StringItem index="3" value="Item 4"/>
-                            <StringItem index="4" value="Item"/>
-                          </StringArray>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="depJavaLibsTableModel = new DefaultTableModel(&#xa;    new String [] {&quot;Name&quot;, &quot;Required Version&quot;, &quot;Max Version&quot;}, 0&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        String.class, String.class, Boolean.class&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;}" type="code"/>
                         </Property>
-                        <Property name="selectionMode" type="int" value="0"/>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
+                        <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                          <JTableSelectionModel selectionMode="0"/>
+                        </Property>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depJavaLibsListKeyReleased"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depJavaLibsTableKeyReleased"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                        <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="private javax.swing.table.DefaultTableModel depJavaLibsTableModel;"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
@@ -1070,20 +1088,16 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="depMavenRepsScrlPane" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="depMavenRepsLabel" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Component id="depMavenRepsAdd" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="depMavenRepsRemove" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                              <Component id="depModsScrlPane3" pref="342" max="32767" attributes="0"/>
+                              <Component id="depMavenRepsLabel" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="depMavenRepsAdd" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="depMavenRepsRemove" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1093,7 +1107,7 @@
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="depMavenRepsLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="depMavenRepsScrlPane" pref="196" max="32767" attributes="0"/>
+                          <Component id="depModsScrlPane3" pref="196" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="depMavenRepsRemove" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
@@ -1128,31 +1142,44 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="depMavenRepsRemoveActionPerformed"/>
                   </Events>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="depMavenRepsScrlPane">
+                <Container class="javax.swing.JScrollPane" name="depModsScrlPane3">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JList" name="depMavenRepsList">
+                    <Component class="javax.swing.JTable" name="depMavenRepsTable">
                       <Properties>
-                        <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                          <StringArray count="5">
-                            <StringItem index="0" value="Item 1"/>
-                            <StringItem index="1" value="Item 2"/>
-                            <StringItem index="2" value="Item 3"/>
-                            <StringItem index="3" value="Item 4"/>
-                            <StringItem index="4" value="Item 5"/>
-                          </StringArray>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="depMavenRepsTableModel = new DefaultTableModel(&#xa;    new String [] {&quot;Repo Name&quot;, &quot;URL&quot;}, 0&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        String.class, String.class&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;}" type="code"/>
                         </Property>
-                        <Property name="selectionMode" type="int" value="0"/>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
+                        <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                          <JTableSelectionModel selectionMode="0"/>
+                        </Property>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depMavenRepsListKeyReleased"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depMavenRepsTableKeyReleased"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                        <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="private javax.swing.table.DefaultTableModel depMavenRepsTableModel;"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
@@ -1171,10 +1198,9 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="depManifestScrlPane" alignment="0" max="32767" attributes="0"/>
                               <Component id="depManifestLabel" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -1182,6 +1208,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="depManifestRemove" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="depModsScrlPane2" alignment="1" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1193,7 +1220,7 @@
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="depManifestLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="depManifestScrlPane" pref="0" max="32767" attributes="0"/>
+                          <Component id="depModsScrlPane2" pref="0" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="depManifestRemove" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
@@ -1228,31 +1255,44 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="depManifestRemoveActionPerformed"/>
                   </Events>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="depManifestScrlPane">
+                <Container class="javax.swing.JScrollPane" name="depModsScrlPane2">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JList" name="depManifestList">
+                    <Component class="javax.swing.JTable" name="depManifestTable">
                       <Properties>
-                        <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                          <StringArray count="5">
-                            <StringItem index="0" value="Item 1"/>
-                            <StringItem index="1" value="Item 2"/>
-                            <StringItem index="2" value="Item 3"/>
-                            <StringItem index="3" value="Item 4"/>
-                            <StringItem index="4" value="Item 5"/>
-                          </StringArray>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="depManifestTableModel = new DefaultTableModel(&#xa;    new String [] {&quot;Key&quot;, &quot;Value&quot;}, 0&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        String.class, String.class&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;}" type="code"/>
                         </Property>
-                        <Property name="selectionMode" type="int" value="0"/>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
+                        <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                          <JTableSelectionModel selectionMode="0"/>
+                        </Property>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depManifestListKeyReleased"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="depManifestTableKeyReleased"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                        <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="private javax.swing.table.DefaultTableModel depManifestTableModel;"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
@@ -1270,9 +1310,6 @@
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="intellijRadButtonStateChanged"/>
       </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ideButtonGroup.add(intellijRadButton);"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JRadioButton" name="eclipseRadButton">
       <Properties>
@@ -1281,9 +1318,6 @@
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="eclipseRadButtonStateChanged"/>
       </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ideButtonGroup.add(eclipseRadButton);"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="gradleVersionLabel">
       <Properties>
