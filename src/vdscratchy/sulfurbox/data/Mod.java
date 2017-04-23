@@ -40,7 +40,7 @@ public class Mod {
 	public ArrayList<Dependency> javaDependencies = new ArrayList<Dependency>();
 	public String logopath = "";
 	public ArrayList<MavenRepository> mavenRepositories = new ArrayList<MavenRepository>();
-	public Manifest manifestAttributes;
+	public Manifest manifestAttributes = new Manifest(); //Hope this change isnt an issue. Its easier if this is never null
 	public String homepage = "";
 	public String updateCheck = "";
 	public String modRepository = "";

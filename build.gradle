@@ -24,11 +24,11 @@ apply plugin: 'application'
 // IDE Project Generation
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: "org.openbakery.xcode-plugin"
 
 dependencies {
 	compile files('libs/darcula.jar')
 	compile files('libs/beans-binding/beansbinding-1.2.1.jar')
+	compile 'com.google.guava:guava:20.0'
 }
 
 mainClassName = "vdscratchy.sulfurbox.Main"

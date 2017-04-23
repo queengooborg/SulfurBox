@@ -3,6 +3,7 @@ package vdscratchy.sulfurbox.data.collections;
 import vdscratchy.sulfurbox.data.types.ManifestAttribute;
 
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -18,7 +19,7 @@ import java.util.Map;
  * @see vdscratchy.sulfurbox.data.types.ManifestAttribute
  */
 public class Manifest {
-	private Map<String, String> attributes;
+	private Map<String, String> attributes = new LinkedHashMap<>(); //Same here. Though i dont think this should have been null because i dont see it being initialized anywhere
 
 	public Manifest() {
 

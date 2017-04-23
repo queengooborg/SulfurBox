@@ -1,5 +1,8 @@
 package vdscratchy.sulfurbox.data.types;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * SulfurBox - vdscratchy.sulfurbox.data.types.Author
  *
@@ -18,6 +21,7 @@ public class Author {
 	public String userid = "";
 	public String username = "";
 	public String role = "developer";
+	public static final List<String> ALL_ROLES = Arrays.asList("developer", "translator", "supporter", "artist");
 
 	public Author() {
 

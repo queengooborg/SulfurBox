@@ -81,6 +81,7 @@ public class CurrentProjectHandler {
 		return this.project.authors;
 	}
 
+	//TODO i only really need the getAuthors field for the gui because it returns an editable list. Not sur eif you had other plans for these other methods.
 	public Author getAuthor(int index) {
 		return this.project.authors.get(index);
 	}
