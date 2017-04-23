@@ -18,6 +18,10 @@ buildscript {
 	}
 }
 
+repositories {
+	jcenter()
+}
+
 apply plugin: 'java'
 apply plugin: 'application'
 
