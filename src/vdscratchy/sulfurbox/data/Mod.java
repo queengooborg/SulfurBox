@@ -32,15 +32,15 @@ public class Mod {
 	public String packageModuleName = "";
 	public String description = "";
 	public ArrayList<Author> authors = new ArrayList<Author>();
-	public Version modVersion;
-	public Version mcVersion;
-	public Version forgeVersion;
+	public Version modVersion = new Version();
+	public Version mcVersion = new Version();
+	public Version forgeVersion = new Version();
 	public String parentMod = "";
 	public ArrayList<Dependency> dependencies = new ArrayList<Dependency>();
 	public ArrayList<Dependency> javaDependencies = new ArrayList<Dependency>();
 	public String logopath = "";
 	public ArrayList<MavenRepository> mavenRepositories = new ArrayList<MavenRepository>();
-	public Manifest manifestAttributes = new Manifest(); //Hope this change isnt an issue. Its easier if this is never null
+	public Manifest manifestAttributes = new Manifest();
 	public String homepage = "";
 	public String updateCheck = "";
 	public String modRepository = "";
