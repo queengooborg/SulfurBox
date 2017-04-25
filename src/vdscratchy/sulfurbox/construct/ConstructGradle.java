@@ -1,6 +1,7 @@
 package vdscratchy.sulfurbox.construct;
 
 import vdscratchy.sulfurbox.data.Mod;
+import vdscratchy.sulfurbox.data.types.Dependency;
 import vdscratchy.sulfurbox.data.types.MavenRepository;
 
 /**
@@ -48,7 +49,7 @@ public class ConstructGradle {
 		output += "changelog = file('build/libs/' + project.getName() + '-' + project.version + '-changelog.txt')\n\t\t";
 		output += "releaseType = 'beta'\n\t}\n}\n\nuploadArchives {\n\trepositories {\n\t\tmavenDeployer {\n\t\t\t";
 		output += repositoryUpload(modInfo);
-		output += "\t\t}\n\t}\n}";
+		output += "\n\t\t}\n\t}\n}";
 
 		System.out.println(output);
 		return output;
@@ -81,27 +82,28 @@ public class ConstructGradle {
 	}
 
 	public static String javaDeps(Mod modInfo) {
-		// TODO Create me!
-		return "";
+		String output = "";
+		for (Dependency d : modInfo.javaDependencies) {
+			output += "\napply plugin: '" + d.depName + ":" + d.depVersion.toString() + "'";
+		}
+		return output;
 	}
 
 	public static String dependencies(Mod modInfo) {
-		// TODO Create me!
-		return "";
+		// TODO Create me! (needs the mod database)
+		String output = "";
+		return output;
 	}
 
 	public static String manifest(Mod modInfo) {
 		// TODO Create me!
-		return "";
-	}
-
-	public static String curseforge(Mod modInfo) {
-		// TODO Create me!
-		return "";
+		String output = "";
+		return output;
 	}
 
 	public static String repositoryUpload(Mod modInfo) {
 		// TODO Create me!
-		return "";
+		String output = "";
+		return output;
 	}
 }

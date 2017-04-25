@@ -16,7 +16,7 @@ package vdscratchy.sulfurbox.data.types;
  */
 public class Dependency {
 	public String depName = "";
-	public Version depVersion;
+	public Version depVersion = new Version();
 	public boolean disallowHigherVersion = false;
 
 	public Dependency() {
