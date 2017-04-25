@@ -52,10 +52,10 @@ public class Mod {
 
 	public Mod() {}
 
-	//@Override
+	@Override
 	public boolean equals(Object o) {
 		if (o == this) return true;
-		if (!o.getClass().getSimpleName().equals("Mod")) return false;
+		if (o instanceof Mod) return false;
 		Mod other = (Mod) o;
 
 		// Array iterators copied from http://stackoverflow.com/a/8777397/2608838
