@@ -33,8 +33,8 @@ public class CurrentProjectHandler {
 		this.project.modName = modName;
 
 		if (modName.length() == 0) return new ValidationError(-1);
-		else if (modName.length() < 3) return new ValidationError(1, "Mod name is too short");
-		else if (modName.length() > 80) return new ValidationError(1, "Mod name is too long");
+		else if (modName.length() < 3) return new ValidationError(0, "Mod name should be longer");
+		else if (modName.length() > 80) return new ValidationError(0, "Mod name should be shorter");
 		return new ValidationError(-1);
 	}
 
