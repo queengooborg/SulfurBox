@@ -1,5 +1,6 @@
 package vdscratchy.sulfurbox.data;
 
+import vdscratchy.core.datatypes.Version;
 import vdscratchy.sulfurbox.data.collections.Manifest;
 import vdscratchy.sulfurbox.data.types.*;
 
@@ -23,7 +24,7 @@ import java.util.ListIterator;
  * @see vdscratchy.sulfurbox.data.types.Dependency
  * @see vdscratchy.sulfurbox.data.types.ManifestAttribute
  * @see vdscratchy.sulfurbox.data.types.MavenRepository
- * @see vdscratchy.sulfurbox.data.types.Version
+ * @see Version
  * @see vdscratchy.sulfurbox.handlers.CurrentProjectHandler
  */
 public class Mod {

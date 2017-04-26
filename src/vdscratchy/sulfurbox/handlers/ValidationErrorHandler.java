@@ -1,5 +1,7 @@
 package vdscratchy.sulfurbox.handlers;
 
+import vdscratchy.core.validation.ValidationError;
+
 /**
  * SulfurBox - vdscratchy.sulfurbox.handlers.ValidationErrorHandler
  *
@@ -12,7 +14,6 @@ package vdscratchy.sulfurbox.handlers;
  * screen.
  *
  * @see vdscratchy.sulfurbox.data.Mod
- * @see vdscratchy.sulfurbox.handlers.ValidationError
  * @see vdscratchy.sulfurbox.handlers.CurrentProjectHandler
  * @see vdscratchy.sulfurbox.gui.SulfurBoxGui
  * @see vdscratchy.sulfurbox.Main

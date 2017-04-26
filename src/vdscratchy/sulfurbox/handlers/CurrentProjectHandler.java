@@ -1,5 +1,9 @@
 package vdscratchy.sulfurbox.handlers;
 
+import vdscratchy.core.Convert;
+import vdscratchy.core.datatypes.Version;
+import vdscratchy.core.validation.Validate;
+import vdscratchy.core.validation.ValidationError;
 import vdscratchy.sulfurbox.data.Mod;
 import vdscratchy.sulfurbox.data.collections.Manifest;
 import vdscratchy.sulfurbox.data.types.*;
@@ -44,14 +48,7 @@ public class CurrentProjectHandler {
 
 	public ValidationError setPackageName(String packageName) {
 		this.project.packageName = packageName;
-
-		if (packageName.length() == 0) return new ValidationError(-1);
-		else if (!packageName.matches("[a-zA-Z\\d_$.]*")) return new ValidationError(1, "Package names only allow alphanumerical characters, underscores, dollar signs, and periods");
-		else if (packageName.matches("^\\d.*") || packageName.matches(".*(\\.\\d).*")) return new ValidationError(1, "Package and package module names cannot start with a number");
-		else if (packageName.matches("^\\..*")) return new ValidationError(1, "Package names cannot start with a period");
-		else if (packageName.matches(".*\\.$")) return new ValidationError(1, "Package names cannot end with a period");
-		else if (!packageName.matches("^([a-zA-Z_$][a-zA-Z\\d_$]*\\.)*[a-zA-Z_$][a-zA-Z\\d_$]*$")) return new ValidationError(1, "Package name is in an invalid format");
-		return new ValidationError(-1);
+		return Validate.packageName(packageName);
 	}
 
 	public String getPackageModuleName() {
@@ -60,12 +57,7 @@ public class CurrentProjectHandler {
 
 	public ValidationError setPackageModuleName(String packageModuleName) {
 		this.project.packageModuleName = packageModuleName;
-
-		if (packageModuleName.length() == 0) return new ValidationError(-1);
-		else if (!packageModuleName.matches("[a-zA-Z\\d_$]*")) return new ValidationError(1, "Package module names only allow alphanumerical characters, underscores, and dollar signs");
-		else if (packageModuleName.matches("^\\d.*")) return new ValidationError(1, "Package module names cannot start with a number");
-		else if (!packageModuleName.matches("^[a-zA-Z_$][a-zA-Z\\d_$]*$")) return new ValidationError(1, "Package module name is in an invalid format");
-		return new ValidationError(-1);
+		return Validate.packageModuleName(packageModuleName);
 	}
 
 	public String getDescription() {
@@ -109,14 +101,7 @@ public class CurrentProjectHandler {
 
 	public ValidationError setModVersion(String modVersion) {
 		this.project.modVersion = new Version(modVersion);
-
-		if (modVersion.length() == 0) return new ValidationError(-1);
-		else if (!modVersion.matches("[0-9.]*")) return new ValidationError(1, "Version number must only consist of numbers and periods");
-		else if (modVersion.matches("^\\..*")) return new ValidationError(1, "Version number cannot start with a period");
-		else if (modVersion.matches(".*\\.$")) return new ValidationError(1, "Version number cannot end with a period");
-		else if (modVersion.matches(".*\\.(\\.)+.*")) return new ValidationError(1, "Version number must have numbers between every period");
-		else if (!modVersion.matches("((\\d*)\\.){0,3}(\\d+)")) return new ValidationError(1, "Mod version validation failed"); // TODO: make the validation in Version class
-		return new ValidationError(-1);
+		return Validate.versionNumber(modVersion);
 	}
 
 	public Version getMcVersion() {
@@ -130,14 +115,7 @@ public class CurrentProjectHandler {
 
 	public ValidationError setMcVersion(String mcVersion) {
 		this.project.mcVersion = new Version(mcVersion);
-
-		if (mcVersion.length() == 0) return new ValidationError(-1);
-		else if (!mcVersion.matches("[0-9.]*")) return new ValidationError(1, "Version number must only consist of numbers and periods");
-		else if (mcVersion.matches("^\\..*")) return new ValidationError(1, "Version number cannot start with a period");
-		else if (mcVersion.matches(".*\\.$")) return new ValidationError(1, "Version number cannot end with a period");
-		else if (mcVersion.matches(".*\\.(\\.)+.*")) return new ValidationError(1, "Version number must have numbers between every period");
-		else if (!mcVersion.matches("((\\d*)\\.){0,3}(\\d+)")) return new ValidationError(1, "Minecraft version validation failed"); // TODO: make the validation in Version class
-		return new ValidationError(-1);
+		return Validate.versionNumber(mcVersion);
 	}
 
 	public Version getForgeVersion() {
@@ -151,14 +129,7 @@ public class CurrentProjectHandler {
 
 	public ValidationError setForgeVersion(String forgeVersion) {
 		this.project.forgeVersion = new Version(forgeVersion);
-
-		if (forgeVersion.length() == 0) return new ValidationError(-1);
-		else if (!forgeVersion.matches("[0-9.]*")) return new ValidationError(1, "Version number must only consist of numbers and periods");
-		else if (forgeVersion.matches("^\\..*")) return new ValidationError(1, "Version number cannot start with a period");
-		else if (forgeVersion.matches(".*\\.$")) return new ValidationError(1, "Version number cannot end with a period");
-		else if (forgeVersion.matches(".*\\.(\\.)+.*")) return new ValidationError(1, "Version number must have numbers between every period");
-		else if (!forgeVersion.matches("((\\d*)\\.){0,3}(\\d+)")) return new ValidationError(1, "Forge version validation failed"); // TODO: make the validation in Version class
-		return new ValidationError(-1);
+		return Validate.versionNumber(forgeVersion);
 	}
 
 	public String getParentMod() {
@@ -168,13 +139,7 @@ public class CurrentProjectHandler {
 	public ValidationError setParentMod(String parentMod) {
 		// TODO: confirm that the requested mod is valid
 		this.project.parentMod = parentMod;
-
-		if (parentMod.length() == 0) return new ValidationError(-1);
-		else if (!parentMod.matches("[a-zA-Z\\d_$.]*")) return new ValidationError(1, "Package names only allow alphanumerical characters, underscores, dollar signs, and periods");
-		else if (parentMod.matches("^\\d.*") || parentMod.matches(".*(\\.\\d).*")) return new ValidationError(1, "Package and package module names cannot start with a number");
-		else if (parentMod.matches(".*\\.$")) return new ValidationError(1, "Package names cannot end with a period");
-		else if (!parentMod.matches("^([a-zA-Z_$][a-zA-Z\\d_$]*\\.)*[a-zA-Z_$][a-zA-Z\\d_$]*$")) return new ValidationError(1, "Parent mod package name is in an invalid format");
-		return new ValidationError(-1);
+		return Validate.packageName(parentMod);
 	}
 
 	public ArrayList<Dependency> getDependencies() {
@@ -222,11 +187,8 @@ public class CurrentProjectHandler {
 	}
 
 	public ValidationError setLogopath(String logopath) {
-		// TODO: make validator
 		this.project.logopath = logopath;
-
-		if (logopath.length() == 0) return new ValidationError(-1);
-		return new ValidationError(-1);
+		return Validate.filepath(logopath);
 	}
 
 	public ArrayList<MavenRepository> getMavenRepositories() {
@@ -275,10 +237,7 @@ public class CurrentProjectHandler {
 
 	public ValidationError setHomepage(String homepage) {
 		this.project.homepage = homepage;
-
-		if (homepage.length() == 0) return new ValidationError(-1);
-		else if (!homepage.matches("^(?:(?:https?|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:/[^\\s]*)?$")) return new ValidationError(1, "Not a valid URL");
-		return new ValidationError(-1);
+		return Validate.url(homepage);
 	}
 
 	public String getUpdateCheck() {
@@ -287,10 +246,7 @@ public class CurrentProjectHandler {
 
 	public ValidationError setUpdateCheck(String updateCheck) {
 		this.project.updateCheck = updateCheck;
-
-		if (updateCheck.length() == 0) return new ValidationError(-1);
-		else if (!updateCheck.matches("^(?:(?:https?|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:/[^\\s]*)?$")) return new ValidationError(1, "Not a valid URL");
-		return new ValidationError(-1);
+		return Validate.url(updateCheck);
 	}
 
 	public String getModRepository() {
@@ -299,10 +255,7 @@ public class CurrentProjectHandler {
 
 	public ValidationError setModRepository(String modRepository) {
 		this.project.modRepository = modRepository;
-
-		if (modRepository.length() == 0) return new ValidationError(-1);
-		else if (!modRepository.matches("^(?:(?:https?|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:/[^\\s]*)?$")) return new ValidationError(1, "Not a valid URL");
-		return new ValidationError(-1);
+		return Validate.url(modRepository);
 	}
 
 	public String getModMavenRepository() {
@@ -311,10 +264,7 @@ public class CurrentProjectHandler {
 
 	public ValidationError setModMavenRepository(String modMavenRepository) {
 		this.project.modMavenRepository = modMavenRepository;
-
-		if (modMavenRepository.length() == 0) return new ValidationError(-1);
-		else if (!modMavenRepository.matches("^(?:(?:https?|ftp)://)(?:\\S(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:/[^\\s]*)?$")) return new ValidationError(1, "Not a valid URL");
-		return new ValidationError(-1);
+		return Validate.url(modMavenRepository);
 	}
 
 	public String getIssuesPage() {
@@ -323,10 +273,7 @@ public class CurrentProjectHandler {
 
 	public ValidationError setIssuesPage(String issuesPage) {
 		this.project.issuesPage = issuesPage;
-
-		if (issuesPage.length() == 0) return new ValidationError(-1);
-		else if (!issuesPage.matches("^(?:(?:https?|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?!10(?:\\.\\d{1,3}){3})(?!127(?:\\.\\d{1,3}){3})(?!169\\.254(?:\\.\\d{1,3}){2})(?!192\\.168(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}0-9]+-?)*[a-z\\x{00a1}-\\x{ffff}0-9]+)*(?:\\.(?:[a-z\\x{00a1}-\\x{ffff}]{2,})))(?::\\d{2,5})?(?:/[^\\s]*)?$")) return new ValidationError(1, "Not a valid URL");
-		return new ValidationError(-1);
+		return Validate.url(issuesPage);
 	}
 
 	public int getCurseforgeID() {

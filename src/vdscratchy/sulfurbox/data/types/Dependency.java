@@ -1,5 +1,7 @@
 package vdscratchy.sulfurbox.data.types;
 
+import vdscratchy.core.datatypes.Version;
+
 /**
  * SulfurBox - vdscratchy.sulfurbox.data.types.Dependency
  *

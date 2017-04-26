@@ -1,15 +1,13 @@
-package vdscratchy.sulfurbox.handlers;
+package vdscratchy.core;
 
 /**
- * SulfurBox - vdscratchy.sulfurbox.handlers.Convert
+ * Darkscratch Core - vdscratchy.core.Convert
  *
- * @author Vinyl Darkscratch, Covers1624, Brandon3055
+ * @author Vinyl Darkscratch
  * @version 0.0.1
  * @since 0.0.1
  *
- * A collection of different wrappers for variable conversion, used throughout the program.
- *
- * @see vdscratchy.sulfurbox.data.types.Version
+ * A collection of different wrappers for variable conversion, used across the programs written by Vinyl Darkscratch.
  */
 public class Convert {
 	public static int parseInt(String string, int fallback) {

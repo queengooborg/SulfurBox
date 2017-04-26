@@ -1,11 +1,12 @@
-package vdscratchy.sulfurbox.data.types;
+package vdscratchy.core.datatypes;
 
-import vdscratchy.sulfurbox.handlers.Convert;
+import vdscratchy.core.Convert;
+import vdscratchy.core.validation.Validate;
 
 /**
- * SulfurBox - vdscratchy.sulfurbox.data.types.Version
+ * Darkscratch Core - vdscratchy.core.datatypes.Version
  *
- * @author Vinyl Darkscratch, Covers1624, Brandon3055
+ * @author Vinyl Darkscratch
  * @version 0.0.1
  * @since 0.0.1
  *
@@ -13,9 +14,7 @@ import vdscratchy.sulfurbox.handlers.Convert;
  * parse a string for each part of the version number, stripping all non-number and non-period characters.  Note: this
  * class has yet to follow the Semantic Versioning format exactly, and allow for prefixes and suffixes.
  *
- * @see vdscratchy.sulfurbox.data.types.Dependency
- * @see vdscratchy.sulfurbox.data.collections.ForgeMappings
- * @see vdscratchy.sulfurbox.handlers.Convert
+ * @see vdscratchy.core.validation.Validate
  */
 public class Version {
 	public int major = -1;
@@ -50,11 +49,13 @@ public class Version {
 	}
 
 	public Version(String version) {
-		String[] versionBits = version.replaceAll("[^\\d.]", "").split("\\.");
-		if (versionBits.length > 0) {this.major = parseInt(versionBits[0]);}
-		if (versionBits.length > 1) {this.minor = parseInt(versionBits[1]);}
-		if (versionBits.length > 2) {this.patch = parseInt(versionBits[2]);}
-		if (versionBits.length > 3) {this.build = parseInt(versionBits[3]);}
+		if (Validate.versionNumber(version).severity == -1) {
+			String[] versionBits = version.split("\\.");
+			if (versionBits.length > 0) this.major = parseInt(versionBits[0]);
+			if (versionBits.length > 1) this.minor = parseInt(versionBits[1]);
+			if (versionBits.length > 2) this.patch = parseInt(versionBits[2]);
+			if (versionBits.length > 3) this.build = parseInt(versionBits[3]);
+		}
 	}
 
 	@Override
