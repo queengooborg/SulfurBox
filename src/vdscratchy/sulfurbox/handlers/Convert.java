@@ -12,13 +12,16 @@ package vdscratchy.sulfurbox.handlers;
  * @see vdscratchy.sulfurbox.data.types.Version
  */
 public class Convert {
-	public static int parseInt(String s) {
-		if (s == "#") return -2;
+	public static int parseInt(String string, int fallback) {
 		try {
-			return Integer.parseInt(s);
+			return Integer.parseInt(string);
 		}
 		catch (NumberFormatException e) {
-			return -1;
+			return fallback;
 		}
+	}
+
+	public static int parseInt(String string) {
+		return parseInt(string, -1);
 	}
 }
