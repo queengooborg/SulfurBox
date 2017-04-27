@@ -24,10 +24,10 @@ public class GenerateAll {
 	}
 
 	public static void clean(Mod modInfo) {
-		// TODO Make me!
+		// TODO: Create me!
 	}
 
 	public static void generateIDE(Mod modInfo, String ide) {
-		// TODO Make me!
+		// TODO: Create me!
 	}
 }

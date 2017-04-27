@@ -38,10 +38,12 @@ public class Dependency {
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (!(o instanceof Dependency)) return false;
-		Dependency other = (Dependency) o;
+		if (o instanceof Dependency) {
+			Dependency other = (Dependency) o;
+			return depName.equals(other.depName) && depVersion.equals(other.depVersion) && (disallowHigherVersion == other.disallowHigherVersion);
+		}
 
-		return depName.equals(other.depName) && depVersion.equals(other.depVersion) && (disallowHigherVersion == other.disallowHigherVersion);
+		return false;
 	}
 
 	@Override

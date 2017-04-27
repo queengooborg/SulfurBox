@@ -7,7 +7,7 @@ package vdscratchy.sulfurbox.data.types;
  * @version 0.0.1
  * @since 0.0.1
  *
- * Stores the name and URL of a Maven repository, which is linked into the Gradle buildscript when a
+ * Stores the name and URL of a Maven repository, which is linked into the Gradle build script when a
  * {@link vdscratchy.sulfurbox.data.types.Dependency} it contains is added to the project.  Planned: mappings of what
  * repositories contain are stored in a database file, updated regularly.
  *
@@ -29,10 +29,12 @@ public class MavenRepository {
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (!(o instanceof MavenRepository)) return false;
-		MavenRepository other = (MavenRepository) o;
+		if (o instanceof MavenRepository) {
+			MavenRepository other = (MavenRepository) o;
+			return name.equals(other.name) && url.equals(other.url);
+		}
 
-		return name.equals(other.name) && url.equals(other.url);
+		return false;
 	}
 
 	@Override

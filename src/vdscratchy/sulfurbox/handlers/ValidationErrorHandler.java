@@ -19,5 +19,5 @@ import vdscratchy.core.validation.ValidationError;
  * @see vdscratchy.sulfurbox.Main
  */
 public class ValidationErrorHandler {
-	// TODO: Make me!
+	// TODO: Create me!
 }

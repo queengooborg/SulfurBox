@@ -73,7 +73,6 @@ public class CurrentProjectHandler {
 		return this.project.authors;
 	}
 
-	//TODO i only really need the getAuthors field for the gui because it returns an editable list. Not sur eif you had other plans for these other methods.
 	public Author getAuthor(int index) {
 		return this.project.authors.get(index);
 	}
@@ -276,18 +275,18 @@ public class CurrentProjectHandler {
 		return Validate.url(issuesPage);
 	}
 
-	public int getCurseforgeID() {
+	public int getCurseForgeID() {
 		return this.project.curseforgeID;
 	}
 
-	public ValidationError setCurseforgeID(int curseforgeID) {
+	public ValidationError setCurseForgeID(int curseforgeID) {
 		// TODO: confirm that the CurseForge project ID is valid
 		this.project.curseforgeID = curseforgeID;
 		if (curseforgeID < 0) return new ValidationError(1, "CurseForge ID must be a positive integer");
 		return new ValidationError(-1);
 	}
 
-	public ValidationError setCurseforgeID(String curseforgeID) {
+	public ValidationError setCurseForgeID(String curseforgeID) {
 		// TODO: confirm that the CurseForge project ID is valid
 		this.project.curseforgeID = Convert.parseInt(curseforgeID);
 
@@ -302,7 +301,7 @@ public class CurrentProjectHandler {
 	}
 
 	public ValidationError setLicense(String license) {
-		// TODO: make validator
+		// TODO: Create the validator
 		this.project.license = license;
 
 		if (license.length() == 0) return new ValidationError(-1);

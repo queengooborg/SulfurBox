@@ -1,7 +1,7 @@
 package vdscratchy.core.validation;
 
 /**
- * Darkscratch Core - vdscratchy.core.validation
+ * Darkscratch Core - vdscratchy.core.validation.Validate
  *
  * @author vinyldarkscratch
  * @version 0.0.1
@@ -57,7 +57,7 @@ public class Validate {
 	}
 
 	public static ValidationError filepath(String input) {
-		// TODO: make validator
+		// TODO: Create me!
 		return new ValidationError(-1);
 	}
 

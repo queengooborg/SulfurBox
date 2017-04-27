@@ -26,10 +26,12 @@ public class ManifestAttribute {
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (!(o instanceof ManifestAttribute)) return false;
-		ManifestAttribute other = (ManifestAttribute) o;
+		if (o instanceof ManifestAttribute) {
+			ManifestAttribute other = (ManifestAttribute) o;
+			return property.equals(other.property) && value.equals(other.value);
+		}
 
-		return property.equals(other.property) && value.equals(other.value);
+		return false;
 	}
 
 	@Override

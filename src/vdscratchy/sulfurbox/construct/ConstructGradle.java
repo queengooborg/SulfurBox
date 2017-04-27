@@ -4,6 +4,8 @@ import vdscratchy.sulfurbox.data.Mod;
 import vdscratchy.sulfurbox.data.types.Dependency;
 import vdscratchy.sulfurbox.data.types.MavenRepository;
 
+import java.util.Objects;
+
 /**
  * SulfurBox - vdscratchy.sulfurbox.construct.ConstructGradle
  *
@@ -12,7 +14,7 @@ import vdscratchy.sulfurbox.data.types.MavenRepository;
  * @since 0.0.1
  *
  * Using a {@link vdscratchy.sulfurbox.data.Mod} object, this class contains several functions to generate a Gradle
- * buildscript, including a main function to create the entire buildscript.  This is the counterpart to the modinfo
+ * build script, including a main function to create the entire build script.  This is the counterpart to the modinfo
  * constructor, {@link vdscratchy.sulfurbox.construct.ConstructModInfo}.
  *
  * @see vdscratchy.sulfurbox.data.Mod
@@ -21,7 +23,6 @@ import vdscratchy.sulfurbox.data.types.MavenRepository;
  */
 public class ConstructGradle {
 	public static String construct(Mod modInfo) {
-		// TODO Create me!
 		String output = "buildscript {\n\trepositories {\n\t\tjcenter()\n\t\tmaven {\n\t\t\tname = 'forge'\n\t\t\turl = 'http://files.minecraftforge.net/maven'\n\t\t}\n\t\tmaven {\n\t\t\tname = 'covers1624'\n\t\t\turl = 'http://maven.covers1624.net/'\n\t\t}\n\t\tmaven {\n\t\t\tname = 'covers1624'\n\t\t\turl = 'http://mavenmirror.covers1624.net/'\n\t\t}";
 		output += mavenReps(modInfo);
 		output += "\n\t}\n\tdependencies {\n\t\tclasspath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'\n\t}\n}";
@@ -31,7 +32,7 @@ public class ConstructGradle {
 		output += "targetCompatibility = \"1.8\"\nsourceCompatibility = \"1.8\"";
 		output += projectVars(modInfo);
 		output += "repositories {\n";
-		output += mavenReps(modInfo); // TODO Outdent the output in here by one
+		output += mavenReps(modInfo); // TODO: Outdent the output in here by one
 		output += "\n}\n\ndependencies {\n";
 		output += dependencies(modInfo);
 		output += "\n}\n\n";
@@ -55,7 +56,7 @@ public class ConstructGradle {
 		return output;
 	}
 
-	public static String projectVars(Mod modInfo) {
+	private static String projectVars(Mod modInfo) {
 		String output = "";
 		output += "group = " + modInfo.packageName + "\n";
 		output += "archivesBaseName = " + modInfo.modName + "\n";
@@ -67,42 +68,42 @@ public class ConstructGradle {
 
 	public static String mcforgeversion(Mod modInfo) { return modInfo.forgeVersion.toString() + "-" + modInfo.forgeVersion.toString(); }
 
-	public static String forgemapping(Mod modInfo) {
-		// FIXME: Have me grab the actual Forge mapping when the list has been generated!
-		if (modInfo.mcVersion.toString() == "1.11.2") return "snapshot_20170121";
+	private static String forgemapping(Mod modInfo) {
+		// TODO: Have me grab the actual Forge mapping when the list has been generated!
+		if (Objects.equals(modInfo.mcVersion.toString(), "1.11.2")) return "snapshot_20170121";
 		else return "snapshot_20161220";
 	}
 
-	public static String mavenReps(Mod modInfo) {
-		String output = "";
+	private static String mavenReps(Mod modInfo) {
+		StringBuilder output = new StringBuilder();
 		for (MavenRepository m : modInfo.mavenRepositories) {
-			output += "\n\t\tmaven{\n\t\t\tname '" + m.name + "'\n\t\t\turl '" + m.url + "'\n\t\t}";
+			output.append("\n\t\tmaven{\n\t\t\tname '").append(m.name).append("'\n\t\t\turl '").append(m.url).append("'\n\t\t}");
 		}
-		return output;
+		return output.toString();
 	}
 
-	public static String javaDeps(Mod modInfo) {
-		String output = "";
+	private static String javaDeps(Mod modInfo) {
+		StringBuilder output = new StringBuilder();
 		for (Dependency d : modInfo.javaDependencies) {
-			output += "\napply plugin: '" + d.depName + ":" + d.depVersion.toString() + "'";
+			output.append("\napply plugin: '").append(d.depName).append(":").append(d.depVersion.toString()).append("'");
 		}
-		return output;
+		return output.toString();
 	}
 
-	public static String dependencies(Mod modInfo) {
-		// TODO Create me! (needs the mod database)
+	private static String dependencies(Mod modInfo) {
+		// TODO: Create me! (needs the mod database)
 		String output = "";
 		return output;
 	}
 
-	public static String manifest(Mod modInfo) {
-		// TODO Create me!
+	private static String manifest(Mod modInfo) {
+		// TODO: Create me!
 		String output = "";
 		return output;
 	}
 
-	public static String repositoryUpload(Mod modInfo) {
-		// TODO Create me!
+	private static String repositoryUpload(Mod modInfo) {
+		// TODO: Create me!
 		String output = "";
 		return output;
 	}

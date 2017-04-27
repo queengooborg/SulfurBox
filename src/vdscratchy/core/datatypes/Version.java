@@ -3,6 +3,8 @@ package vdscratchy.core.datatypes;
 import vdscratchy.core.Convert;
 import vdscratchy.core.validation.Validate;
 
+import java.util.Objects;
+
 /**
  * Darkscratch Core - vdscratchy.core.datatypes.Version
  *
@@ -17,10 +19,10 @@ import vdscratchy.core.validation.Validate;
  * @see vdscratchy.core.validation.Validate
  */
 public class Version {
-	public int major = -1;
-	public int minor = -1;
-	public int patch = -1;
-	public int build = -1;
+	private int major = -1;
+	private int minor = -1;
+	private int patch = -1;
+	private int build = -1;
 
 	public Version() {
 
@@ -49,6 +51,7 @@ public class Version {
 	}
 
 	public Version(String version) {
+		// TODO: throw exception on invalid input
 		if (Validate.versionNumber(version).severity == -1) {
 			String[] versionBits = version.split("\\.");
 			if (versionBits.length > 0) this.major = parseInt(versionBits[0]);
@@ -58,13 +61,46 @@ public class Version {
 		}
 	}
 
+	public int getMajor() {
+		return major;
+	}
+
+	public void setMajor(int major) {
+		this.major = major;
+	}
+
+	public int getMinor() {
+		return minor;
+	}
+
+	public void setMinor(int minor) {
+		this.minor = minor;
+	}
+
+	public int getPatch() {
+		return patch;
+	}
+
+	public void setPatch(int patch) {
+		this.patch = patch;
+	}
+
+	public int getBuild() {
+		return build;
+	}
+
+	public void setBuild(int build) {
+		this.build = build;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (!(o instanceof Version)) return false;
-		Version other = (Version) o;
-
-		return (major == other.major) && (minor == other.minor) && (patch == other.patch) && (build == other.build);
+		if (o instanceof Version) {
+			Version other = (Version) o;
+			return (major == other.major) && (minor == other.minor) && (patch == other.patch) && (build == other.build);
+		}
+		return false;
 	}
 
 	@Override
@@ -86,8 +122,8 @@ public class Version {
 		return output;
 	}
 
-	public static int parseInt(String string) {
-		if (string == "#") return -2;
+	private static int parseInt(String string) {
+		if (Objects.equals(string, "#")) return -2;
 		return Convert.parseInt(string);
 	}
 }

@@ -11,5 +11,5 @@ package vdscratchy.sulfurbox.data.collections;
  * with the version number.  Planned: a local database file will be stored that is updated regularly.
  */
 public class ForgeMappings {
-	// TODO Make me!
+	// TODO: Create me!
 }

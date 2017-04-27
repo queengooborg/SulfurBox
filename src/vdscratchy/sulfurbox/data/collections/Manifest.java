@@ -19,7 +19,7 @@ import java.util.Map;
  * @see vdscratchy.sulfurbox.data.types.ManifestAttribute
  */
 public class Manifest {
-	private Map<String, String> attributes = new LinkedHashMap<>(); //Same here. Though i dont think this should have been null because i dont see it being initialized anywhere
+	private Map<String, String> attributes = new LinkedHashMap<>(); // Same here. Though I don't think this should have been null because I don't see it being initialized anywhere
 
 	public Manifest() {
 
@@ -47,8 +47,7 @@ public class Manifest {
 
 	@Override
 	public boolean equals(Object o) {
-		if (o instanceof Manifest) attributes.equals(((Manifest) o).getAttributes());
-		return o instanceof Map && attributes.equals(o);
+		return (o instanceof Manifest && attributes.equals(((Manifest) o).getAttributes())) || (o instanceof Map && attributes.equals(o));
 	}
 
 	@Override

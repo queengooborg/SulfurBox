@@ -11,6 +11,7 @@ import vdscratchy.core.validation.ValidationError;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -55,7 +56,34 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 		System.setProperty("apple.laf.useScreenMenuBar", "true"); // Needed for macOS
 
 		loadProperties();
+		initComponents();
+		initLAFMenu();
+        initTablesListeners();
+		pack();
 
+        reloadTables();
+	}
+
+	// TODO: Create a proper global properties handler
+	private void loadProperties() {
+		try {
+			File propertyFile = new File("properties");
+			if (propertyFile.createNewFile()) properties.load(new FileInputStream(propertyFile));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+
+		try {
+			UIManager.setLookAndFeel(properties.getProperty("laf", "com.bulenkov.darcula.DarculaLaf"));
+			initColors();
+			SwingUtilities.updateComponentTreeUI(SulfurBoxGui.this);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void initColors() {
 		invalidTextFieldInputColor = new Color((int)(Math.max(0.0, Math.min(UIManager.getDefaults().getColor("TextField.background").getRed() * 2.0, 255.0))),
 				(int)(Math.max(0.0, Math.min(UIManager.getDefaults().getColor("TextField.background").getGreen() * 0.8, 255.0))),
 				(int)(Math.max(0.0, Math.min(UIManager.getDefaults().getColor("TextField.background").getBlue() * 0.8, 255.0))),
@@ -75,34 +103,6 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 				(int)(Math.max(0.0, Math.min(UIManager.getDefaults().getColor("ComboBox.background").getGreen() * 1.6, 255.0))),
 				(int)(Math.max(0.0, Math.min(UIManager.getDefaults().getColor("ComboBox.background").getBlue() * 0.8, 255.0))),
 				UIManager.getDefaults().getColor("ComboBox.background").getAlpha());
-
-		initComponents();
-		initLAFMenu();
-        initTablesListeners();
-		pack();
-
-        reloadTables();
-	}
-
-	//TODO Create a proper global properties handler
-	private void loadProperties() {
-		try {
-			File propertyFile = new File("properties");
-			if (!propertyFile.exists()) {
-				propertyFile.createNewFile();
-			}
-			properties.load(new FileInputStream(propertyFile));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-
-		try {
-			UIManager.setLookAndFeel(properties.getProperty("laf", "com.bulenkov.darcula.DarculaLaf"));
-			SwingUtilities.updateComponentTreeUI(SulfurBoxGui.this);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**
@@ -127,6 +127,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 					properties.store(new FileOutputStream("properties"), "Props //TODO create a proper global properties file");
 
 					UIManager.setLookAndFeel(info.getClassName());
+					initColors();
 					SwingUtilities.updateComponentTreeUI(SulfurBoxGui.this);
 					if (info.getName().equals("Metal")) {
 						JOptionPane.showMessageDialog(SulfurBoxGui.this, "A restart may be required to correctly apply this change.", "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -549,7 +550,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         roleColumn.setCellRenderer(centerRenderer);
 
         attribContributorAdd.setText("+");
-        attribContributorAdd.setToolTipText("Add Contributer");
+        attribContributorAdd.setToolTipText("Add Contributor");
         attribContributorAdd.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 attribContributorAddActionPerformed(evt);
@@ -1225,7 +1226,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	}//GEN-LAST:event_modUpdateChecksFieldKeyReleased
 
 	private void modCurseIDFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modCurseIDFieldKeyReleased
-		ValidationError error = currentProject.setCurseforgeID(modCurseIDField.getText());
+		ValidationError error = currentProject.setCurseForgeID(modCurseIDField.getText());
 		if (error.severity == 1) modCurseIDField.setBackground(invalidTextFieldInputColor);
 		if (error.severity == 0) modCurseIDField.setBackground(warningTextFieldInputColor);
 		else modCurseIDField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
@@ -1257,30 +1258,26 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	}//GEN-LAST:event_modLogoFieldKeyReleased
 
 	private void modLogoBrowseButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modLogoBrowseButtonActionPerformed
-		// TODO: Add handler code
-
+		// TODO: Create me!
 	}//GEN-LAST:event_modLogoBrowseButtonActionPerformed
 
 	private void eclipseRadButtonStateChanged(ChangeEvent evt) {//GEN-FIRST:event_eclipseRadButtonStateChanged
-		// TODO: Add handler code
-
+		// TODO: Create me!
 	}//GEN-LAST:event_eclipseRadButtonStateChanged
 
 	private void intellijRadButtonStateChanged(ChangeEvent evt) {//GEN-FIRST:event_intellijRadButtonStateChanged
-		// TODO: Add handler code
-
+		// TODO: Create me!
 	}//GEN-LAST:event_intellijRadButtonStateChanged
 
 	private void modGenerateButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modGenerateButtonActionPerformed
-		// TODO: Add handler code
+		// TODO: Create me!
 		GenerateAll.construct(currentProject.project);
 		if (eclipseRadButton.isSelected()) GenerateAll.generateIDE(currentProject.project, "eclipse");
 		if (intellijRadButton.isSelected()) GenerateAll.generateIDE(currentProject.project, "idea");
 	}//GEN-LAST:event_modGenerateButtonActionPerformed
 
 	private void attribContributorTableKeyReleased(KeyEvent evt) {//GEN-FIRST:event_attribContributorTableKeyReleased
-		// TODO: Add handler code
-
+		// TODO: Create me!
 	}//GEN-LAST:event_attribContributorTableKeyReleased
 
 	private void attribContributorAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_attribContributorAddActionPerformed
@@ -1308,8 +1305,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	}//GEN-LAST:event_attribCreditsFieldKeyReleased
 
 	private void depParentCheckStateChanged(ChangeEvent evt) {//GEN-FIRST:event_depParentCheckStateChanged
-		// TODO: Add handler code
-
+		// TODO: Create me!
 	}//GEN-LAST:event_depParentCheckStateChanged
 
 	private void depParentFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depParentFieldKeyReleased
@@ -1321,8 +1317,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	}//GEN-LAST:event_depParentFieldKeyReleased
 
 	private void depModsTableKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depModsTableKeyReleased
-		// TODO: Add handler code
-
+		// TODO: Create me!
 	}//GEN-LAST:event_depModsTableKeyReleased
 
 	private void depModsAddActionPerformed(ActionEvent evt) {//GEN-FIRST:event_depModsAddActionPerformed
@@ -1390,15 +1385,15 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	}//GEN-LAST:event_depManifestRemoveActionPerformed
 
     private void depJavaLibsTableKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depJavaLibsTableKeyReleased
-        // TODO add your handling code here:
+        // TODO: Create me!
     }//GEN-LAST:event_depJavaLibsTableKeyReleased
 
     private void depManifestTableKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depManifestTableKeyReleased
-        // TODO add your handling code here:
+        // TODO: Create me!
     }//GEN-LAST:event_depManifestTableKeyReleased
 
     private void depMavenRepsTableKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depMavenRepsTableKeyReleased
-        // TODO add your handling code here:
+        // TODO: Create me!
     }//GEN-LAST:event_depMavenRepsTableKeyReleased
 
     //</editor-fold>
@@ -1409,7 +1404,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         contribTableModel.addTableModelListener(e -> {
             int row = e.getFirstRow();
             int column = e.getColumn();
-            if (e.getType() != 0 || row == -1 || column == -1) {
+            if (e.getType() != TableModelEvent.UPDATE || row == -1 || column == -1) {
                 return;
             }
 
@@ -1427,7 +1422,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         depModsTableModel.addTableModelListener(e -> {
             int row = e.getFirstRow();
             int column = e.getColumn();
-            if (e.getType() != 0 || row == -1 || column == -1) {
+            if (e.getType() != TableModelEvent.UPDATE || row == -1 || column == -1) {
                 return;
             }
 
@@ -1445,7 +1440,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         depJavaLibsTableModel.addTableModelListener(e -> {
             int row = e.getFirstRow();
             int column = e.getColumn();
-            if (e.getType() != 0 || row == -1 || column == -1) {
+            if (e.getType() != TableModelEvent.UPDATE || row == -1 || column == -1) {
                 return;
             }
 
@@ -1463,7 +1458,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         depMavenRepsTableModel.addTableModelListener(e -> {
             int row = e.getFirstRow();
             int column = e.getColumn();
-            if (e.getType() != 0 || row == -1 || column == -1) {
+            if (e.getType() != TableModelEvent.UPDATE || row == -1 || column == -1) {
                 return;
             }
 
@@ -1480,7 +1475,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         depManifestTableModel.addTableModelListener(e -> {
             int row = e.getFirstRow();
             int column = e.getColumn();
-            if (e.getType() != 0 || row == -1 || column == -1) {
+            if (e.getType() != TableModelEvent.UPDATE || row == -1 || column == -1) {
                 return;
             }
 

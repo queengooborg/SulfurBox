@@ -19,42 +19,42 @@ import vdscratchy.sulfurbox.data.Mod;
  */
 public class ConstructModInfo {
 	public static String construct(Mod modInfo) {
-		// TODO Create me!
+		// TODO: Create me!
 		return "";
 	}
 
 	public static String modid(Mod modInfo) {
-		// TODO Create me!
+		// TODO: Create me!
 		return "";
 	}
 
 	public static String modname(Mod modInfo) {
-		// TODO Create me!
+		// TODO: Create me!
 		return "";
 	}
 
 	public static String description(Mod modInfo) {
-		// TODO Create me!
+		// TODO: Create me!
 		return "";
 	}
 
 	public static String modversion(Mod modInfo) {
-		// TODO Create me!
+		// TODO: Create me!
 		return "";
 	}
 
 	public static String links(Mod modInfo) {
-		// TODO Create me!
+		// TODO: Create me!
 		return "";
 	}
 
 	public static String authorList(Mod modInfo) {
-		// TODO Create me!
+		// TODO: Create me!
 		return "";
 	}
 
 	public static String parentMod(Mod modInfo) {
-		// TODO Create me!
+		// TODO: Create me!
 		return "";
 	}
 }
