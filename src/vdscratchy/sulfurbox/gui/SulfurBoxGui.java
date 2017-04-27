@@ -1136,7 +1136,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void modNameFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modNameFieldKeyReleased
 		ValidationError error = currentProject.setModName(modNameField.getText());
 		if (error.severity == 1) modNameField.setBackground(invalidTextFieldInputColor);
-		if (error.severity == 0) modNameField.setBackground(warningTextFieldInputColor);
+		else if (error.severity == 0) modNameField.setBackground(warningTextFieldInputColor);
 		else modNameField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
 		modNameField.setToolTipText(error.message);
 	}//GEN-LAST:event_modNameFieldKeyReleased
@@ -1144,7 +1144,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void modPackageFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modPackageFieldKeyReleased
 		ValidationError error = currentProject.setPackageName(modPackageField.getText());
 		if (error.severity == 1) modPackageField.setBackground(invalidTextFieldInputColor);
-		if (error.severity == 0) modPackageField.setBackground(warningTextFieldInputColor);
+		else if (error.severity == 0) modPackageField.setBackground(warningTextFieldInputColor);
 		else modPackageField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
 		modPackageField.setToolTipText(error.message);
 	}//GEN-LAST:event_modPackageFieldKeyReleased
@@ -1152,7 +1152,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void modPackageMemberFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modPackageMemberFieldKeyReleased
 		ValidationError error = currentProject.setPackageModuleName(modPackageMemberField.getText());
 		if (error.severity == 1) modPackageMemberField.setBackground(invalidTextFieldInputColor);
-		if (error.severity == 0) modPackageMemberField.setBackground(warningTextFieldInputColor);
+		else if (error.severity == 0) modPackageMemberField.setBackground(warningTextFieldInputColor);
 		else modPackageMemberField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
 		modPackageMemberField.setToolTipText(error.message);
 	}//GEN-LAST:event_modPackageMemberFieldKeyReleased
@@ -1160,7 +1160,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void modVersionFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modVersionFieldKeyReleased
 		ValidationError error = currentProject.setModVersion(modVersionField.getText());
 		if (error.severity == 1) modVersionField.setBackground(invalidTextFieldInputColor);
-		if (error.severity == 0) modVersionField.setBackground(warningTextFieldInputColor);
+		else if (error.severity == 0) modVersionField.setBackground(warningTextFieldInputColor);
 		else modVersionField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
 		modVersionField.setToolTipText(error.message);
 	}//GEN-LAST:event_modVersionFieldKeyReleased
@@ -1168,7 +1168,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void mcVersionSelectItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_mcVersionSelectItemStateChanged
 		ValidationError error = currentProject.setMcVersion(mcVersionSelect.getSelectedItem().toString());
 		if (error.severity == 1) mcVersionSelect.setBackground(invalidChoiceInputColor);
-		if (error.severity == 0) mcVersionSelect.setBackground(warningChoiceInputColor);
+		else if (error.severity == 0) mcVersionSelect.setBackground(warningChoiceInputColor);
 		else mcVersionSelect.setBackground(UIManager.getDefaults().getColor("ComboBox.background"));
 		mcVersionSelect.setToolTipText(error.message);
 	}//GEN-LAST:event_mcVersionSelectItemStateChanged
@@ -1176,7 +1176,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void forgeVersionSelectItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_forgeVersionSelectItemStateChanged
 		ValidationError error = currentProject.setForgeVersion(forgeVersionSelect.getSelectedItem().toString());
 		if (error.severity == 1) forgeVersionSelect.setBackground(invalidChoiceInputColor);
-		if (error.severity == 0) forgeVersionSelect.setBackground(warningChoiceInputColor);
+		else if (error.severity == 0) forgeVersionSelect.setBackground(warningChoiceInputColor);
 		else forgeVersionSelect.setBackground(UIManager.getDefaults().getColor("ComboBox.background"));
 		forgeVersionSelect.setToolTipText(error.message);
 	}//GEN-LAST:event_forgeVersionSelectItemStateChanged
@@ -1184,7 +1184,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void modDescriptionFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modDescriptionFieldKeyReleased
 		ValidationError error = currentProject.setDescription(modDescriptionField.getText());
 		if (error.severity == 1) modDescriptionField.setBackground(invalidTextFieldInputColor);
-		if (error.severity == 0) modDescriptionField.setBackground(warningTextFieldInputColor);
+		else if (error.severity == 0) modDescriptionField.setBackground(warningTextFieldInputColor);
 		else modDescriptionField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
 		modDescriptionField.setToolTipText(error.message);
 	}//GEN-LAST:event_modDescriptionFieldKeyReleased
@@ -1196,7 +1196,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void modHomePageFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modHomePageFieldKeyReleased
 		ValidationError error = currentProject.setHomepage(modHomePageHttpsSelect.getSelectedItem().toString() + modHomePageField.getText());
 		if (error.severity == 1) modHomePageField.setBackground(invalidTextFieldInputColor);
-		if (error.severity == 0) modHomePageField.setBackground(warningTextFieldInputColor);
+		else if (error.severity == 0) modHomePageField.setBackground(warningTextFieldInputColor);
 		else modHomePageField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
 		modHomePageField.setToolTipText(error.message);
 	}//GEN-LAST:event_modHomePageFieldKeyReleased
@@ -1204,7 +1204,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void modRepoFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modRepoFieldKeyReleased
 		ValidationError error = currentProject.setModRepository(modRepoField.getText());
 		if (error.severity == 1) modRepoField.setBackground(invalidTextFieldInputColor);
-		if (error.severity == 0) modRepoField.setBackground(warningTextFieldInputColor);
+		else if (error.severity == 0) modRepoField.setBackground(warningTextFieldInputColor);
 		else modRepoField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
 		modRepoField.setToolTipText(error.message);
 	}//GEN-LAST:event_modRepoFieldKeyReleased
@@ -1212,7 +1212,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void issueTrackerFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_issueTrackerFieldKeyReleased
 		ValidationError error = currentProject.setIssuesPage(issueTrackerField.getText());
 		if (error.severity == 1) issueTrackerField.setBackground(invalidTextFieldInputColor);
-		if (error.severity == 0) issueTrackerField.setBackground(warningTextFieldInputColor);
+		else if (error.severity == 0) issueTrackerField.setBackground(warningTextFieldInputColor);
 		else issueTrackerField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
 		issueTrackerField.setToolTipText(error.message);
 	}//GEN-LAST:event_issueTrackerFieldKeyReleased
@@ -1220,7 +1220,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void modUpdateChecksFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modUpdateChecksFieldKeyReleased
 		ValidationError error = currentProject.setUpdateCheck(modUpdateChecksField.getText());
 		if (error.severity == 1) modUpdateChecksField.setBackground(invalidTextFieldInputColor);
-		if (error.severity == 0) modUpdateChecksField.setBackground(warningTextFieldInputColor);
+		else if (error.severity == 0) modUpdateChecksField.setBackground(warningTextFieldInputColor);
 		else modUpdateChecksField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
 		modUpdateChecksField.setToolTipText(error.message);
 	}//GEN-LAST:event_modUpdateChecksFieldKeyReleased
@@ -1228,7 +1228,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void modCurseIDFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modCurseIDFieldKeyReleased
 		ValidationError error = currentProject.setCurseForgeID(modCurseIDField.getText());
 		if (error.severity == 1) modCurseIDField.setBackground(invalidTextFieldInputColor);
-		if (error.severity == 0) modCurseIDField.setBackground(warningTextFieldInputColor);
+		else if (error.severity == 0) modCurseIDField.setBackground(warningTextFieldInputColor);
 		else modCurseIDField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
 		modCurseIDField.setToolTipText(error.message);
 	}//GEN-LAST:event_modCurseIDFieldKeyReleased
@@ -1236,7 +1236,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void modLicenseFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modLicenseFieldKeyReleased
 		ValidationError error = currentProject.setLicense(modLicenseField.getSelectedItem().toString());
 		if (error.severity == 1) modLicenseField.setBackground(invalidTextFieldInputColor);
-		if (error.severity == 0) modLicenseField.setBackground(warningTextFieldInputColor);
+		else if (error.severity == 0) modLicenseField.setBackground(warningTextFieldInputColor);
 		else modLicenseField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
 		modLicenseField.setToolTipText(error.message);
 	}//GEN-LAST:event_modLicenseFieldKeyReleased
@@ -1244,7 +1244,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void modLicenseFieldItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_modLicenseFieldItemStateChanged
 		ValidationError error = currentProject.setLicense(modLicenseField.getSelectedItem().toString());
 		if (error.severity == 1) modLicenseField.setBackground(invalidTextFieldInputColor);
-		if (error.severity == 0) modLicenseField.setBackground(warningTextFieldInputColor);
+		else if (error.severity == 0) modLicenseField.setBackground(warningTextFieldInputColor);
 		else modLicenseField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
 		modLicenseField.setToolTipText(error.message);
 	}//GEN-LAST:event_modLicenseFieldItemStateChanged
@@ -1252,7 +1252,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void modLogoFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_modLogoFieldKeyReleased
 		ValidationError error = currentProject.setLogopath(modLogoField.getText());
 		if (error.severity == 1) modLogoField.setBackground(invalidTextFieldInputColor);
-		if (error.severity == 0) modLogoField.setBackground(warningTextFieldInputColor);
+		else if (error.severity == 0) modLogoField.setBackground(warningTextFieldInputColor);
 		else modLogoField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
 		modLogoField.setToolTipText(error.message);
 	}//GEN-LAST:event_modLogoFieldKeyReleased
@@ -1299,7 +1299,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void attribCreditsFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_attribCreditsFieldKeyReleased
 		ValidationError error = currentProject.setCredits(attribCreditsField.getText());
 		if (error.severity == 1) attribCreditsField.setBackground(invalidTextFieldInputColor);
-		if (error.severity == 0) attribCreditsField.setBackground(warningTextFieldInputColor);
+		else if (error.severity == 0) attribCreditsField.setBackground(warningTextFieldInputColor);
 		else attribCreditsField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
 		attribCreditsField.setToolTipText(error.message);
 	}//GEN-LAST:event_attribCreditsFieldKeyReleased
@@ -1311,7 +1311,7 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 	private void depParentFieldKeyReleased(KeyEvent evt) {//GEN-FIRST:event_depParentFieldKeyReleased
 		ValidationError error = currentProject.setParentMod(depParentField.getText());
 		if (error.severity == 1) depParentField.setBackground(invalidTextFieldInputColor);
-		if (error.severity == 0) depParentField.setBackground(warningTextFieldInputColor);
+		else if (error.severity == 0) depParentField.setBackground(warningTextFieldInputColor);
 		else depParentField.setBackground(UIManager.getDefaults().getColor("TextField.background"));
 		depParentField.setToolTipText(error.message);
 	}//GEN-LAST:event_depParentFieldKeyReleased
