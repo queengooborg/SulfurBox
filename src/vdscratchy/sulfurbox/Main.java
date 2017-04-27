@@ -2,7 +2,8 @@ package vdscratchy.sulfurbox;
 
 import vdscratchy.sulfurbox.gui.SulfurBoxGui;
 
-import javax.swing.*;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 /**
  * SulfurBox - vdscratchy.sulfurbox.Main

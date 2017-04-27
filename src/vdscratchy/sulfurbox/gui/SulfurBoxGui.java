@@ -1,13 +1,13 @@
 package vdscratchy.sulfurbox.gui;
 
-import com.google.common.collect.Lists;
-import org.jdesktop.beansbinding.*;
 import vdscratchy.core.datatypes.Version;
 import vdscratchy.sulfurbox.construct.GenerateAll;
 import vdscratchy.sulfurbox.data.types.*;
 import vdscratchy.sulfurbox.handlers.CurrentProjectHandler;
 import vdscratchy.core.validation.ValidationError;
 
+import com.google.common.collect.Lists;
+import org.jdesktop.beansbinding.*;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
