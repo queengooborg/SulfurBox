@@ -201,8 +201,8 @@
                   <Component id="modPropertyTabs" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="eclipseRadButton" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Component id="intellijRadButton" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="eclipseCheckBox" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="intellijCheckBox" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="modGeneratePanel" max="32767" attributes="0"/>
@@ -228,9 +228,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="modGeneratePanel" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="eclipseRadButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="eclipseCheckBox" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="intellijRadButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="intellijCheckBox" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="7" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -1303,20 +1303,20 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JRadioButton" name="intellijRadButton">
+    <Component class="javax.swing.JCheckBox" name="intellijCheckBox">
       <Properties>
         <Property name="text" type="java.lang.String" value="IntelliJ"/>
       </Properties>
       <Events>
-        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="intellijRadButtonStateChanged"/>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="intellijCheckBoxStateChanged"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="eclipseRadButton">
+    <Component class="javax.swing.JCheckBox" name="eclipseCheckBox">
       <Properties>
         <Property name="text" type="java.lang.String" value="Eclipse"/>
       </Properties>
       <Events>
-        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="eclipseRadButtonStateChanged"/>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="eclipseCheckBoxStateChanged"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="gradleVersionLabel">

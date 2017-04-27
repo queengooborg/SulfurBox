@@ -219,8 +219,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
         depManifestRemove = new JButton();
         depModsScrlPane2 = new JScrollPane();
         depManifestTable = new JTable();
-        intellijRadButton = new JRadioButton();
-        eclipseRadButton = new JRadioButton();
+        intellijCheckBox = new JCheckBox();
+        eclipseCheckBox = new JCheckBox();
         gradleVersionLabel = new JLabel();
         javaVersionLabel = new JLabel();
         modGeneratePanel = new JPanel();
@@ -951,17 +951,17 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 
         modPropertyTabs.addTab("Dependencies", depPanel);
 
-        intellijRadButton.setText("IntelliJ");
-        intellijRadButton.addChangeListener(new ChangeListener() {
+        intellijCheckBox.setText("IntelliJ");
+        intellijCheckBox.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {
-                intellijRadButtonStateChanged(evt);
+                intellijCheckBoxStateChanged(evt);
             }
         });
 
-        eclipseRadButton.setText("Eclipse");
-        eclipseRadButton.addChangeListener(new ChangeListener() {
+        eclipseCheckBox.setText("Eclipse");
+        eclipseCheckBox.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {
-                eclipseRadButtonStateChanged(evt);
+                eclipseCheckBoxStateChanged(evt);
             }
         });
 
@@ -1096,8 +1096,8 @@ public class SulfurBoxGui extends javax.swing.JFrame {
                     .addComponent(modPropertyTabs)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(eclipseRadButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(intellijRadButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(eclipseCheckBox, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(intellijCheckBox, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(modGeneratePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -1116,9 +1116,9 @@ public class SulfurBoxGui extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addComponent(modGeneratePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(eclipseRadButton)
+                                .addComponent(eclipseCheckBox)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(intellijRadButton)
+                                .addComponent(intellijCheckBox)
                                 .addGap(0, 7, Short.MAX_VALUE))))
                     .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1261,19 +1261,19 @@ public class SulfurBoxGui extends javax.swing.JFrame {
 		// TODO: Create me!
 	}//GEN-LAST:event_modLogoBrowseButtonActionPerformed
 
-	private void eclipseRadButtonStateChanged(ChangeEvent evt) {//GEN-FIRST:event_eclipseRadButtonStateChanged
+	private void eclipseCheckBoxStateChanged(ChangeEvent evt) {//GEN-FIRST:event_eclipseCheckBoxStateChanged
 		// TODO: Create me!
-	}//GEN-LAST:event_eclipseRadButtonStateChanged
+	}//GEN-LAST:event_eclipseCheckBoxStateChanged
 
-	private void intellijRadButtonStateChanged(ChangeEvent evt) {//GEN-FIRST:event_intellijRadButtonStateChanged
+	private void intellijCheckBoxStateChanged(ChangeEvent evt) {//GEN-FIRST:event_intellijCheckBoxStateChanged
 		// TODO: Create me!
-	}//GEN-LAST:event_intellijRadButtonStateChanged
+	}//GEN-LAST:event_intellijCheckBoxStateChanged
 
 	private void modGenerateButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modGenerateButtonActionPerformed
 		// TODO: Create me!
 		GenerateAll.construct(currentProject.project);
-		if (eclipseRadButton.isSelected()) GenerateAll.generateIDE(currentProject.project, "eclipse");
-		if (intellijRadButton.isSelected()) GenerateAll.generateIDE(currentProject.project, "idea");
+		if (eclipseCheckBox.isSelected()) GenerateAll.generateIDE(currentProject.project, "eclipse");
+		if (intellijCheckBox.isSelected()) GenerateAll.generateIDE(currentProject.project, "idea");
 	}//GEN-LAST:event_modGenerateButtonActionPerformed
 
 	private void attribContributorTableKeyReleased(KeyEvent evt) {//GEN-FIRST:event_attribContributorTableKeyReleased
@@ -1585,14 +1585,14 @@ public class SulfurBoxGui extends javax.swing.JFrame {
     private JCheckBox depParentCheck;
     private JTextField depParentField;
     private JLabel depParentLabel;
-    private JRadioButton eclipseRadButton;
     private JMenu editMenu;
     private JMenu fileMenu;
     private Box.Filler filler1;
     private Box.Filler filler2;
     private JComboBox<String> forgeVersionSelect;
     private JLabel gradleVersionLabel;
-    private JRadioButton intellijRadButton;
+	private JCheckBox eclipseCheckBox;
+    private JCheckBox intellijCheckBox;
     private JTextField issueTrackerField;
     private JLabel issueTrackerLabel;
     private JLabel javaVersionLabel;
