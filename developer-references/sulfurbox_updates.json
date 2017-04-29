@@ -1,0 +1,78 @@
+{
+ "sulfurbox-latest": "0.0.1", 
+ "last-updated": "2017-04-29_02:35:34", 
+ "mc-mappings": {
+  "1.11.2": {
+   "recommended": "13.20.0.2228", 
+   "mapping": "snapshot_20161220", 
+   "latest": "13.20.0.2285"
+  }, 
+  "1.7.10": {
+   "recommended": "10.13.4.1558", 
+   "mapping": null, 
+   "latest": "10.13.4.1614"
+  }, 
+  "1.8": {
+   "recommended": "11.14.4.1563", 
+   "mapping": "snapshot_20141130", 
+   "latest": "11.14.4.1577"
+  }, 
+  "1.11": {
+   "recommended": "13.19.1.2189", 
+   "mapping": "snapshot_20161111", 
+   "latest": "13.19.1.2199"
+  }, 
+  "1.10.2": {
+   "recommended": "12.18.3.2185", 
+   "mapping": "snapshot_20161111", 
+   "latest": "12.18.3.2281"
+  }, 
+  "1.9": {
+   "recommended": "12.16.1.1887", 
+   "mapping": "snapshot_20160312", 
+   "latest": "12.16.0.1942"
+  }, 
+  "1.5.2": {
+   "recommended": "7.8.1.737", 
+   "mapping": "", 
+   "latest": "7.8.1.738"
+  }, 
+  "1.6.2": {
+   "recommended": "9.10.1.871", 
+   "mapping": null, 
+   "latest": "9.10.1.871"
+  }, 
+  "1.6.3": {
+   "mapping": null, 
+   "latest": "9.11.0.878"
+  }, 
+  "1.6.1": {
+   "mapping": null, 
+   "latest": "8.9.0.775"
+  }, 
+  "1.8.8": {
+   "mapping": "snapshot_20151122", 
+   "latest": "11.15.0.1655"
+  }, 
+  "1.8.9": {
+   "recommended": "11.15.1.1722", 
+   "mapping": "stable_20", 
+   "latest": "11.15.1.1902"
+  }, 
+  "1.6.4": {
+   "recommended": "9.11.1.1345", 
+   "mapping": null, 
+   "latest": "9.11.1.1345"
+  }, 
+  "1.7.2": {
+   "recommended": "10.12.2.1121", 
+   "mapping": null, 
+   "latest": "10.12.2.1147"
+  }, 
+  "1.9.4": {
+   "recommended": "12.17.0.1976", 
+   "mapping": "snapshot_20160518", 
+   "latest": "12.17.0.2051"
+  }
+ }
+}
